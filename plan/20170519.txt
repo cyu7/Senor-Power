@@ -1,0 +1,1 @@
+We plan to get used to the LoadDisplayImage() method in Java Processing.
