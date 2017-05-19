@@ -1,6 +1,6 @@
-SeñorPower
+Señor Power
 Nicolas Naing
-Christopher Yu
+Chris Yu
 pd 4
 ---------------------
 Hearthstone
@@ -9,7 +9,7 @@ Hearthstone
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-O
+- Loading Images in processing from a separate directory
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -39,9 +39,10 @@ LESSONS LEARNED
 
 2017-05-19
 --------------------------------------------------------------
-
+Chris:: Added image
+Nicolas:: 
 
 2017-05-18
 -------------------------------------------------------------- 
-Chris:: got background() to work with the Hearthstone board
+Chris:: got background() to work with the Hearthstone board, added Cards
 Nicolas:: linked submodule, made devlog, started plan for 5/19
