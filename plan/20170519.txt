@@ -1,11 +1,10 @@
-Which jobs are most crucial?
+<B>Which jobs are most crucial?</B>
 The next 5 things we plan to do are 
 1. Work on displaying cards through LoadDisplayImage()
 2. Make the cards moveable through the mouse
 3. Be able to retrieve cards from a deck of a specific hero
 4. Give the card currently being moved/selected a gold border to make selection clearer
 5. Implement some of the buttons in the game such as End Turn
-
 
 Which components constitute core functionality (vs non-essential)?
 1,2,3,5 are essential to the mechanics of the game while 4 is not as necessary but helps the user navigate through the game
