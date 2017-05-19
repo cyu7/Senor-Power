@@ -1,1 +1,21 @@
-We plan to get used to the LoadDisplayImage() method in Java Processing.
+Which jobs are most crucial?
+The next 5 things we plan to do are 
+1. Work on displaying cards through LoadDisplayImage()
+2. Make the cards moveable through the mouse
+3. Be able to retrieve cards from a deck of a specific hero
+4. Give the card currently being moved/selected a gold border to make selection clearer
+5. Implement some of the buttons in the game such as End Turn
+
+
+Which components constitute core functionality (vs non-essential)?
+1,2,3,5 are essential to the mechanics of the game while 4 is not as necessary but helps the user navigate through the game
+
+Which components are prerequisites for others?
+We need to do 1 before 2 and 3, and 2 and 3 before 4. 5 can come in any order but is less important than the card functionality.
+
+Which tasks can be delegated, and which must be collaboratively tackled?
+All of these tasks can be delegated, but it would be convenient to have one person do 1-3 or 1-4 
+and have the other do the rest (4 or 5)
+
+What is the timeline, and how does it accommodate setbacks, course changes?
+We hope to finish all 5 of these things before Monday. This should be feasible since each step should be pretty simple once we understand the Processing functions behind them. If we ever need to spend more time on one of the first steps, then we can push back 4 for a later day/weekend.
