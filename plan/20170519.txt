@@ -1,4 +1,4 @@
-<B>Which jobs are most crucial?</B>
+Which jobs are most crucial?
 The next 5 things we plan to do are 
 1. Work on displaying cards through LoadDisplayImage()
 2. Make the cards moveable through the mouse
