@@ -1,4 +1,4 @@
-Señor Power
+﻿Señor Power
 Nicolas Naing
 Chris Yu
 pd 4
@@ -7,9 +7,11 @@ Hearthstone
 
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
-OBSTACLES OVERCOME
+OBSTACLES OVERCOME - 3
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- Loading background image
 - Loading Images in processing from a separate directory
+- making a loaded image draggable
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -39,8 +41,8 @@ LESSONS LEARNED
 
 2017-05-19
 --------------------------------------------------------------
-Chris:: Added image
-Nicolas:: 
+Chris:: Added image using LoadDisplayImage()
+Nicolas:: added draggability
 
 2017-05-18
 -------------------------------------------------------------- 
