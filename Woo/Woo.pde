@@ -1,50 +1,101 @@
+String[] images = {"Cards/Wolfrider.jpg", "Cards/VoodooDoctor.jpg"};
+
+float[] positions =new float[images.length*2];
+
 PImage bg;
-PImage card;
-PImage dragCard;
-float testx=100;
-float testy=100;
+float bx;
+float by;
+int bs = 40;
+int bz = 30;
 float easing = .05;
 float x_offset_drag;
 float y_offset_drag;
+boolean bover = false;
 boolean locked = false;
+float bdifx = 0.0; 
+float bdify = 0.0; 
+PImage[] image1 = new PImage [images.length]; 
+float newx, newy;
+int whichImage;
 
 void setup() {
   size(960, 540);
   // The background image must be the same size as the parameters
   // into the size() method. In this program, the size of the image
-  // is 1920 x 1080 pixels.
+  // is 960 x 540 pixels.
+  bx = width/2.0;
+  by = height/2.0;
   bg = loadImage("background.png");
-  card = loadImage("Cards/Wolfrider.jpg");
-  smooth();
-  dragCard = loadImage("Cards/Wolfrider.jpg");
+
+  for (int i=0; i < images.length; i++) {
+    image1 [i]= loadImage(images[i]); 
+    image (image1[i], random(width), random(height), 50, 50) ;
+  } 
+
+  for (int j=0; j < images.length*2; j+=2) {
+    positions[j]= random(width);
+    positions[j+1]= random(height);
+  }
 }
 
 void draw() {
   background(bg);  
-  image(card, 100, 100);
-  image(dragCard, testx, testy);
+  for (int i=0; i < images.length; i++) {
+    if (mouseX > positions[i*2]-bs && mouseX < positions[i*2]+bs && 
+      mouseY > positions[i*2+1]-bs && mouseY < positions[i*2+1]+bs) 
+    {
+      println ("mouseover image: "+i);
+      whichImage=i;
+
+      bover = true;  
+      if (!locked) 
+      { 
+        stroke(255); 
+        fill(153);
+      }
+      break;
+    } else
+    {
+      stroke(153);
+      fill(153);
+      bover = false;
+    }
+  }
+
+  // Draw the box
+  //rect(bx, by, bs, bs);
+
+  for (int j=0; j < images.length; j++) {
+    // image= loadImage(images[j]); 
+    image (image1[j], positions[j*2], positions[j*2+1], 50, 50) ;
+    //  newx = positions[j*2];
+    //  newy = positions[j*2+1];
+    //whichImage = j;
+    //image(image, bx, by, bs, bz);
+  }
 }
 
 void mousePressed() {
-  float w = dragCard.width/2;
-  float h = dragCard.height/2;
-  if ((mouseX < testx+w+50) && (mouseY < testy+h+50) && (mouseX > testx+w-50) && (mouseY > testy+h-50)) {
-    testx = mouseX - x_offset_drag - w;
-    testy = mouseY - y_offset_drag - h;
+  if (bover) { 
     locked = true;
-    cursor(HAND);}
+  } else {
+    locked = false;
+  }
+  //  bdifx = mouseX-bx; 
+  // bdify = mouseY-by;
 }
 
 void mouseDragged() {
-  float w = dragCard.width/2;
-  float h = dragCard.height/2;
   if (locked) {
-    testx = mouseX - x_offset_drag - w;
-    testy = mouseY - y_offset_drag - h;
+    newx = mouseX - x_offset_drag - 25; 
+    newy = mouseY - y_offset_drag - 25;
   }
+
+  // println ("whichImage = "+whichImage);
+  positions [whichImage*2] = newx;
+  positions [(whichImage*2)+1] = newy;
 }
 
 void mouseReleased() {
   locked = false;
-  cursor(ARROW);
 }
