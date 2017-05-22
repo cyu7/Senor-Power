@@ -89,6 +89,11 @@ void mouseDragged() {
   if (locked) {
     newx = mouseX - x_offset_drag - 25; 
     newy = mouseY - y_offset_drag - 25;
+    fill(50,205,50);
+    rect(newx-2, newy-2, 54, 2); // top border
+    rect(newx-2, newy, 2, 50); // left border
+    rect(newx-2, newy+50, 54, 2); // bottom border
+    rect(newx+50, newy, 2, 50); // right border 
   }
 
   // println ("whichImage = "+whichImage);
