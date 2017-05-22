@@ -1,0 +1,17 @@
+Which jobs are most crucial?
+The next 3 things we plan to do are 
+1. Having a space that can read cards placed on top of it and a button that runs the method on said card
+2. Make a player Class that has HP, MP, max MP, currentHand, and monsters[] instance variables
+3. Getting cards to affect instance variables of the Player class
+
+Which components constitute core functionality (vs non-essential)?
+All three of these steps are essential
+
+Which components are prerequisites for others?
+1 must be done before 2 which must be done before 3
+
+Which tasks can be delegated, and which must be collaboratively tackled?
+All of these tasks can be delegated, but it would be convenient to have one person do 1 while another person does 2 and 3
+
+What is the timeline, and how does it accommodate setbacks, course changes?
+We hope to finish all 3 of these things by Thursday/Friday. If these steps need more time, then we can use the weekend as well
