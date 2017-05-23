@@ -66,22 +66,18 @@ void draw() {
     image (image1[j], positions[j*2], positions[j*2+1], 50, 50) ;
   }
   fill(87);
-  // top monster slots
-  rect(237,180,60,60);
-  rect(307,180,60,60);
-  rect(377,180,60,60);
-  rect(447,180,60,60);
-  rect(517,180,60,60);
-  rect(587,180,60,60);
-  rect(657,180,60,60);
-  // bottom monster slots
-  rect(237,265,60,60);
-  rect(307,265,60,60);
-  rect(377,265,60,60);
-  rect(447,265,60,60);
-  rect(517,265,60,60);
-  rect(587,265,60,60);
-  rect(657,265,60,60);
+  for (int i=237; i<=657; i+=70) {
+    //top monster slots
+    rect(i,180,60,1);
+    rect(i,239,60,1);
+    rect(i,181,1,58);
+    rect(i+59,181,1,58);
+    //bottom monster slots
+    rect(i,265,60,1);
+    rect(i,324,60,1);
+    rect(i,266,1,58);
+    rect(i+59,266,1,58);
+  }
 }
 
 void mousePressed() {
