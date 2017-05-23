@@ -1,17 +1,29 @@
 Which jobs are most crucial?
-The next 3 things we plan to do are 
+The next 4 things we plan to do are 
 1. Having a space that can read cards placed on top of it and a button that runs the method on said card
-2. Make a player Class that has HP, MP, max MP, currentHand, and monsters[] instance variables
+
+2. Make a player Class that has HP (int), MP (int), max MP (int), currentHand (Card ArrayList), and monsters (Card[]) instance variables:
+HP - health points of player, 30 at most
+MP - mana points, can have at most (max MP), which changes based on # of turns played
+max MP - maximum number of MP points, starts at 1 the first turn and increases by 1 after each turn
+currentHand - current set of cards
+monsters - array of monsters that are active on your side, 7 at most
+
+3. Make a card class with instance variables cardType (enum), damage, health
+cardType - three different card types (monster, weapon, spell), all with different effects (Possibly different instance variables)
+damage- amount of damage a card does 
+health- amount of health a card has
+
 3. Getting cards to affect instance variables of the Player class
 
 Which components constitute core functionality (vs non-essential)?
-All three of these steps are essential
+All four of these steps are essential
 
 Which components are prerequisites for others?
-1 must be done before 2 which must be done before 3
+1 must be done before 2 which must be done before 3 which must be done before 4
 
 Which tasks can be delegated, and which must be collaboratively tackled?
-All of these tasks can be delegated, but it would be convenient to have one person do 1 while another person does 2 and 3
+All of these tasks can be delegated, but it would be convenient to have one person do 1 and 4 while another person does 2 and 3
 
 What is the timeline, and how does it accommodate setbacks, course changes?
-We hope to finish all 3 of these things by Thursday/Friday. If these steps need more time, then we can use the weekend as well
+We hope to finish all 4 of these things by Thursday/Friday. If these steps need more time, then we can use the weekend as well
