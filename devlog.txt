@@ -38,9 +38,14 @@ LESSONS LEARNED
     \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/ 
 ==============================================================
 
+2017-05-22
+-------------------------------------------------------------
+Nicolas:: added isCardOver(), which checks if any card is over a specific rectangle on the board
+
 2017-05-20
 --------------------------------------------------------------
 Nicolas:: added draggability for multiple images
+
 2017-05-19
 --------------------------------------------------------------
 Chris:: Added image using LoadDisplayImage()
