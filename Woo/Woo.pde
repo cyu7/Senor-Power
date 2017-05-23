@@ -44,8 +44,9 @@ void draw() {
     if (mouseX > positions[i*2]-bs && mouseX < positions[i*2]+bs && 
       mouseY > positions[i*2+1]-bs && mouseY < positions[i*2+1]+bs) 
     {
-      println ("mouseover image: "+i);
-      whichImage=i;
+      /*println ("mouseover image: "+i);
+      whichImage=i;*/
+      
 
       bover = true;  
       if (!locked) 
