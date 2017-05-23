@@ -1,6 +1,6 @@
-String[] images = {"Cards/Wolfrider.jpg", "Cards/VoodooDoctor.jpg"};
+String[] images = {"Cards/Wolfrider.jpg", "Cards/VoodooDoctor.jpg"}; //keeps track of images
 
-float[] positions =new float[images.length*2];
+float[] positions =new float[images.length*2]; // keeps track of image positions [xcor,ycor]
 
 PImage bg;
 float bx;
@@ -61,18 +61,26 @@ void draw() {
       bover = false;
     }
   }
-
-  // Draw the box
-  //rect(bx, by, bs, bs);
-
   for (int j=0; j < images.length; j++) {
-    // image= loadImage(images[j]); 
     image (image1[j], positions[j*2], positions[j*2+1], 50, 50) ;
-    //  newx = positions[j*2];
-    //  newy = positions[j*2+1];
-    //whichImage = j;
-    //image(image, bx, by, bs, bz);
   }
+  fill(87);
+  // top monster slots
+  rect(237,180,60,60);
+  rect(307,180,60,60);
+  rect(377,180,60,60);
+  rect(447,180,60,60);
+  rect(517,180,60,60);
+  rect(587,180,60,60);
+  rect(657,180,60,60);
+  // bottom monster slots
+  rect(237,265,60,60);
+  rect(307,265,60,60);
+  rect(377,265,60,60);
+  rect(447,265,60,60);
+  rect(517,265,60,60);
+  rect(587,265,60,60);
+  rect(657,265,60,60);
 }
 
 void mousePressed() {
@@ -81,8 +89,6 @@ void mousePressed() {
   } else {
     locked = false;
   }
-  //  bdifx = mouseX-bx; 
-  // bdify = mouseY-by;
 }
 
 void mouseDragged() {
@@ -96,11 +102,25 @@ void mouseDragged() {
     rect(newx+50, newy, 2, 50); // right border 
   }
 
-  // println ("whichImage = "+whichImage);
   positions [whichImage*2] = newx;
   positions [(whichImage*2)+1] = newy;
 }
 
 void mouseReleased() {
   locked = false;
+}
+
+void keyPressed() {
+  isCardOver();
+}
+
+void isCardOver() {
+  for (int j=0; j < images.length*2; j+=2) {
+    if ((positions[j] > 232) && (positions[j] < 302) && (positions[j+1]>265) && (positions[j+1]<335)) {
+      System.out.println(true);
+    }
+    else {
+      System.out.println(false);
+    }
+  }
 }
