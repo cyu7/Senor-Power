@@ -32,7 +32,12 @@ class Player{
   }
   
   //add monster
-  void addMonster() {
+  void addMonster(Card monster) {
+    if (monsters.size()<7) {
+      monsters.add(monster);
+      System.out.println(monsters);
+    } else {
+      System.out.println("Too many monsters");
     
   }
 }
