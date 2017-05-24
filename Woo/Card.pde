@@ -1,15 +1,26 @@
 class Card{
-  PImage picture;
-  String path;
-  enum CardType; //Monster, Spell, Weapon
+  PImage picture; //icon
+  String path; //directory path
+  Type card; //Monster, Spell, Weapon
   int value; //damage
   int currentHP; //current health
   int maxHP; //max health
   int cost; //mana cost
   
+  //default constructor
    Card(PImage portrait, String paf) {
-    picture=portrait;
-    path=paf;
+    picture = portrait;
+    path = paf;
+   }
+   
+  //overloaded constructor
+   Card(PImage portrait, String paf, int damage, int HP, int mana) {
+    picture = portrait;
+    path = paf;
+    value = damage;
+    currentHP = HP;
+    maxHP = HP;
+    cost = mana;
   }
   //increase HP
   void incHP(int value) {

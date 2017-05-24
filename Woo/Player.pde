@@ -1,10 +1,10 @@
 class Player{
  int HP; //max 30
- int MP; //max = maxMP
+ int MP; //current MP
  int maxMP; //max 10
  ArrayList<Card> currentHand; //max 10
  ArrayList<Card> deck; //max 30
- Card[] monsters; //max 7
+ ArrayList<Card> monsters; //max 7
   
   //draw a card
   void draw() {
@@ -32,12 +32,22 @@ class Player{
   }
   
   //add monster
-  void addMonster(Card monster) {
+ /* void addMonster(Card monster) {
     if (monsters.size()<7) {
       monsters.add(monster);
       System.out.println(monsters);
     } else {
       System.out.println("Too many monsters");
+    }
+  }*/
+  
+  //attacking a monster
+  /*void attackMonster(Card monster,int damage){
     
-  }
+  }*/
+
+  //attacking a player
+  /*void attackDir(int damage){
+    
+  }*/
 }

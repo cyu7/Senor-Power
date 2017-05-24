@@ -104,7 +104,7 @@ void keyPressed() {
   String pikturePath = images[a];
   PImage pikture = loadImage(pikturePath);
   Card put = new Card(pikture, pikturePath);
-  nicolas.addMonster(put);
+  // nicolas.addMonster(put);
 }
 
 
