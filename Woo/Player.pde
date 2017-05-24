@@ -8,6 +8,19 @@ class Player{
   
   //draw a card
   void draw() {
+  egg = loadImage("Cards/Wolfrider.jpg");
+    Card icon = new Card(egg, "Cards/Wolfrider.jpg");
+    Card icon2 = new Card(egg, "Cards/Wolfrider.jpg");
+    Card icon3 = new Card(egg, "Cards/Wolfrider.jpg");
+    deck.add(icon);
+    deck.add(icon2);
+    deck.add(icon3);
+    currentHand.add(deck.get(0));
+    deck.remove(0);
+    currentHand.add(deck.get(0));
+    deck.remove(0);
+    currentHand.add(deck.get(0));
+    deck.remove(0);
   }
   
   //increase HP
