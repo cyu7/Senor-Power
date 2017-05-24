@@ -1,10 +1,16 @@
 class Card{
+  PImage picture;
+  String path;
   enum CardType; //Monster, Spell, Weapon
   int value; //damage
   int currentHP; //current health
   int maxHP; //max health
   int cost; //mana cost
   
+   Card(PImage portrait, String paf) {
+    picture=portrait;
+    path=paf;
+  }
   //increase HP
   void incHP(int value) {
    if( (currentHP + value) >= maxHP){
@@ -23,5 +29,10 @@ class Card{
     else{
      currentHP -= value; 
     }
+  }
+ 
+  
+  String toString() { 
+     return path;
   }
 }
