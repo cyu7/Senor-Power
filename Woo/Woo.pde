@@ -20,10 +20,6 @@ void setup() {
   // is 960 x 540 pixels.
   bg = loadImage("background.png");
 
-  images.add("Cards/Wolfrider.jpg");
-  images.add("Cards/Wolfrider.jpg");
-  images.add("Cards/Wolfrider.jpg");
-
   System.out.println(images.size());
   for (int i=0; i < images.size(); i++) {
     image1.add(loadImage(images.get(i))); 
@@ -34,6 +30,11 @@ void setup() {
     positions.add(241+70*j);
     positions.add(185);
   }
+  fill();
+  nicolas.drawCard();
+  nicolas.drawCard();
+  nicolas.drawCard();
+  printCurrentHand(nicolas);
 }
 
 void draw() {
@@ -104,21 +105,32 @@ void mouseReleased() {
 }
 
 void keyPressed() {
-  nicolas.draw();
-  printCurrentHand(nicolas);
+  process();
+  System.out.println(nicolas.monsters);
+  System.out.println(nicolas.currentHand);
 }
 
 void printCurrentHand(Player nicolas) {
   for (int i=0; i<nicolas.currentHand.size(); i++) {
     images.add(nicolas.currentHand.get(i).path);
     image1.add(loadImage(nicolas.currentHand.get(i).path));
-    positions.add((int) random(960));
-    positions.add((int) random(540));
+    positions.add(320+100*i);
+    positions.add(470);
   }
 }
 
-
-int CardOver() {
+void fill() {
+    nicolas.deck.add(new Card(loadImage("Cards/Wolfrider.jpg"), "Cards/Wolfrider.jpg"));
+    nicolas.deck.add(new Card(loadImage("Cards/AcidicSwampOoze.jpg"), "Cards/AcidicSwampOoze.jpg"));
+    nicolas.deck.add(new Card(loadImage("Cards/BloodfenRaptor.jpg"), "Cards/BloodfenRaptor.jpg"));
+    nicolas.deck.add(new Card(loadImage("Cards/BluegillWarrior.png"), "Cards/BluegillWarrior.png"));
+    nicolas.deck.add(new Card(loadImage("Cards/Nightblade.jpg"), "Cards/Nightblade.jpg"));
+    nicolas.deck.add(new Card(loadImage("Cards/NoviceEngineer.jpg"), "Cards/NoviceEngineer.jpg"));
+    nicolas.deck.add(new Card(loadImage("Cards/OasisSnapjaw.jpg"), "Cards/OasisSnapjaw.jpg"));
+    nicolas.deck.add(new Card(loadImage("Cards/VoodooDoctor.jpg"), "Cards/VoodooDoctor.jpg"));
+  }
+  
+int CardOver1() {
   for (int j=0; j < images.size()*2; j+=2) {
     if ((positions.get(j) > 232) && (positions.get(j)< 302) && (positions.get(j+1)>265) && (positions.get(j+1)<335)) {
       return j/2;
@@ -126,3 +138,10 @@ int CardOver() {
   }
   return -1;
 }
+
+void process() {
+  int index = CardOver1();
+  nicolas.monsters.add(0, new Card(image1.get(index), images.get(index)));
+  nicolas.currentHand.remove(index);
+}
+  
