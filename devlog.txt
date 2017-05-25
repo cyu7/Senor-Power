@@ -37,6 +37,11 @@ LESSONS LEARNED
    \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \ 
     \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/ 
 ==============================================================
+2017-05-24
+-------------------------------------------------------------
+Chris:: added instance variables to Player and Card classes
+Nicolas:: added ability to mutate player.monsters, added methods that check for cards over bottom half of gray squares
+
 2017-05-23
 -------------------------------------------------------------
 Chris:: added Player and Card class, uploaded UML and proposal
