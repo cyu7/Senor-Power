@@ -5,7 +5,7 @@ ArrayList<Integer> positions = new ArrayList<Integer>(); // keeps track of image
 
 PImage bg;
 /* float x_offset_drag;
-float y_offset_drag; */
+ float y_offset_drag; */
 boolean bover = false;
 boolean locked = false;
 ArrayList<PImage> image1 = new ArrayList<PImage>(); 
@@ -20,7 +20,6 @@ void setup() {
   // is 960 x 540 pixels.
   bg = loadImage("background.png");
 
-  System.out.println(images.size());
   for (int i=0; i < images.size(); i++) {
     image1.add(loadImage(images.get(i))); 
     image (image1.get(i), 241, 185 + 70*i, 50, 50) ;
@@ -43,7 +42,7 @@ void draw() {
     if (mouseX > positions.get(i*2)-40 && mouseX < positions.get(i*2)+40 && 
       mouseY > positions.get(i*2+1)-40 && mouseY < positions.get(i*2+1)+40) 
     {
-      /*println ("mouseover image: "+i); */
+      /*println ("mouseover image; "+i); */
       whichImage=i; 
 
 
@@ -105,9 +104,12 @@ void mouseReleased() {
 }
 
 void keyPressed() {
-  process();
+  System.out.println(nicolas.monsters.size());
+  processCards();
   System.out.println(nicolas.monsters);
   System.out.println(nicolas.currentHand);
+  nicolas.drawCard(); // put in clump method
+  
 }
 
 void printCurrentHand(Player nicolas) {
@@ -120,28 +122,154 @@ void printCurrentHand(Player nicolas) {
 }
 
 void fill() {
-    nicolas.deck.add(new Card(loadImage("Cards/Wolfrider.jpg"), "Cards/Wolfrider.jpg"));
-    nicolas.deck.add(new Card(loadImage("Cards/AcidicSwampOoze.jpg"), "Cards/AcidicSwampOoze.jpg"));
-    nicolas.deck.add(new Card(loadImage("Cards/BloodfenRaptor.jpg"), "Cards/BloodfenRaptor.jpg"));
-    nicolas.deck.add(new Card(loadImage("Cards/BluegillWarrior.png"), "Cards/BluegillWarrior.png"));
-    nicolas.deck.add(new Card(loadImage("Cards/Nightblade.jpg"), "Cards/Nightblade.jpg"));
-    nicolas.deck.add(new Card(loadImage("Cards/NoviceEngineer.jpg"), "Cards/NoviceEngineer.jpg"));
-    nicolas.deck.add(new Card(loadImage("Cards/OasisSnapjaw.jpg"), "Cards/OasisSnapjaw.jpg"));
-    nicolas.deck.add(new Card(loadImage("Cards/VoodooDoctor.jpg"), "Cards/VoodooDoctor.jpg"));
-  }
-  
+  nicolas.deck.add(new Card(loadImage("Cards/Wolfrider.jpg"), "Cards/Wolfrider.jpg"));
+  nicolas.deck.add(new Card(loadImage("Cards/AcidicSwampOoze.jpg"), "Cards/AcidicSwampOoze.jpg"));
+  nicolas.deck.add(new Card(loadImage("Cards/BloodfenRaptor.jpg"), "Cards/BloodfenRaptor.jpg"));
+  nicolas.deck.add(new Card(loadImage("Cards/BluegillWarrior.png"), "Cards/BluegillWarrior.png"));
+  nicolas.deck.add(new Card(loadImage("Cards/Nightblade.jpg"), "Cards/Nightblade.jpg"));
+  nicolas.deck.add(new Card(loadImage("Cards/NoviceEngineer.jpg"), "Cards/NoviceEngineer.jpg"));
+  nicolas.deck.add(new Card(loadImage("Cards/OasisSnapjaw.jpg"), "Cards/OasisSnapjaw.jpg"));
+  nicolas.deck.add(new Card(loadImage("Cards/VoodooDoctor.jpg"), "Cards/VoodooDoctor.jpg"));
+}
+
+//--------------------------CARDOVER METHODS (7)-----------------
 int CardOver1() {
   for (int j=0; j < images.size()*2; j+=2) {
-    if ((positions.get(j) > 232) && (positions.get(j)< 302) && (positions.get(j+1)>265) && (positions.get(j+1)<335)) {
+    if ((positions.get(j) > 213) && (positions.get(j)< 271) && (positions.get(j+1)>241) && (positions.get(j+1)<299)) {
       return j/2;
     }
   }
   return -1;
 }
 
-void process() {
-  int index = CardOver1();
-  nicolas.monsters.add(0, new Card(image1.get(index), images.get(index)));
-  nicolas.currentHand.remove(index);
+int CardOver2() {
+  for (int j=0; j < images.size()*2; j+=2) {
+    if ((positions.get(j) > 283) && (positions.get(j)< 341) && (positions.get(j+1)>241) && (positions.get(j+1)<299)) {
+      return j/2;
+    }
+  }
+  return -1;
 }
+
+int CardOver3() {
+  for (int j=0; j < images.size()*2; j+=2) {
+    if ((positions.get(j) > 353) && (positions.get(j)< 411) && (positions.get(j+1)>241) && (positions.get(j+1)<299)) {
+      return j/2;
+    }
+  }
+  return -1;
+}
+
+int CardOver4() {
+  for (int j=0; j < images.size()*2; j+=2) {
+    if ((positions.get(j) > 423) && (positions.get(j)< 481) && (positions.get(j+1)>241) && (positions.get(j+1)<299)) {
+      return j/2;
+    }
+  }
+  return -1;
+}
+
+int CardOver5() {
+  for (int j=0; j < images.size()*2; j+=2) {
+    if ((positions.get(j) > 493) && (positions.get(j)< 551) && (positions.get(j+1)>241) && (positions.get(j+1)<299)) {
+      return j/2;
+    }
+  }
+  return -1;
+}
+
+int CardOver6() {
+  for (int j=0; j < images.size()*2; j+=2) {
+    if ((positions.get(j) > 563) && (positions.get(j)< 621) && (positions.get(j+1)>241) && (positions.get(j+1)<299)) {
+      return j/2;
+    }
+  }
+  return -1;
+}
+
+int CardOver7() {
+  for (int j=0; j < images.size()*2; j+=2) {
+    if ((positions.get(j) > 633) && (positions.get(j)< 691) && (positions.get(j+1)>241) && (positions.get(j+1)<299)) {
+      return j/2;
+    }
+  }
+  return -1;
+}
+
+//--------------------------END OF CARDOVER METHODS (7)-----------------
+
+void processCards() {
+  int index1 = CardOver1();
+  int index2 = CardOver2();
+  int index3 = CardOver3();
+  int index4 = CardOver4();
+  int index5 = CardOver5();
+  int index6 = CardOver6();
+  int index7 = CardOver7();
   
+  if (index1 != -1) {
+    nicolas.monsters.set(0, new Card(image1.get(index1), images.get(index1)));
+    nicolas.currentHand.remove(index1);
+    images.remove(index1);
+    image1.remove(index1);
+    positions.remove(2*index1);
+    positions.remove(2*index1);
+  }
+  
+  if (index2 != -1) {
+    nicolas.monsters.set(1, new Card(image1.get(index2), images.get(index2)));
+    nicolas.currentHand.remove(index2);
+    images.remove(index2);
+    image1.remove(index2);
+    positions.remove(2*index2);
+    positions.remove(2*index2);
+  }
+  
+  if (index3 != -1) {
+    nicolas.monsters.set(2, new Card(image1.get(index3), images.get(index3)));
+    nicolas.currentHand.remove(index3);
+    images.remove(index3);
+    image1.remove(index3);
+    positions.remove(2*index3);
+    positions.remove(2*index3);
+  }
+  
+  if (index4 != -1) {
+    nicolas.monsters.set(3, new Card(image1.get(index4), images.get(index4)));
+    nicolas.currentHand.remove(index4);
+    images.remove(index4);
+    image1.remove(index4);
+    positions.remove(2*index4);
+    positions.remove(2*index4);
+  }
+  
+  if (index5 != -1) {
+    nicolas.monsters.set(4, new Card(image1.get(index5), images.get(index5)));
+    nicolas.currentHand.remove(index5);
+    images.remove(index5);
+    image1.remove(index5);
+    positions.remove(2*index5);
+    positions.remove(2*index5);
+  }
+  
+  if (index6 != -1) {
+    nicolas.monsters.set(5, new Card(image1.get(index6), images.get(index6)));
+    nicolas.currentHand.remove(index6);
+    images.remove(index6);
+    image1.remove(index6);
+    positions.remove(2*index6);
+    positions.remove(2*index6);
+  }
+  
+  if (index7 != -1) {
+    nicolas.monsters.set(6, new Card(image1.get(index7), images.get(index7)));
+    nicolas.currentHand.remove(index7);
+    images.remove(index7);
+    image1.remove(index7);
+    positions.remove(2*index7);
+    positions.remove(2*index7);
+  }
+}
+
+/*void displayMonsters1() {
+ if () } */
