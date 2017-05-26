@@ -5,23 +5,25 @@ class Player{
  ArrayList<Card> currentHand; //max 10
  ArrayList<Card> deck; //max 30
  ArrayList<Card> monsters; //max 7
+ PImage egg;
+  
+  Player() {
+    HP = 30;
+    MP = 1;
+    maxMP = 1;
+    currentHand = new ArrayList<Card>();
+    deck = new ArrayList<Card>();
+    monsters = new ArrayList<Card>();
+    for (int i=0; i<7; i++) {
+    monsters.add(null);
+    }
+  }
   
   //draw a card
-  void draw() {
-  egg = loadImage("Cards/Wolfrider.jpg");
-    Card icon = new Card(egg, "Cards/Wolfrider.jpg");
-    Card icon2 = new Card(egg, "Cards/Wolfrider.jpg");
-    Card icon3 = new Card(egg, "Cards/Wolfrider.jpg");
-    deck.add(icon);
-    deck.add(icon2);
-    deck.add(icon3);
-    currentHand.add(deck.get(0));
-    deck.remove(0);
-    currentHand.add(deck.get(0));
-    deck.remove(0);
-    currentHand.add(deck.get(0));
-    deck.remove(0);
+  void drawCard() {
+    currentHand.add(deck.remove((int) random(deck.size())));
   }
+  
   
   //increase HP
   void incHP(int value) {
