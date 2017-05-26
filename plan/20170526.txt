@@ -1,0 +1,27 @@
+Which jobs are most crucial?
+0. Learn to push (git commit -am "work" then git push)
+
+1. Make a new player 2 named chris on the top of the board and give it the same functionality as nicolas, the player on the bottom of the board
+
+2. Add decks (Shaman and Paladin)
+
+3. Make monsters be able to attack
+
+4. Learn enums
+
+5. Playability
+
+6. Making cards snap into place
+
+Which components constitute core functionality (vs non-essential)?
+Everything but 4 and 6 is essential. 4 is not essential because if we can't figure out how to make them work, then we can just use an int to track the type of card.
+6 is not essential because right now the user has enough leniency in landing the center of the card into the box. 
+
+Which components are prerequisites for others?
+5 depends on 3 and 3 depends on 1. 2,4, and 6 can be done separately. 
+
+Which tasks can be delegated, and which must be collaboratively tackled?
+2, 4 and 6 can all be delegated, while 1,3, and 5 should ideally be worked on in a group.
+
+What is the timeline, and how does it accommodate setbacks, course changes?
+We hope to finish 1 by Saturday, which leaves 3 for Sunday and 5 for Sunday/Monday. 2 and 4 should be done by Saturday. 
