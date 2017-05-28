@@ -6,6 +6,7 @@ class Card{
   int currentHP; //current health
   int maxHP; //max health
   int cost; //mana cost
+  boolean shown=false;
   
   //default constructor
    Card(PImage portrait, String paf) {
