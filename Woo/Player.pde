@@ -5,7 +5,6 @@ class Player {
   ArrayList<Card> currentHand; //max 10
   ArrayList<Card> deck; //max 30
   ArrayList<Card> monsters; //max 7
-  PImage egg;
 
   Player() {
     HP = 30;
@@ -59,9 +58,12 @@ class Player {
    monsters.set(n, monster);
    monsters.get(n).shown=false;
   } 
+  
+  //void clearDead {
+    //for int 
 
   //attacking a monster
-  /*void attackMonster(Card monster,int damage){
+  /*void attackMonster(int attackerIndex, int receiverIndex, int damage){
    
    }*/
 
