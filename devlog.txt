@@ -39,7 +39,8 @@ LESSONS LEARNED
 ==============================================================
 2017-05-28
 -------------------------------------------------------------
-Nicolas :: added start of second player functionality
+Nicolas :: added start of second player functionality and made cards of currentHand hidden based on whose turn it is
+
 2017-05-26
 -------------------------------------------------------------
 Chris:: worked on 3rd plan
