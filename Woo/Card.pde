@@ -83,7 +83,16 @@ class Card {
       currentHP -= value;
     }
   }
-
+  
+  Card attackMonster(Card attacker, Card receiver) {
+    receiver.currentHP-=attacker.value;
+    if (receiver.currentHP>0) {
+    return receiver;}
+    else {
+      return null;
+  }
+  }
+  
 
   String toString() { 
     String result = path.substring(6,path.length()-4);

@@ -99,8 +99,8 @@ void draw() {
       image(loadImage("Cards/Back.png"), 10+100*j, 20, 50, 50);
     }
   }
-  if (p1turn) {
-  fillAttackingCard1();}
+  fillAttackingCard1();
+  fillAttackingCard2();
 }
 
 
@@ -131,7 +131,7 @@ void mouseReleased() {
 }
 
 void mouseClicked() {
-  if ( (mouseX >=725) && (mouseX<=805) && (mouseY>=222) && (mouseY<272) )
+  if ( (mouseX >=725) && (mouseX<=805) && (mouseY>=222) && (mouseY<272) ) //end turn
   {
     processCards1();
     processCards2();
@@ -145,34 +145,70 @@ void mouseClicked() {
     printCurrentHandb();
     p1turn=!p1turn;
     p2turn=!p2turn;
+    attackingCards.set(0, null);
+    attackingCards.set(1, null);
   }
-  if (p1turn) {
-    if ( (mouseX>242) & (mouseX<292) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(0)!=null)) {
-      attackingCards.set(0, 0);
-    }
-    if ( (mouseX>312) & (mouseX<362) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(1)!=null)) {
-      attackingCards.set(0, 1);
-    }
-    if ( (mouseX>382) & (mouseX<432) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(2)!=null)) {
-      attackingCards.set(0, 2);
-    }
-    if ( (mouseX>452) & (mouseX<502) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(3)!=null)) {
-      attackingCards.set(0, 3);
-    }
-    if ( (mouseX>522) & (mouseX<572) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(4)!=null)) {
-      attackingCards.set(0, 4);
-    }
-    if ( (mouseX>592) & (mouseX<642) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(5)!=null)) {
-      attackingCards.set(0, 5);
-    }
-    if ( (mouseX>662) & (mouseX<712) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(6)!=null)) {
-      attackingCards.set(0, 6);
-    }
+  if ( (mouseX>242) & (mouseX<292) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(0)!=null)) {
+    attackingCards.set(0, 0);
+  }
+  if ( (mouseX>312) & (mouseX<362) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(1)!=null)) {
+    attackingCards.set(0, 1);
+  }
+  if ( (mouseX>382) & (mouseX<432) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(2)!=null)) {
+    attackingCards.set(0, 2);
+  }
+  if ( (mouseX>452) & (mouseX<502) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(3)!=null)) {
+    attackingCards.set(0, 3);
+  }
+  if ( (mouseX>522) & (mouseX<572) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(4)!=null)) {
+    attackingCards.set(0, 4);
+  }
+  if ( (mouseX>592) & (mouseX<642) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(5)!=null)) {
+    attackingCards.set(0, 5);
+  }
+  if ( (mouseX>662) & (mouseX<712) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(6)!=null)) {
+    attackingCards.set(0, 6);
+  }
+  //-------------------------------SETTING TARGET
+  if ( (mouseX>242) & (mouseX<292) & (mouseY>185) & (mouseY<235) & (chris.monsters.get(0)!=null)) {
+    attackingCards.set(1, 0);
+  }
+  if ( (mouseX>312) & (mouseX<362) & (mouseY>185) & (mouseY<235) & (chris.monsters.get(1)!=null)) {
+    attackingCards.set(1, 1);
+  }
+  if ( (mouseX>382) & (mouseX<432) & (mouseY>185) & (mouseY<235) & (chris.monsters.get(2)!=null)) {
+    attackingCards.set(1, 2);
+  }
+  if ( (mouseX>452) & (mouseX<502) & (mouseY>185) & (mouseY<235) & (chris.monsters.get(3)!=null)) {
+    attackingCards.set(1, 3);
+  }
+  if ( (mouseX>522) & (mouseX<572) & (mouseY>185) & (mouseY<235) & (chris.monsters.get(4)!=null)) {
+    attackingCards.set(1, 4);
+  }
+  if ( (mouseX>592) & (mouseX<642) & (mouseY>185) & (mouseY<235) & (chris.monsters.get(5)!=null)) {
+    attackingCards.set(1, 5);
+  }
+  if ( (mouseX>662) & (mouseX<712) & (mouseY>185) & (mouseY<235) & (chris.monsters.get(6)!=null)) {
+    attackingCards.set(1, 6);
   }
 }
 
 void keyPressed() {
   System.out.println(attackingCards);
+  int att = attackingCards.get(0);
+  int rec = attackingCards.get(1);
+  if (p1turn) {
+    Card placeholder = attackMonster(nicolas.monsters.get(att), chris.monsters.get(rec));
+    chris.monsters.set(rec, placeholder);
+    nicolas.monsters.get(att).attackedthisTurn=false;
+    System.out.println(chris.monsters.get(rec));
+  }
+  if (p2turn) {
+    Card placeholder = attackMonster(chris.monsters.get(rec), nicolas.monsters.get(att));
+    nicolas.monsters.set(att, placeholder);
+    chris.monsters.get(rec).attackedthisTurn=false;
+    System.out.println(nicolas.monsters.get(att));
+  }
 }
 
 void printCurrentHand1() {
@@ -573,5 +609,29 @@ void fillAttackingCard1() {
         rect(292+70*i, 270, 4, 50);
       }
     }
+  }
+}
+
+void fillAttackingCard2() {
+  for (int i=0; i<7; i++) {
+    if (attackingCards.get(1)!=null && chris.monsters.get(i)!=null) {
+      if (attackingCards.get(1)==i) {
+        fill(0, 255, 0);
+        rect(238+70*i, 181, 58, 4);
+        rect(238+70*i, 235, 58, 4);
+        rect(238+70*i, 185, 4, 50);
+        rect(292+70*i, 185, 4, 50);
+      }
+    }
+  }
+}
+
+//---------------------------------------------------------
+Card attackMonster(Card attacker, Card receiver) {
+  receiver.currentHP-=attacker.value;
+  if (receiver.currentHP>0) {
+    return receiver;
+  } else {
+    return null;
   }
 }
