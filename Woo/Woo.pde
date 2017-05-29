@@ -11,6 +11,8 @@ boolean locked = false;
 ArrayList<PImage> image1 = new ArrayList<PImage>(); 
 int newx, newy;
 int whichImage;
+boolean p1turn=false;
+boolean p2turn=true;
 Player nicolas = new Player();
 Player chris = new Player();
 
@@ -39,7 +41,6 @@ void setup() {
   nicolas.drawCard();
   printCurrentHand1();
   printCurrentHand2();
-  System.out.println(images);
 }
 
 void draw() {
@@ -85,6 +86,16 @@ void draw() {
   displayMonsters2();
   printCurrentHand1();
   printCurrentHand2();
+  if (p2turn) {
+        for (int j=0; j<nicolas.currentHand.size(); j++) {
+          image(loadImage("Cards/Back.png"), 10+100*j, 470, 50, 50);
+        }
+  }
+  if (p1turn) {
+        for (int j=0; j<chris.currentHand.size(); j++) {
+          image(loadImage("Cards/Back.png"), 10+100*j, 20, 50, 50);
+        }
+  }
 }
 
 void mousePressed() {
@@ -116,11 +127,14 @@ void mouseReleased() {
 void keyPressed() {
   processCards1();
   processCards2();
-  chris.drawCard();
-  nicolas.drawCard();
-  printCurrentHandb();
+  if (chris.deck.size()>0) {
+    chris.drawCard();}
+  if (nicolas.deck.size()>0) {
+    nicolas.drawCard();} 
   printCurrentHanda();
-  System.out.println("\n" +images);
+  printCurrentHandb();
+  p1turn=!p1turn;
+  p2turn=!p2turn;
 }
 
 void printCurrentHand1() {
@@ -150,26 +164,35 @@ void printCurrentHand2() {
 void printCurrentHanda() {
   for (int i=0; i<nicolas.currentHand.size(); i++) {
     if (nicolas.currentHand.get(i).shown==false) {
-      images.add(nicolas.size(),nicolas.currentHand.get(i).path);
-      image1.add(nicolas.size(),loadImage(nicolas.currentHand.get(i).path));
-      positions.add(2*nicolas.size(),10+100*i);
-      positions.add(2*nicolas.size()+1,470);
+      images.add(i,nicolas.currentHand.get(i).path);
+      image1.add(i,loadImage(nicolas.currentHand.get(i).path));
+      positions.add(2*i,0);
+      positions.add(2*i+1,0);
       nicolas.currentHand.get(i).shown=true;
+      }
+    }
+    for (int i=0; i<nicolas.currentHand.size(); i++) {
+      positions.set(2*i, 10+100*i);
+      positions.set(2*i+1,470);
     }
   }
-}
 
 void printCurrentHandb() {
   for (int i=0; i<chris.currentHand.size(); i++) {
     if (chris.currentHand.get(i).shown==false) {
-      images.add(nicolas.size(),chris.currentHand.get(i).path);
-      image1.add(nicolas.size(),loadImage(chris.currentHand.get(i).path));
-      positions.add(nicolas.size(),10+100*i);
-      positions.add(nicolas.size()+1,20);
+      images.add(chris.currentHand.get(i).path);
+      image1.add(loadImage(chris.currentHand.get(i).path));
+      positions.add(0);
+      positions.add(0);
       chris.currentHand.get(i).shown=true;
     }
   }
+  for (int i=0; i<chris.currentHand.size(); i++) {
+      positions.set(2*nicolas.size()+2*i, 10+100*i);
+      positions.set(2*nicolas.size()+2*i+1,20);
+    }
 }
+
 
 void fill() {
   nicolas.deck.add(new Card(loadImage("Cards/Wolfrider.jpg"), "Cards/Wolfrider.jpg"));
