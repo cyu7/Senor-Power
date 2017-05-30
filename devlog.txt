@@ -7,11 +7,9 @@ Hearthstone
 
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
-OBSTACLES OVERCOME - 3
+OBSTACLES OVERCOME - MANY
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- Loading background image
-- Loading Images in processing from a separate directory
-- making a loaded image draggable
+
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -37,6 +35,10 @@ LESSONS LEARNED
    \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \ 
     \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/ 
 ==============================================================
+2017-05-29
+-------------------------------------------------------------
+Nicolas :: finished up basic second player functionality, got attacking for monsters complete
+
 2017-05-28
 -------------------------------------------------------------
 Nicolas :: added start of second player functionality and made cards of currentHand hidden based on whose turn it is
