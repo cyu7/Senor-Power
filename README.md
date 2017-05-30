@@ -12,4 +12,7 @@ During their turn, each player drags monsters onto their 7 slots on their side. 
 
 # Launch Instructions
 
-1. Type processing Woo.pde . This runs Woo.pde
+1. Type "git clone https://github.com/cyu7/Senor-Power.git" into the terminal
+2. Navigate into the driver directory by typing cd Woo
+3. Type in processing Woo.pde. This opens Woo, the driver file, in Processing.
+4. Press the run button to start the game
