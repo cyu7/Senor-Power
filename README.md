@@ -12,4 +12,4 @@ During their turn, each player drags monsters onto their 7 slots on their side. 
 
 # Launch Instructions
 
-1. Run Woo.java
+1. Type processing.pde. This runs Woo.pde
