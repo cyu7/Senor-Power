@@ -147,6 +147,14 @@ void mouseClicked() {
     p2turn=!p2turn;
     attackingCards.set(0, null);
     attackingCards.set(1, null);
+    for (int i=0; i<7; i++) {
+      if (nicolas.monsters.get(i)!=null) {
+        nicolas.monsters.get(i).attackedthisTurn=false;
+      }
+      if (chris.monsters.get(i)!=null) {
+        chris.monsters.get(i).attackedthisTurn=false;
+      }
+    }
   }
   if ( (mouseX>242) & (mouseX<292) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(0)!=null)) {
     attackingCards.set(0, 0);
@@ -198,16 +206,26 @@ void keyPressed() {
   int att = attackingCards.get(0);
   int rec = attackingCards.get(1);
   if (p1turn) {
-    Card placeholder = attackMonster(nicolas.monsters.get(att), chris.monsters.get(rec));
-    chris.monsters.set(rec, placeholder);
-    nicolas.monsters.get(att).attackedthisTurn=false;
-    System.out.println(chris.monsters.get(rec));
+    if (nicolas.monsters.get(att).attackedthisTurn==false) {
+      Card placeholder = attackMonster(nicolas.monsters.get(att), chris.monsters.get(rec));
+      chris.monsters.set(rec, placeholder);
+      nicolas.monsters.get(att).attackedthisTurn=true;
+      System.out.println(chris.monsters.get(rec));
+    } else {
+      attackingCards.set(0, null);
+      System.out.println("Already attacked this turn");
+    }
   }
   if (p2turn) {
-    Card placeholder = attackMonster(chris.monsters.get(rec), nicolas.monsters.get(att));
-    nicolas.monsters.set(att, placeholder);
-    chris.monsters.get(rec).attackedthisTurn=false;
-    System.out.println(nicolas.monsters.get(att));
+    if (chris.monsters.get(rec).attackedthisTurn==false) {
+      Card placeholder = attackMonster(chris.monsters.get(rec), nicolas.monsters.get(att));
+      nicolas.monsters.set(att, placeholder);
+      chris.monsters.get(rec).attackedthisTurn=true;
+      System.out.println(nicolas.monsters.get(att));
+    } else {
+      attackingCards.set(1, null);
+      System.out.println("Already attacked this turn");
+    }
   }
 }
 
