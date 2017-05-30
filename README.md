@@ -12,4 +12,4 @@ During their turn, each player drags monsters onto their 7 slots on their side. 
 
 # Launch Instructions
 
-1. Type processing.pde. This runs Woo.pde
+1. Type processing Woo.pde . This runs Woo.pde
