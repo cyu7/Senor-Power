@@ -286,6 +286,7 @@ void printCurrentHandb() {
 
 
 void fill() {
+  //-----------------------------------nicolas's deck-----------------------------------------
   nicolas.deck.add(new Card(loadImage("Cards/AcidicSwampOoze.jpg"), "Cards/AcidicSwampOoze.jpg"));
   nicolas.deck.add(new Card(loadImage("Cards/BloodfenRaptor.jpg"), "Cards/BloodfenRaptor.jpg"));
   nicolas.deck.add(new Card(loadImage("Cards/BluegillWarrior.png"), "Cards/BluegillWarrior.png"));
@@ -308,6 +309,30 @@ void fill() {
   nicolas.deck.add(new Card(loadImage("Cards/VoodooDoctor.jpg"), "Cards/VoodooDoctor.jpg"));
   nicolas.deck.add(new Card(loadImage("Cards/WarGolem.jpg"), "Cards/WarGolem.jpg"));
   nicolas.deck.add(new Card(loadImage("Cards/Wolfrider.jpg"), "Cards/Wolfrider.jpg"));
+  
+  //-----------------------------------Shaman Cards-----------------------------------------
+  nicolas.deck.add(new Card(loadImage("Shaman/AlAkir.jpg"), "Shaman/AlAkir.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shaman/AncestralKnowledge.jpg"), "Shaman/AncestralKnowledge.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shaman/Bloodlust.jpg"), "Shaman/Bloodlust.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shaman/Doomhammer.jpg"), "Shaman/Doomhammer.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shaman/DustDevil.jpg"), "Shaman/DustDevil.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shaman/EarthElemental.jpg"), "Shaman/EarthElemental.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shaman/ElementalDestruction.png"), "Shaman/ElementalDestruction.png"));
+  nicolas.deck.add(new Card(loadImage("Shaman/FeralSpirit.jpg"), "Shaman/FeralSpirit.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shaman/FireElemental.jpg"), "Shaman/FireElemental.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shaman/FlamewreathedFaceless.jpg"), "Shaman/FlamewreathedFaceless.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shaman/FrostShot.jpg"), "Shaman/FrostShot.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shaman/Hallazeal.jpg"), "Shaman/Hallazeal.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shaman/Hex.jpg"), "Shaman/Hex.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shaman/JinyuWaterspeaker.jpg"), "Shaman/JinyuWaterspeaker.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shaman/LavaBurst.jpg"), "Shaman/LavaBurst.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shaman/LightningBolt.jpg"), "Shaman/LightningBolt.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shaman/LightningStorm.jpg"), "Shaman/LightningStorm.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shaman/ManaTideTotem.jpg"), "Shaman/ManaTideTotem.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shaman/RockbiterWeapon.jpg"), "Shaman/RockbiterWeapon.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shaman/Stormcrack.jpg"), "Shaman/Stormcrack.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shaman/StormforgedAxe.jpg"), "Shaman/StormforgedAxe.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shaman/TotemGolem.jpg"), "Shaman/TotemGolem.jpg"));
   
   //-----------------------------------chris's deck-----------------------------------------
   
@@ -333,7 +358,32 @@ void fill() {
   chris.deck.add(new Card(loadImage("Cards/VoodooDoctor.jpg"), "Cards/VoodooDoctor.jpg"));
   chris.deck.add(new Card(loadImage("Cards/WarGolem.jpg"), "Cards/WarGolem.jpg"));
   chris.deck.add(new Card(loadImage("Cards/Wolfrider.jpg"), "Cards/Wolfrider.jpg"));
-
+  
+  //-----------------------------------Paladin Cards-----------------------------------------
+  chris.deck.add(new Card(loadImage("Paladin/AldorPeacekeeper.jpg"), "Paladin/AldorPeacekeeper.jpg"));
+  chris.deck.add(new Card(loadImage("Paladin/BlessedChampion.jpg"), "Paladin/BlessedChampion.jpg"));
+  chris.deck.add(new Card(loadImage("Paladin/BlessingOfKings.jpg"), "Paladin/BlessingOfKings.jpg"));
+  chris.deck.add(new Card(loadImage("Paladin/BlessingOfMight.png"), "Paladin/BlessingOfMight.png"));
+  chris.deck.add(new Card(loadImage("Paladin/Consecration.jpg"), "Paladin/Consecration.jpg"));
+  chris.deck.add(new Card(loadImage("Paladin/Dinosize.jpg"), "Paladin/Dinosize.jpg"));
+  chris.deck.add(new Card(loadImage("Paladin/DivineStrength.jpg"), "Paladin/DivineStrength.jpg"));
+  chris.deck.add(new Card(loadImage("Paladin/EadricThePure.jpg"), "Paladin/EadricThePure.jpg"));
+  chris.deck.add(new Card(loadImage("Paladin/Equality.jpg"), "Paladin/Equality.jpg"));
+  chris.deck.add(new Card(loadImage("Paladin/ForbiddenHealing.jpg"), "Paladin/ForbiddenHealing.jpg"));
+  chris.deck.add(new Card(loadImage("Paladin/GuardianOfKings.jpg"), "Paladin/GuardianOfKings.jpg"));
+  chris.deck.add(new Card(loadImage("Paladin/HammerOfWrath.jpg"), "Paladin/HammerOfWrath.jpg"));
+  chris.deck.add(new Card(loadImage("Paladin/HolyLight.png"), "Paladin/HolyLight.png"));
+  chris.deck.add(new Card(loadImage("Paladin/Humility.png"), "Paladin/Humility.png"));
+  chris.deck.add(new Card(loadImage("Paladin/KeeperOfUldaman.png"), "Paladin/KeeperOfUldaman.png"));
+  chris.deck.add(new Card(loadImage("Paladin/LayOnHands.jpg"), "Paladin/LayOnHands.jpg"));
+  chris.deck.add(new Card(loadImage("Paladin/LightsJustice.jpg"), "Paladin/LightsJustice.jpg"));
+  chris.deck.add(new Card(loadImage("Paladin/LostInTheJungle.jpg"), "Paladin/LostInTheJungle.jpg"));
+  chris.deck.add(new Card(loadImage("Paladin/SealOfLight.png"), "Paladin/SealOfLight.png"));
+  chris.deck.add(new Card(loadImage("Paladin/StandAgainstDarkness.jpg"), "Paladin/StandAgainstDarkness.jpg"));
+  chris.deck.add(new Card(loadImage("Paladin/SunkeeperTarim.jpg"), "Paladin/SunkeeperTarim.jpg"));
+  chris.deck.add(new Card(loadImage("Paladin/Tirion.jpg"), "Paladin/Tirion.jpg"));
+  chris.deck.add(new Card(loadImage("Paladin/TruesilverChampion.jpg"), "Paladin/TruesilverChampion.jpg"));
+  
 }
 
 //-------------------------- BOTTOM CARDOVER METHODS (7)-----------------
