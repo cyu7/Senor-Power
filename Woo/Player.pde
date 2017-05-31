@@ -17,58 +17,64 @@ class Player {
       monsters.add(null);
     }
   }
-  
-  int size(){
+
+  int size() {
     return currentHand.size();
   }
 
   //draw a card
   void drawCard() {
     if (deck.size()>0) {
-      currentHand.add(deck.remove((int) random(deck.size())));
-    } else {
-      System.out.println("No more cards");
+      if (currentHand.size()>=10) {
+        deck.remove((int) random(deck.size()));
+      }
+      if (currentHand.size()<10) {
+        currentHand.add(deck.remove((int) random(deck.size())));
+      } 
+      if (deck.size()==0) {
+        System.out.println("No more cards");
+      }
     }
   }
 
 
-  //increase HP
-  void incHP(int value) {
-    HP += value;
-  }
+    //increase HP
+    void incHP(int value) {
+      HP += value;
+    }
 
-  //decrease HP
-  void decHP(int value) {
-    HP -= value;
-  }
+    //decrease HP
+    void decHP(int value) {
+      HP -= value;
+    }
 
-  //increase MP
-  void incMP() {
-    maxMP++;
-    MP = maxMP;
-  }
+    //increase MP
+    void incMP() {
+      maxMP++;
+      MP = maxMP;
+    }
 
-  //decrease MP
-  void decMP(int value) {
-    MP -= value;
-  }
+    //decrease MP
+    void decMP(int value) {
+      MP -= value;
+    }
 
-  //add monster
-  void addMonster(int n, Card monster) {
-   monsters.set(n, monster);
-   monsters.get(n).shown=false;
-  } 
-  
-  //void clearDead {
+    //add monster
+    void addMonster(int n, Card monster) {
+      monsters.set(n, monster);
+      monsters.get(n).shown=false;
+    } 
+
+    //void clearDead {
     //for int 
 
-  //attacking a monster
-  /*void attackMonster(int attackerIndex, int receiverIndex, int damage){
-   
-   }*/
+    //attacking a monster
+    /*void attackMonster(int attackerIndex, int receiverIndex, int damage){
+     
+     }*/
 
-  //attacking a player
-  /*void attackDir(int damage){
-   
-   }*/
-}
+    //attacking a player
+    /*void attackDir(int damage){
+     
+     }*/
+  }

@@ -90,12 +90,12 @@ void draw() {
   printCurrentHand2();
   if (p2turn) {
     for (int j=0; j<nicolas.currentHand.size(); j++) {
-      image(loadImage("Cards/Back.png"), 10+100*j, 470, 50, 50);
+      image(loadImage("Cards/Back.png"), 10+80*j, 470, 50, 50);
     }
   }
   if (p1turn) {
     for (int j=0; j<chris.currentHand.size(); j++) {
-      image(loadImage("Cards/Back.png"), 10+100*j, 20, 50, 50);
+      image(loadImage("Cards/Back.png"), 10+80*j, 20, 50, 50);
     }
   }
   fillAttackingCard1();
@@ -248,7 +248,7 @@ void printCurrentHand1() {
     if (nicolas.currentHand.get(i).shown==false) {
       images.add(nicolas.currentHand.get(i).path);
       image1.add(loadImage(nicolas.currentHand.get(i).path));
-      positions.add(10+100*i);
+      positions.add(10+80*i);
       positions.add(470);
       nicolas.currentHand.get(i).shown=true;
     }
@@ -260,7 +260,7 @@ void printCurrentHand2() {
     if (chris.currentHand.get(i).shown==false) {
       images.add(chris.currentHand.get(i).path);
       image1.add(loadImage(chris.currentHand.get(i).path));
-      positions.add(10+100*i);
+      positions.add(10+80*i);
       positions.add(20);
       chris.currentHand.get(i).shown=true;
     }
@@ -278,7 +278,7 @@ void printCurrentHanda() {
     }
   }
   for (int i=0; i<nicolas.currentHand.size(); i++) {
-    positions.set(2*i, 10+100*i);
+    positions.set(2*i, 10+80*i);
     positions.set(2*i+1, 470);
   }
 }
@@ -294,7 +294,7 @@ void printCurrentHandb() {
     }
   }
   for (int i=0; i<chris.currentHand.size(); i++) {
-    positions.set(2*nicolas.size()+2*i, 10+100*i);
+    positions.set(2*nicolas.size()+2*i, 10+80*i);
     positions.set(2*nicolas.size()+2*i+1, 20);
   }
 }
@@ -393,7 +393,7 @@ void fill() {
   chris.deck.add(new Card(loadImage("Paladin/LayOnHands.jpg"), "Paladin/LayOnHands.jpg"));
   chris.deck.add(new Card(loadImage("Paladin/LightsJustice.jpg"), "Paladin/LightsJustice.jpg"));
   chris.deck.add(new Card(loadImage("Paladin/LostInTheJungle.jpg"), "Paladin/LostInTheJungle.jpg"));
-  chris.deck.add(new Card(loadImage("Paladin/SealOfLight.png"), "Paladin/SealOfLight.png"));
+  //chris.deck.add(new Card(loadImage("Paladin/SealOfLight.png"), "Paladin/SealOfLight.png"));
   chris.deck.add(new Card(loadImage("Paladin/StandAgainstDarkness.jpg"), "Paladin/StandAgainstDarkness.jpg"));
   chris.deck.add(new Card(loadImage("Paladin/SunkeeperTarim.jpg"), "Paladin/SunkeeperTarim.jpg"));
   chris.deck.add(new Card(loadImage("Paladin/Tirion.jpg"), "Paladin/Tirion.jpg"));
