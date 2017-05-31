@@ -206,26 +206,41 @@ void keyPressed() {
   int rec = attackingCards.get(1);
   if (p1turn) {
     if (nicolas.monsters.get(att).attackedthisTurn==false) {
+      int recDamage= chris.monsters.get(rec).value;
       Card placeholder = attackMonster(nicolas.monsters.get(att), chris.monsters.get(rec));
       chris.monsters.set(rec, placeholder);
-      nicolas.monsters.get(att).attackedthisTurn=true;
-      System.out.println(chris.monsters.get(rec));
+      if (nicolas.monsters.get(att).currentHP<=recDamage) {
+        nicolas.monsters.set(att,null);}
+      else {
+        nicolas.monsters.get(att).attackedthisTurn=true;
+        nicolas.monsters.get(att).currentHP-=recDamage;}
+      System.out.println("Chris" + chris.monsters.get(rec));
+      System.out.println("Nicolas" + nicolas.monsters.get(att));
+      }
     } else {
       attackingCards.set(0, null);
       System.out.println("Already attacked this turn");
     }
-  }
   if (p2turn) {
     if (chris.monsters.get(rec).attackedthisTurn==false) {
+      int recDamage= nicolas.monsters.get(att).value;
       Card placeholder = attackMonster(chris.monsters.get(rec), nicolas.monsters.get(att));
       nicolas.monsters.set(att, placeholder);
-      chris.monsters.get(rec).attackedthisTurn=true;
-      System.out.println(nicolas.monsters.get(att));
-    } else {
+      if (chris.monsters.get(rec).currentHP<=recDamage) {
+        chris.monsters.set(rec,null);}
+      else {
+        chris.monsters.get(rec).attackedthisTurn=true;
+        chris.monsters.get(rec).currentHP-=recDamage;}
+    System.out.println("Chris" + chris.monsters.get(rec));
+    System.out.println("Nicolas" + nicolas.monsters.get(att));
+    } 
+    else {
       attackingCards.set(1, null);
       System.out.println("Already attacked this turn");
     }
   }
+  attackingCards.set(0,null);
+  attackingCards.set(1,null);
 }
 
 void printCurrentHand1() {
