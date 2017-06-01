@@ -167,6 +167,212 @@ class Card {
       currentHP = 1;
       maxHP = 1;
     }
+    //-----------------------------------Paladin Cards-----------------------------------------
+    if (paf.equals("Paladin/AldorPeacekeeper.jpg"))
+    {
+      cost = 3;
+      value = 3;
+      currentHP = 3;
+      maxHP = 3;
+    }
+    if (paf.equals("Paladin/Ashbringer.png"))
+    {
+      cost = 5;
+      value = 5;
+      currentHP = 3;
+      maxHP = 3;
+    }
+    if (paf.equals("Paladin/BlessedChampion.jpg"))
+    {
+      cost = 5;
+      //Doubles attack and hp of a monster
+    }
+    if (paf.equals("Paladin/BlessingOfKings.jpg"))
+    {
+      cost = 4;
+      //+4 attack and hp
+    }
+    if (paf.equals("Paladin/BlessingOfMight.png"))
+    {
+      cost = 1;
+      //+3 attack
+    }
+    if (paf.equals("Paladin/Consecration.jpg"))
+    {
+      cost = 4;
+      //Deal 2 damage to all enemy monsters
+    }
+    if (paf.equals("Paladin/Dinosize.jpg"))
+    {
+      cost = 8;
+      //Change attack and hp to 10
+    }
+    if (paf.equals("Paladin/DivineStrength.jpg"))
+    {
+      cost = 1;
+      //+1 attack, +2 hp
+    }
+    if (paf.equals("Paladin/Equality.jpg"))
+    {
+      cost = 2;
+      //Change hp of all monsters to 1
+    }
+    if (paf.equals("Paladin/ForbiddenHealing.jpg"))
+    {
+      cost = 0;
+      //Spend all of your current mana and heal 2x that amount
+    }
+    if (paf.equals("Paladin/GuardianOfKings.jpg"))
+    {
+      cost = 7;
+      value = 5;
+      currentHP = 6;
+      maxHP = 6;
+    }
+    if (paf.equals("Paladin/HammerOfWrath.jpg"))
+    {
+      cost = 4;
+      value = 3;
+      //Deal 3 damage to monster/player and draw a card
+    }
+    if (paf.equals("Paladin/HolyLight.png"))
+    {
+      cost = 2;
+      //Heal 6 hp to a monster/player
+    }
+    if (paf.equals("Paladin/Humility.png"))
+    {
+      cost = 1;
+      //Change a monster's attack to 1
+    }
+    if (paf.equals("Paladin/KeeperOfWuldaman.png"))
+    {
+      cost = 4;
+      value = 3;
+      currentHP = 4;
+      maxHP = 4;
+    }
+    if (paf.equals("Paladin/LayOnHands.jpg"))
+    {
+      cost = 8;
+      //Heal 8 hp to a monster/player and draw 3 cards
+    }
+    if (paf.equals("Paladin/LightsJustice.jpg"))
+    {
+      cost = 1;
+      value = 1;
+      currentHP = 4;
+      maxHP = 4;
+    }
+    if (paf.equals("Paladin/LostInTheJungle.jpg"))
+    {
+      cost = 1;
+      //Summon 2 SilverHandRecruit
+    }
+    if (paf.equals("Paladin/SilverHandRecruit.png"))
+    {
+      cost = 1;
+      value = 1;
+      currentHP = 1;
+      maxHP = 1;
+    }
+    if (paf.equals("Paladin/StandAgainstDarkness.jpg"))
+    {
+      cost = 5;
+      //Summon 5 SilverHandRecruit
+    }
+    if (paf.equals("Paladin/SunkeeperTarim.jpg"))
+    {
+      cost = 6;
+      value = 3;
+      currentHP = 7;
+      maxHP = 7;
+    }
+    if (paf.equals("Paladin/Tirion.jpg"))
+    {
+      cost = 8;
+      value = 6;
+      currentHP = 6;
+      maxHP = 6;
+    }
+    if (paf.equals("Paladin/TruesilverChampion.jpg"))
+    {
+      cost = 4;
+      value = 4;
+      currentHP = 2;
+      maxHP = 2;
+    }
+    //-----------------------------------Shaman Cards-----------------------------------------
+    if (paf.equals("Shaman/AirTotem.jpg"))
+    {
+      cost = 1;
+      value = 0;
+      currentHP = 2;
+      maxHP = 2;
+    }
+    if (paf.equals("Shaman/AlAkir.jpg"))
+    {
+      cost = 8;
+      value = 3;
+      currentHP = 5;
+      maxHP = 5;
+    }
+    if (paf.equals("Shaman/AncestralKnowledge.jpg"))
+    {
+      cost = 2;
+      //Draw 2 cards, overload 2 mana
+    }
+    if (paf.equals("Shaman/Bloodlust.jpg"))
+    {
+      cost = 5;
+      //All your monsters have +3 attack this turn only
+    }
+    if (paf.equals("Shaman/Doomhammer.jpg"))
+    {
+      cost = 5;
+      value = 2;
+      currentHP = 8;
+      maxHP = 8;
+    }
+    if (paf.equals("Shaman/DustDevil.jpg"))
+    {
+      cost = 1;
+      value = 3;
+      currentHP = 1;
+      maxHP = 1;
+    }
+    if (paf.equals("Shaman/EarthElemental.jpg"))
+    {
+      cost = 5;
+      value = 7;
+      currentHP = 8;
+      maxHP = 8;
+    }
+    if (paf.equals("Shaman/ElementalDestruction.png"))
+    {
+      cost = 3;
+      //Deal 4 or 5 damage to all monsters, overload 5 mana
+    }
+    if (paf.equals("Shaman/FeralSpirit.jpg"))
+    {
+      cost = 2;
+      //Summon 2 SpiritWolf, overload 2 mana
+    }
+    if (paf.equals("Shaman/FireElemental.jpg"))
+    {
+      cost = 6;
+      value = 6;
+      currentHP = 5;
+      maxHP = 5;
+    }
+    if (paf.equals("Shaman/FlamewreathedFaceless.jpg"))
+    {
+      cost = 4;
+      value = 7;
+      currentHP = 7;
+      maxHP = 7;
+    }
+    
   }
 
   //overloaded constructor
