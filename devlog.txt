@@ -38,10 +38,12 @@ LESSONS LEARNED
 2017-05-31
 -------------------------------------------------------------
 Chris :: hard coded shaman/paladin cards
+Nicolas :: added limits on currentHand, started implementing Player and mana
 
 2017-05-30
 -------------------------------------------------------------
 Chris :: hard coded more cards (Woo/Card classes)
+Nicolas :: target selection complete
 
 2017-05-29
 -------------------------------------------------------------
