@@ -155,49 +155,15 @@ void mouseClicked() {
       }
     }
   }
-  if ( (mouseX>242) & (mouseX<292) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(0)!=null)) {
-    attackingCards.set(0, 0);
+  for (int i=0; i<7; i++) {
+    if ( (mouseX>242+70*i) & (mouseX<292+70*i) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(i)!=null) ) {
+      attackingCards.set(0,i);}
   }
-  if ( (mouseX>312) & (mouseX<362) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(1)!=null)) {
-    attackingCards.set(0, 1);
-  }
-  if ( (mouseX>382) & (mouseX<432) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(2)!=null)) {
-    attackingCards.set(0, 2);
-  }
-  if ( (mouseX>452) & (mouseX<502) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(3)!=null)) {
-    attackingCards.set(0, 3);
-  }
-  if ( (mouseX>522) & (mouseX<572) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(4)!=null)) {
-    attackingCards.set(0, 4);
-  }
-  if ( (mouseX>592) & (mouseX<642) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(5)!=null)) {
-    attackingCards.set(0, 5);
-  }
-  if ( (mouseX>662) & (mouseX<712) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(6)!=null)) {
-    attackingCards.set(0, 6);
-  }
+ 
   //-------------------------------SETTING TARGET
-  if ( (mouseX>242) & (mouseX<292) & (mouseY>185) & (mouseY<235) & (chris.monsters.get(0)!=null)) {
-    attackingCards.set(1, 0);
-  }
-  if ( (mouseX>312) & (mouseX<362) & (mouseY>185) & (mouseY<235) & (chris.monsters.get(1)!=null)) {
-    attackingCards.set(1, 1);
-  }
-  if ( (mouseX>382) & (mouseX<432) & (mouseY>185) & (mouseY<235) & (chris.monsters.get(2)!=null)) {
-    attackingCards.set(1, 2);
-  }
-  if ( (mouseX>452) & (mouseX<502) & (mouseY>185) & (mouseY<235) & (chris.monsters.get(3)!=null)) {
-    attackingCards.set(1, 3);
-  }
-  if ( (mouseX>522) & (mouseX<572) & (mouseY>185) & (mouseY<235) & (chris.monsters.get(4)!=null)) {
-    attackingCards.set(1, 4);
-  }
-  if ( (mouseX>592) & (mouseX<642) & (mouseY>185) & (mouseY<235) & (chris.monsters.get(5)!=null)) {
-    attackingCards.set(1, 5);
-  }
-  if ( (mouseX>662) & (mouseX<712) & (mouseY>185) & (mouseY<235) & (chris.monsters.get(6)!=null)) {
-    attackingCards.set(1, 6);
-  }
+   for (int i=0; i<7; i++) {
+    if ( (mouseX>242+70*i) & (mouseX<292+70*i) & (mouseY>185) & (mouseY<235) & (chris.monsters.get(i)!=null) ) {
+      attackingCards.set(1,i);}
 }
 
 void keyPressed() {
