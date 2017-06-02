@@ -38,7 +38,7 @@ LESSONS LEARNED
 2017-06-01
 -------------------------------------------------------------
 Chris :: hard coded more card values
-
+Nicolas :: added mana limits and Player icons
 
 2017-05-31
 -------------------------------------------------------------
