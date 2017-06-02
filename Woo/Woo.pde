@@ -105,8 +105,8 @@ void draw() {
   }
   fillAttackingCard1();
   fillAttackingCard2();
-  image(loadImage("Cards/PaladinIcon.png"),428,50,100,103);
-  image(loadImage("Cards/ShamanIcon.png"),430,360,96,98);
+  image(loadImage("Cards/PaladinIcon.png"), 428, 50, 100, 103);
+  image(loadImage("Cards/ShamanIcon.png"), 430, 360, 96, 98);
 }
 
 
@@ -137,6 +137,7 @@ void mouseReleased() {
 }
 
 void mouseClicked() {
+  //---------------------------END TURN--------------------------------
   if ( (mouseX >=725) && (mouseX<=805) && (mouseY>=222) && (mouseY<272) ) //end turn
   {
     processCards1();
@@ -161,32 +162,35 @@ void mouseClicked() {
         chris.monsters.get(i).attackedthisTurn=false;
       }
     }
-  if (turnCounter%2==1) {
-    chris.incMP();
-    turnCounter++;
+    if (turnCounter%2==1) {
+      chris.incMP();
+      turnCounter++;
+    }
+    if (turnCounter%2==0) {
+      nicolas.incMP();
+      turnCounter++;
+    }
+    System.out.println("Nicolas MP: " + nicolas.currentMP + "/" + nicolas.maxMP);
+    System.out.println("Chris MP: " + chris.currentMP + "/" + chris.maxMP);
   }
-  if (turnCounter%2==0) {
-    nicolas.incMP();
-    turnCounter++;
-  }
-  System.out.println("Nicolas MP: " + nicolas.currentMP + "/" + nicolas.maxMP);
-  System.out.println("Chris MP: " + chris.currentMP + "/" + chris.maxMP);
-  }
+  //--------------------------END OF END TURN ----------------------------
   for (int i=0; i<7; i++) {
     if ( (mouseX>242+70*i) & (mouseX<292+70*i) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(i)!=null) ) {
       attackingCards.set(0, i);
     }
   }
   if ( (mouseX>430) & (mouseX<526) & (mouseY>360) & (mouseY<458) ) {
-    attackingCards.set(0,-1);}
+    attackingCards.set(0, -1);
+  }
 
   //-------------------------------SETTING TARGET
   for (int i=0; i<7; i++) {
     if ( (mouseX>242+70*i) & (mouseX<292+70*i) & (mouseY>185) & (mouseY<235) & (chris.monsters.get(i)!=null) ) {
-      attackingCards.set(1, i);   
+      attackingCards.set(1, i);
     }
     if ( (mouseX>428)& (mouseX<528)& (mouseY>50) &(mouseY<153)) {
-    attackingCards.set(1,-1);} 
+      attackingCards.set(1, -1);
+    }
   }
   if (spellMode) {
     spellTargeting.set(1, attackingCards.get(1));
@@ -199,7 +203,16 @@ void keyPressed() {
     int att = attackingCards.get(0);
     int rec = attackingCards.get(1);
     if (p1turn) {
-      if (nicolas.monsters.get(att).attackedthisTurn==false) {
+      if (rec==-1) { //monster vs player
+         if (nicolas.monsters.get(att).attackedthisTurn==false) {
+         chris=nicolas.monsters.get(att).attackPlayer(chris);
+         nicolas.monsters.get(att).attackedthisTurn=true;}
+         else {
+           attackingCards.set(0, null);
+           System.out.println("Already attacked this turn");
+         }
+      }
+      if (nicolas.monsters.get(att).attackedthisTurn==false) { // monster vs monster
         int recDamage= chris.monsters.get(rec).value;
         Card placeholder = attackMonster(nicolas.monsters.get(att), chris.monsters.get(rec));
         chris.monsters.set(rec, placeholder);
@@ -212,11 +225,21 @@ void keyPressed() {
         System.out.println("Chris" + chris.monsters.get(rec));
         System.out.println("Nicolas" + nicolas.monsters.get(att));
       }
-    } else {
+    } 
+    else {
       attackingCards.set(0, null);
       System.out.println("Already attacked this turn");
     }
     if (p2turn) {
+      if (att==-1) { //monster vs player
+         if (chris.monsters.get(rec).attackedthisTurn==false) {
+         nicolas=chris.monsters.get(rec).attackPlayer(nicolas);
+         chris.monsters.get(rec).attackedthisTurn=true;}
+         else {
+           attackingCards.set(1, null);
+           System.out.println("Already attacked this turn");
+         }
+      }
       if (chris.monsters.get(rec).attackedthisTurn==false) {
         int recDamage= nicolas.monsters.get(att).value;
         Card placeholder = attackMonster(chris.monsters.get(rec), nicolas.monsters.get(att));
@@ -241,6 +264,10 @@ void keyPressed() {
     spellMode=!spellMode;
     System.out.println("Spell mode is " + spellMode);
     System.out.println(spellTargeting);
+  }
+  if (key=='t' || key=='T') {
+    System.out.println("Nicolas HP + " + nicolas.currentHP + "/" + nicolas.maxHP);
+    System.out.println("Chris HP + " + chris.currentHP + "/" + chris.maxHP);
   }
 }
 
@@ -306,99 +333,99 @@ void fill() {
   nicolas.deck.add(new Card(loadImage("Cards/AcidicSwampOoze.jpg"), "Cards/AcidicSwampOoze.jpg"));
   nicolas.deck.add(new Card(loadImage("Cards/BloodfenRaptor.jpg"), "Cards/BloodfenRaptor.jpg"));
   nicolas.deck.add(new Card(loadImage("Cards/BluegillWarrior.png"), "Cards/BluegillWarrior.png"));
-  nicolas.deck.add(new Card(loadImage("Cards/BootyBayBodyGuard.jpg"), "Cards/BootyBayBodyGuard.jpg"));
-  nicolas.deck.add(new Card(loadImage("Cards/BoulderfistOgre.jpg"), "Cards/BoulderfistOgre.jpg"));
-  nicolas.deck.add(new Card(loadImage("Cards/ChillwindYeti.png"), "Cards/ChillwindYeti.png"));
-  nicolas.deck.add(new Card(loadImage("Cards/ElvenArcher.jpg"), "Cards/ElvenArcher.jpg"));
-  nicolas.deck.add(new Card(loadImage("Cards/FrostwolfGrunt.jpg"), "Cards/FrostwolfGrunt.jpg"));
-  nicolas.deck.add(new Card(loadImage("Cards/GnomishInventor.jpg"), "Cards/GnomishInventor.jpg"));
-  nicolas.deck.add(new Card(loadImage("Cards/GoldshireFootman.png"), "Cards/GoldshireFootman.png"));
-  nicolas.deck.add(new Card(loadImage("Cards/Nightblade.jpg"), "Cards/Nightblade.jpg"));
-  nicolas.deck.add(new Card(loadImage("Cards/NoviceEngineer.jpg"), "Cards/NoviceEngineer.jpg"));
-  nicolas.deck.add(new Card(loadImage("Cards/OasisSnapjaw.jpg"), "Cards/OasisSnapjaw.jpg"));
-  nicolas.deck.add(new Card(loadImage("Cards/RecklessRocketeer.jpg"), "Cards/RecklessRocketeer.jpg"));
-  nicolas.deck.add(new Card(loadImage("Cards/RiverCrocolisk.png"), "Cards/RiverCrocolisk.png"));
-  nicolas.deck.add(new Card(loadImage("Cards/SenjinShieldmaster.jpg"), "Cards/SenjinShieldmaster.jpg"));
-  nicolas.deck.add(new Card(loadImage("Cards/StonetuskBoar.jpg"), "Cards/StonetuskBoar.jpg"));
-  nicolas.deck.add(new Card(loadImage("Cards/StormpikeCommando.jpg"), "Cards/StormpikeCommando.jpg"));
-  nicolas.deck.add(new Card(loadImage("Cards/StormwindKnight.jpg"), "Cards/StormwindKnight.jpg"));
-  nicolas.deck.add(new Card(loadImage("Cards/VoodooDoctor.jpg"), "Cards/VoodooDoctor.jpg"));
-  nicolas.deck.add(new Card(loadImage("Cards/WarGolem.jpg"), "Cards/WarGolem.jpg"));
-  nicolas.deck.add(new Card(loadImage("Cards/Wolfrider.jpg"), "Cards/Wolfrider.jpg"));
+  /*nicolas.deck.add(new Card(loadImage("Cards/BootyBayBodyGuard.jpg"), "Cards/BootyBayBodyGuard.jpg"));
+   nicolas.deck.add(new Card(loadImage("Cards/BoulderfistOgre.jpg"), "Cards/BoulderfistOgre.jpg"));
+   nicolas.deck.add(new Card(loadImage("Cards/ChillwindYeti.png"), "Cards/ChillwindYeti.png"));
+   nicolas.deck.add(new Card(loadImage("Cards/ElvenArcher.jpg"), "Cards/ElvenArcher.jpg"));
+   nicolas.deck.add(new Card(loadImage("Cards/FrostwolfGrunt.jpg"), "Cards/FrostwolfGrunt.jpg"));
+   nicolas.deck.add(new Card(loadImage("Cards/GnomishInventor.jpg"), "Cards/GnomishInventor.jpg"));
+   nicolas.deck.add(new Card(loadImage("Cards/GoldshireFootman.png"), "Cards/GoldshireFootman.png"));
+   nicolas.deck.add(new Card(loadImage("Cards/Nightblade.jpg"), "Cards/Nightblade.jpg"));
+   nicolas.deck.add(new Card(loadImage("Cards/NoviceEngineer.jpg"), "Cards/NoviceEngineer.jpg"));
+   nicolas.deck.add(new Card(loadImage("Cards/OasisSnapjaw.jpg"), "Cards/OasisSnapjaw.jpg"));
+   nicolas.deck.add(new Card(loadImage("Cards/RecklessRocketeer.jpg"), "Cards/RecklessRocketeer.jpg"));
+   nicolas.deck.add(new Card(loadImage("Cards/RiverCrocolisk.png"), "Cards/RiverCrocolisk.png"));
+   nicolas.deck.add(new Card(loadImage("Cards/SenjinShieldmaster.jpg"), "Cards/SenjinShieldmaster.jpg"));
+   nicolas.deck.add(new Card(loadImage("Cards/StonetuskBoar.jpg"), "Cards/StonetuskBoar.jpg"));
+   nicolas.deck.add(new Card(loadImage("Cards/StormpikeCommando.jpg"), "Cards/StormpikeCommando.jpg"));
+   nicolas.deck.add(new Card(loadImage("Cards/StormwindKnight.jpg"), "Cards/StormwindKnight.jpg"));
+   nicolas.deck.add(new Card(loadImage("Cards/VoodooDoctor.jpg"), "Cards/VoodooDoctor.jpg"));
+   nicolas.deck.add(new Card(loadImage("Cards/WarGolem.jpg"), "Cards/WarGolem.jpg"));
+   nicolas.deck.add(new Card(loadImage("Cards/Wolfrider.jpg"), "Cards/Wolfrider.jpg"));*/
 
   //-----------------------------------Shaman Cards-----------------------------------------
-  nicolas.deck.add(new Card(loadImage("Shaman/AlAkir.jpg"), "Shaman/AlAkir.jpg"));
-  nicolas.deck.add(new Card(loadImage("Shaman/AncestralKnowledge.jpg"), "Shaman/AncestralKnowledge.jpg"));
-  nicolas.deck.add(new Card(loadImage("Shaman/Bloodlust.jpg"), "Shaman/Bloodlust.jpg"));
-  nicolas.deck.add(new Card(loadImage("Shaman/Doomhammer.jpg"), "Shaman/Doomhammer.jpg"));
-  nicolas.deck.add(new Card(loadImage("Shaman/DustDevil.jpg"), "Shaman/DustDevil.jpg"));
-  nicolas.deck.add(new Card(loadImage("Shaman/EarthElemental.jpg"), "Shaman/EarthElemental.jpg"));
-  nicolas.deck.add(new Card(loadImage("Shaman/ElementalDestruction.png"), "Shaman/ElementalDestruction.png"));
-  nicolas.deck.add(new Card(loadImage("Shaman/FeralSpirit.jpg"), "Shaman/FeralSpirit.jpg"));
-  nicolas.deck.add(new Card(loadImage("Shaman/FireElemental.jpg"), "Shaman/FireElemental.jpg"));
-  nicolas.deck.add(new Card(loadImage("Shaman/FlamewreathedFaceless.jpg"), "Shaman/FlamewreathedFaceless.jpg"));
-  nicolas.deck.add(new Card(loadImage("Shaman/FrostShot.jpg"), "Shaman/FrostShot.jpg"));
-  nicolas.deck.add(new Card(loadImage("Shaman/Hallazeal.jpg"), "Shaman/Hallazeal.jpg"));
-  nicolas.deck.add(new Card(loadImage("Shaman/Hex.jpg"), "Shaman/Hex.jpg"));
-  nicolas.deck.add(new Card(loadImage("Shaman/JinyuWaterspeaker.jpg"), "Shaman/JinyuWaterspeaker.jpg"));
-  nicolas.deck.add(new Card(loadImage("Shaman/LavaBurst.jpg"), "Shaman/LavaBurst.jpg"));
-  nicolas.deck.add(new Card(loadImage("Shaman/LightningBolt.jpg"), "Shaman/LightningBolt.jpg"));
-  nicolas.deck.add(new Card(loadImage("Shaman/LightningStorm.jpg"), "Shaman/LightningStorm.jpg"));
-  nicolas.deck.add(new Card(loadImage("Shaman/ManaTideTotem.jpg"), "Shaman/ManaTideTotem.jpg"));
-  nicolas.deck.add(new Card(loadImage("Shaman/RockbiterWeapon.jpg"), "Shaman/RockbiterWeapon.jpg"));
-  nicolas.deck.add(new Card(loadImage("Shaman/Stormcrack.jpg"), "Shaman/Stormcrack.jpg"));
+  /*nicolas.deck.add(new Card(loadImage("Shaman/AlAkir.jpg"), "Shaman/AlAkir.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shaman/AncestralKnowledge.jpg"), "Shaman/AncestralKnowledge.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shaman/Bloodlust.jpg"), "Shaman/Bloodlust.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shaman/Doomhammer.jpg"), "Shaman/Doomhammer.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shaman/DustDevil.jpg"), "Shaman/DustDevil.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shaman/EarthElemental.jpg"), "Shaman/EarthElemental.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shaman/ElementalDestruction.png"), "Shaman/ElementalDestruction.png"));
+   nicolas.deck.add(new Card(loadImage("Shaman/FeralSpirit.jpg"), "Shaman/FeralSpirit.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shaman/FireElemental.jpg"), "Shaman/FireElemental.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shaman/FlamewreathedFaceless.jpg"), "Shaman/FlamewreathedFaceless.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shaman/FrostShot.jpg"), "Shaman/FrostShot.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shaman/Hallazeal.jpg"), "Shaman/Hallazeal.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shaman/Hex.jpg"), "Shaman/Hex.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shaman/JinyuWaterspeaker.jpg"), "Shaman/JinyuWaterspeaker.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shaman/LavaBurst.jpg"), "Shaman/LavaBurst.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shaman/LightningBolt.jpg"), "Shaman/LightningBolt.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shaman/LightningStorm.jpg"), "Shaman/LightningStorm.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shaman/ManaTideTotem.jpg"), "Shaman/ManaTideTotem.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shaman/RockbiterWeapon.jpg"), "Shaman/RockbiterWeapon.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shaman/Stormcrack.jpg"), "Shaman/Stormcrack.jpg"));*/
   nicolas.deck.add(new Card(loadImage("Shaman/StormforgedAxe.jpg"), "Shaman/StormforgedAxe.jpg"));
-  nicolas.deck.add(new Card(loadImage("Shaman/TotemGolem.jpg"), "Shaman/TotemGolem.jpg"));
+  //nicolas.deck.add(new Card(loadImage("Shaman/TotemGolem.jpg"), "Shaman/TotemGolem.jpg"));
 
   //-----------------------------------chris's deck-----------------------------------------
 
   chris.deck.add(new Card(loadImage("Cards/AcidicSwampOoze.jpg"), "Cards/AcidicSwampOoze.jpg"));
   chris.deck.add(new Card(loadImage("Cards/BloodfenRaptor.jpg"), "Cards/BloodfenRaptor.jpg"));
   chris.deck.add(new Card(loadImage("Cards/BluegillWarrior.png"), "Cards/BluegillWarrior.png"));
-  chris.deck.add(new Card(loadImage("Cards/BootyBayBodyGuard.jpg"), "Cards/BootyBayBodyGuard.jpg"));
-  chris.deck.add(new Card(loadImage("Cards/BoulderfistOgre.jpg"), "Cards/BoulderfistOgre.jpg"));
-  chris.deck.add(new Card(loadImage("Cards/ChillwindYeti.png"), "Cards/ChillwindYeti.png"));
-  chris.deck.add(new Card(loadImage("Cards/ElvenArcher.jpg"), "Cards/ElvenArcher.jpg"));
-  chris.deck.add(new Card(loadImage("Cards/FrostwolfGrunt.jpg"), "Cards/FrostwolfGrunt.jpg"));
-  chris.deck.add(new Card(loadImage("Cards/GnomishInventor.jpg"), "Cards/GnomishInventor.jpg"));
-  chris.deck.add(new Card(loadImage("Cards/GoldshireFootman.png"), "Cards/GoldshireFootman.png"));
-  chris.deck.add(new Card(loadImage("Cards/Nightblade.jpg"), "Cards/Nightblade.jpg"));
-  chris.deck.add(new Card(loadImage("Cards/NoviceEngineer.jpg"), "Cards/NoviceEngineer.jpg"));
-  chris.deck.add(new Card(loadImage("Cards/OasisSnapjaw.jpg"), "Cards/OasisSnapjaw.jpg"));
-  chris.deck.add(new Card(loadImage("Cards/RecklessRocketeer.jpg"), "Cards/RecklessRocketeer.jpg"));
-  chris.deck.add(new Card(loadImage("Cards/RiverCrocolisk.png"), "Cards/RiverCrocolisk.png"));
-  chris.deck.add(new Card(loadImage("Cards/SenjinShieldmaster.jpg"), "Cards/SenjinShieldmaster.jpg"));
-  chris.deck.add(new Card(loadImage("Cards/StonetuskBoar.jpg"), "Cards/StonetuskBoar.jpg"));
-  chris.deck.add(new Card(loadImage("Cards/StormpikeCommando.jpg"), "Cards/StormpikeCommando.jpg"));
-  chris.deck.add(new Card(loadImage("Cards/StormwindKnight.jpg"), "Cards/StormwindKnight.jpg"));
-  chris.deck.add(new Card(loadImage("Cards/VoodooDoctor.jpg"), "Cards/VoodooDoctor.jpg"));
-  chris.deck.add(new Card(loadImage("Cards/WarGolem.jpg"), "Cards/WarGolem.jpg"));
-  chris.deck.add(new Card(loadImage("Cards/Wolfrider.jpg"), "Cards/Wolfrider.jpg"));
+  /*chris.deck.add(new Card(loadImage("Cards/BootyBayBodyGuard.jpg"), "Cards/BootyBayBodyGuard.jpg"));
+   chris.deck.add(new Card(loadImage("Cards/BoulderfistOgre.jpg"), "Cards/BoulderfistOgre.jpg"));
+   chris.deck.add(new Card(loadImage("Cards/ChillwindYeti.png"), "Cards/ChillwindYeti.png"));
+   chris.deck.add(new Card(loadImage("Cards/ElvenArcher.jpg"), "Cards/ElvenArcher.jpg"));
+   chris.deck.add(new Card(loadImage("Cards/FrostwolfGrunt.jpg"), "Cards/FrostwolfGrunt.jpg"));
+   chris.deck.add(new Card(loadImage("Cards/GnomishInventor.jpg"), "Cards/GnomishInventor.jpg"));
+   chris.deck.add(new Card(loadImage("Cards/GoldshireFootman.png"), "Cards/GoldshireFootman.png"));
+   chris.deck.add(new Card(loadImage("Cards/Nightblade.jpg"), "Cards/Nightblade.jpg"));
+   chris.deck.add(new Card(loadImage("Cards/NoviceEngineer.jpg"), "Cards/NoviceEngineer.jpg"));
+   chris.deck.add(new Card(loadImage("Cards/OasisSnapjaw.jpg"), "Cards/OasisSnapjaw.jpg"));
+   chris.deck.add(new Card(loadImage("Cards/RecklessRocketeer.jpg"), "Cards/RecklessRocketeer.jpg"));
+   chris.deck.add(new Card(loadImage("Cards/RiverCrocolisk.png"), "Cards/RiverCrocolisk.png"));
+   chris.deck.add(new Card(loadImage("Cards/SenjinShieldmaster.jpg"), "Cards/SenjinShieldmaster.jpg"));
+   chris.deck.add(new Card(loadImage("Cards/StonetuskBoar.jpg"), "Cards/StonetuskBoar.jpg"));
+   chris.deck.add(new Card(loadImage("Cards/StormpikeCommando.jpg"), "Cards/StormpikeCommando.jpg"));
+   chris.deck.add(new Card(loadImage("Cards/StormwindKnight.jpg"), "Cards/StormwindKnight.jpg"));
+   chris.deck.add(new Card(loadImage("Cards/VoodooDoctor.jpg"), "Cards/VoodooDoctor.jpg"));
+   chris.deck.add(new Card(loadImage("Cards/WarGolem.jpg"), "Cards/WarGolem.jpg"));
+   chris.deck.add(new Card(loadImage("Cards/Wolfrider.jpg"), "Cards/Wolfrider.jpg"));*/
 
   //-----------------------------------Paladin Cards-----------------------------------------
-  chris.deck.add(new Card(loadImage("Paladin/AldorPeacekeeper.jpg"), "Paladin/AldorPeacekeeper.jpg"));
-  chris.deck.add(new Card(loadImage("Paladin/BlessedChampion.jpg"), "Paladin/BlessedChampion.jpg"));
-  chris.deck.add(new Card(loadImage("Paladin/BlessingOfKings.jpg"), "Paladin/BlessingOfKings.jpg"));
-  chris.deck.add(new Card(loadImage("Paladin/BlessingOfMight.png"), "Paladin/BlessingOfMight.png"));
-  chris.deck.add(new Card(loadImage("Paladin/Consecration.jpg"), "Paladin/Consecration.jpg"));
-  chris.deck.add(new Card(loadImage("Paladin/Dinosize.jpg"), "Paladin/Dinosize.jpg"));
-  chris.deck.add(new Card(loadImage("Paladin/DivineStrength.jpg"), "Paladin/DivineStrength.jpg"));
-  chris.deck.add(new Card(loadImage("Paladin/EadricThePure.jpg"), "Paladin/EadricThePure.jpg"));
-  chris.deck.add(new Card(loadImage("Paladin/Equality.jpg"), "Paladin/Equality.jpg"));
-  chris.deck.add(new Card(loadImage("Paladin/ForbiddenHealing.jpg"), "Paladin/ForbiddenHealing.jpg"));
-  chris.deck.add(new Card(loadImage("Paladin/GuardianOfKings.jpg"), "Paladin/GuardianOfKings.jpg"));
-  chris.deck.add(new Card(loadImage("Paladin/HammerOfWrath.jpg"), "Paladin/HammerOfWrath.jpg"));
-  chris.deck.add(new Card(loadImage("Paladin/HolyLight.png"), "Paladin/HolyLight.png"));
-  chris.deck.add(new Card(loadImage("Paladin/Humility.png"), "Paladin/Humility.png"));
-  chris.deck.add(new Card(loadImage("Paladin/KeeperOfUldaman.png"), "Paladin/KeeperOfUldaman.png"));
-  chris.deck.add(new Card(loadImage("Paladin/LayOnHands.jpg"), "Paladin/LayOnHands.jpg"));
+  /*chris.deck.add(new Card(loadImage("Paladin/AldorPeacekeeper.jpg"), "Paladin/AldorPeacekeeper.jpg"));
+   chris.deck.add(new Card(loadImage("Paladin/BlessedChampion.jpg"), "Paladin/BlessedChampion.jpg"));
+   chris.deck.add(new Card(loadImage("Paladin/BlessingOfKings.jpg"), "Paladin/BlessingOfKings.jpg"));
+   chris.deck.add(new Card(loadImage("Paladin/BlessingOfMight.png"), "Paladin/BlessingOfMight.png"));
+   chris.deck.add(new Card(loadImage("Paladin/Consecration.jpg"), "Paladin/Consecration.jpg"));
+   chris.deck.add(new Card(loadImage("Paladin/Dinosize.jpg"), "Paladin/Dinosize.jpg"));
+   chris.deck.add(new Card(loadImage("Paladin/DivineStrength.jpg"), "Paladin/DivineStrength.jpg"));
+   chris.deck.add(new Card(loadImage("Paladin/EadricThePure.jpg"), "Paladin/EadricThePure.jpg"));
+   chris.deck.add(new Card(loadImage("Paladin/Equality.jpg"), "Paladin/Equality.jpg"));
+   chris.deck.add(new Card(loadImage("Paladin/ForbiddenHealing.jpg"), "Paladin/ForbiddenHealing.jpg"));
+   chris.deck.add(new Card(loadImage("Paladin/GuardianOfKings.jpg"), "Paladin/GuardianOfKings.jpg"));
+   chris.deck.add(new Card(loadImage("Paladin/HammerOfWrath.jpg"), "Paladin/HammerOfWrath.jpg"));
+   chris.deck.add(new Card(loadImage("Paladin/HolyLight.png"), "Paladin/HolyLight.png"));
+   chris.deck.add(new Card(loadImage("Paladin/Humility.png"), "Paladin/Humility.png"));
+   chris.deck.add(new Card(loadImage("Paladin/KeeperOfUldaman.png"), "Paladin/KeeperOfUldaman.png"));
+   chris.deck.add(new Card(loadImage("Paladin/LayOnHands.jpg"), "Paladin/LayOnHands.jpg"));*/
   chris.deck.add(new Card(loadImage("Paladin/LightsJustice.jpg"), "Paladin/LightsJustice.jpg"));
-  chris.deck.add(new Card(loadImage("Paladin/LostInTheJungle.jpg"), "Paladin/LostInTheJungle.jpg"));
-  //chris.deck.add(new Card(loadImage("Paladin/SealOfLight.png"), "Paladin/SealOfLight.png"));
-  chris.deck.add(new Card(loadImage("Paladin/StandAgainstDarkness.jpg"), "Paladin/StandAgainstDarkness.jpg"));
-  chris.deck.add(new Card(loadImage("Paladin/SunkeeperTarim.jpg"), "Paladin/SunkeeperTarim.jpg"));
-  chris.deck.add(new Card(loadImage("Paladin/Tirion.jpg"), "Paladin/Tirion.jpg"));
-  chris.deck.add(new Card(loadImage("Paladin/TruesilverChampion.jpg"), "Paladin/TruesilverChampion.jpg"));
+  /*chris.deck.add(new Card(loadImage("Paladin/LostInTheJungle.jpg"), "Paladin/LostInTheJungle.jpg"));
+   //chris.deck.add(new Card(loadImage("Paladin/SealOfLight.png"), "Paladin/SealOfLight.png"));
+   chris.deck.add(new Card(loadImage("Paladin/StandAgainstDarkness.jpg"), "Paladin/StandAgainstDarkness.jpg"));
+   chris.deck.add(new Card(loadImage("Paladin/SunkeeperTarim.jpg"), "Paladin/SunkeeperTarim.jpg"));
+   chris.deck.add(new Card(loadImage("Paladin/Tirion.jpg"), "Paladin/Tirion.jpg"));
+   chris.deck.add(new Card(loadImage("Paladin/TruesilverChampion.jpg"), "Paladin/TruesilverChampion.jpg*/
 }
 
 //-------------------------- BOTTOM CARDOVER METHODS (7)-----------------
@@ -728,6 +755,15 @@ void fillAttackingCard1() {
       }
     }
   }
+  if (attackingCards.get(0)!=null) {
+    if (attackingCards.get(0)==-1) {
+      fill(255, 0, 0);
+      rect(426,356,104,4);
+      rect(426,458,104,4); 
+      rect(426,360,4,98);
+      rect(526,360,4,98);
+    }
+  }
 }
 
 void fillAttackingCard2() {
@@ -742,8 +778,17 @@ void fillAttackingCard2() {
       }
     }
   }
+  if (attackingCards.get(1)!=null) {
+    if (attackingCards.get(1)==-1) {
+      fill(0, 255, 0);
+      rect(424,46,108,4);
+      rect(424,153,108,4); 
+      rect(424,50,4,103);
+      rect(528,50,4,103);
+    }
+  }
 }
-
+//image(loadImage("Cards/PaladinIcon.png"),428,50,100,103);
 //---------------------------------------------------------
 Card attackMonster(Card attacker, Card receiver) {
   receiver.currentHP-=attacker.value;
