@@ -18,3 +18,4 @@ One person should do 5 and 6, while another person should do 1,2,3, and 4, which
 
 What is the timeline, and how does it accommodate setbacks, course changes?
 We hope to finish these by Sunday. After these steps are finished, then all we have to do is robustify our code wherever possible, do more bug testing, and fill out final versions of diagrams (flowchart, UML, etc.)
+
