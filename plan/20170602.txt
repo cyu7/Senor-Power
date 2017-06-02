@@ -1,0 +1,20 @@
+Which jobs are most crucial?
+The next few steps that we plan to do are 
+1. Implement spells, which are single use cards that can attack monsters or the other player
+2. Implement weapons, which act similarly to spells
+3. Add special characteristics of the Paladin class. For example, one of the Paladin's cards can shield a monster from an incoming hit
+4. Add special characteristics of the Shaman class (Overloading mana)
+5. Implement mana and player HP, which means that monsters can only attack if the player has enough mana
+6. Fix some bugs. One bug that we currently have is that sometimes cards fly to the previous card moved, which is something we need to fix
+
+Which components constitute core functionality (vs non-essential)?
+1,2, and 5 are essential, while we can cut down on implementing 3,4, and 6 if we run out of time
+
+Which components are prerequisites for others?
+1 and 2 must be done before 3 and 4 because the special characteristics of the Paladin and Shaman classes mostly come in the form of spells. 6 and 7 can be done in any order
+
+Which tasks can be delegated, and which must be collaboratively tackled?
+One person should do 5 and 6, while another person should do 1,2,3, and 4, which are all related to each other
+
+What is the timeline, and how does it accommodate setbacks, course changes?
+We hope to finish these by Sunday. After these steps are finished, then all we have to do is robustify our code wherever possible, do more bug testing, and fill out final versions of diagrams (flowchart, UML, etc.)
