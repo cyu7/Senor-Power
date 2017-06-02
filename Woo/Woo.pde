@@ -107,6 +107,9 @@ void draw() {
   fillAttackingCard2();
   image(loadImage("Cards/PaladinIcon.png"), 428, 50, 100, 103);
   image(loadImage("Cards/ShamanIcon.png"), 430, 360, 96, 98);
+  
+  displayMana(nicolas);
+  displayMana(chris);
 }
 
 
@@ -205,7 +208,7 @@ void keyPressed() {
     if (p1turn) {
       if (rec==-1) { //monster vs player
          if (nicolas.monsters.get(att).attackedthisTurn==false) {
-         chris=nicolas.monsters.get(att).attackPlayer(chris);
+        // chris=nicolas.monsters.get(att).attackPlayer(chris);
          nicolas.monsters.get(att).attackedthisTurn=true;}
          else {
            attackingCards.set(0, null);
@@ -233,7 +236,7 @@ void keyPressed() {
     if (p2turn) {
       if (att==-1) { //monster vs player
          if (chris.monsters.get(rec).attackedthisTurn==false) {
-         nicolas=chris.monsters.get(rec).attackPlayer(nicolas);
+        // nicolas=chris.monsters.get(rec).attackPlayer(nicolas);
          chris.monsters.get(rec).attackedthisTurn=true;}
          else {
            attackingCards.set(1, null);
@@ -327,6 +330,17 @@ void printCurrentHandb() {
   }
 }
 
+void displayMana(Player n){
+ for (int i=0; i < n.maxMP; i++) {
+   image(loadImage("Cards/Wolfrider.jpg"), 300 + 25*i , 50, 25 , 25);
+ }
+ if (n.currentMP != n.maxMP){
+  for (int a=0; a < n.currentMP; a++){
+   image(loadImage("Cards/StonetuskBoar.jpg"), 25*a , 100, 25, 25); 
+  }
+ } 
+}
+//960,540
 
 void fill() {
   //-----------------------------------nicolas's deck-----------------------------------------
