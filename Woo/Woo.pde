@@ -3,6 +3,7 @@ import java.util.ArrayList;
 ArrayList<String> images = new ArrayList<String>(); //keeps track of images
 ArrayList<Integer> positions = new ArrayList<Integer>(); // keeps track of image positions [xcor,ycor]
 ArrayList<Integer> attackingCards = new ArrayList<Integer>();
+ArrayList<Integer> spellTargeting = new ArrayList<Integer>();
 PImage bg;
 /* float x_offset_drag;
  float y_offset_drag; */
@@ -15,6 +16,8 @@ boolean p1turn=true; //nicolas
 boolean p2turn=false;  //chris
 Player nicolas = new Player();
 Player chris = new Player();
+boolean spellMode = false;
+int turnCounter=0;
 
 void setup() {
   size(960, 540);
@@ -43,6 +46,8 @@ void setup() {
   printCurrentHand2();
   attackingCards.add(null);
   attackingCards.add(null);
+  spellTargeting.add(null);
+  spellTargeting.add(null);
 }
 
 void draw() {
@@ -100,6 +105,8 @@ void draw() {
   }
   fillAttackingCard1();
   fillAttackingCard2();
+  image(loadImage("Cards/PaladinIcon.png"),428,50,100,103);
+  image(loadImage("Cards/ShamanIcon.png"),430,360,96,98);
 }
 
 
@@ -154,59 +161,87 @@ void mouseClicked() {
         chris.monsters.get(i).attackedthisTurn=false;
       }
     }
+  if (turnCounter%2==1) {
+    chris.incMP();
+    turnCounter++;
+  }
+  if (turnCounter%2==0) {
+    nicolas.incMP();
+    turnCounter++;
+  }
+  System.out.println("Nicolas MP: " + nicolas.currentMP + "/" + nicolas.maxMP);
+  System.out.println("Chris MP: " + chris.currentMP + "/" + chris.maxMP);
   }
   for (int i=0; i<7; i++) {
     if ( (mouseX>242+70*i) & (mouseX<292+70*i) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(i)!=null) ) {
-      attackingCards.set(0,i);}
+      attackingCards.set(0, i);
+    }
   }
- 
+  if ( (mouseX>430) & (mouseX<526) & (mouseY>360) & (mouseY<458) ) {
+    attackingCards.set(0,-1);}
+
   //-------------------------------SETTING TARGET
-   for (int i=0; i<7; i++) {
+  for (int i=0; i<7; i++) {
     if ( (mouseX>242+70*i) & (mouseX<292+70*i) & (mouseY>185) & (mouseY<235) & (chris.monsters.get(i)!=null) ) {
-      attackingCards.set(1,i);}
+      attackingCards.set(1, i);   
+    }
+    if ( (mouseX>428)& (mouseX<528)& (mouseY>50) &(mouseY<153)) {
+    attackingCards.set(1,-1);} 
+  }
+  if (spellMode) {
+    spellTargeting.set(1, attackingCards.get(1));
+  }
 }
 
 void keyPressed() {
-  System.out.println(attackingCards);
-  int att = attackingCards.get(0);
-  int rec = attackingCards.get(1);
-  if (p1turn) {
-    if (nicolas.monsters.get(att).attackedthisTurn==false) {
-      int recDamage= chris.monsters.get(rec).value;
-      Card placeholder = attackMonster(nicolas.monsters.get(att), chris.monsters.get(rec));
-      chris.monsters.set(rec, placeholder);
-      if (nicolas.monsters.get(att).currentHP<=recDamage) {
-        nicolas.monsters.set(att,null);}
-      else {
-        nicolas.monsters.get(att).attackedthisTurn=true;
-        nicolas.monsters.get(att).currentHP-=recDamage;}
-      System.out.println("Chris" + chris.monsters.get(rec));
-      System.out.println("Nicolas" + nicolas.monsters.get(att));
+  if (key==ENTER) {
+    System.out.println(attackingCards);
+    int att = attackingCards.get(0);
+    int rec = attackingCards.get(1);
+    if (p1turn) {
+      if (nicolas.monsters.get(att).attackedthisTurn==false) {
+        int recDamage= chris.monsters.get(rec).value;
+        Card placeholder = attackMonster(nicolas.monsters.get(att), chris.monsters.get(rec));
+        chris.monsters.set(rec, placeholder);
+        if (nicolas.monsters.get(att).currentHP<=recDamage) {
+          nicolas.monsters.set(att, null);
+        } else {
+          nicolas.monsters.get(att).attackedthisTurn=true;
+          nicolas.monsters.get(att).currentHP-=recDamage;
+        }
+        System.out.println("Chris" + chris.monsters.get(rec));
+        System.out.println("Nicolas" + nicolas.monsters.get(att));
       }
     } else {
       attackingCards.set(0, null);
       System.out.println("Already attacked this turn");
     }
-  if (p2turn) {
-    if (chris.monsters.get(rec).attackedthisTurn==false) {
-      int recDamage= nicolas.monsters.get(att).value;
-      Card placeholder = attackMonster(chris.monsters.get(rec), nicolas.monsters.get(att));
-      nicolas.monsters.set(att, placeholder);
-      if (chris.monsters.get(rec).currentHP<=recDamage) {
-        chris.monsters.set(rec,null);}
-      else {
-        chris.monsters.get(rec).attackedthisTurn=true;
-        chris.monsters.get(rec).currentHP-=recDamage;}
-    System.out.println("Chris" + chris.monsters.get(rec));
-    System.out.println("Nicolas" + nicolas.monsters.get(att));
-    } 
-    else {
-      attackingCards.set(1, null);
-      System.out.println("Already attacked this turn");
+    if (p2turn) {
+      if (chris.monsters.get(rec).attackedthisTurn==false) {
+        int recDamage= nicolas.monsters.get(att).value;
+        Card placeholder = attackMonster(chris.monsters.get(rec), nicolas.monsters.get(att));
+        nicolas.monsters.set(att, placeholder);
+        if (chris.monsters.get(rec).currentHP<=recDamage) {
+          chris.monsters.set(rec, null);
+        } else {
+          chris.monsters.get(rec).attackedthisTurn=true;
+          chris.monsters.get(rec).currentHP-=recDamage;
+        }
+        System.out.println("Chris" + chris.monsters.get(rec));
+        System.out.println("Nicolas" + nicolas.monsters.get(att));
+      } else {
+        attackingCards.set(1, null);
+        System.out.println("Already attacked this turn");
+      }
     }
+    attackingCards.set(0, null);
+    attackingCards.set(1, null);
   }
-  attackingCards.set(0,null);
-  attackingCards.set(1,null);
+  if (key=='s' || key=='S') {
+    spellMode=!spellMode;
+    System.out.println("Spell mode is " + spellMode);
+    System.out.println(spellTargeting);
+  }
 }
 
 void printCurrentHand1() {
@@ -290,7 +325,7 @@ void fill() {
   nicolas.deck.add(new Card(loadImage("Cards/VoodooDoctor.jpg"), "Cards/VoodooDoctor.jpg"));
   nicolas.deck.add(new Card(loadImage("Cards/WarGolem.jpg"), "Cards/WarGolem.jpg"));
   nicolas.deck.add(new Card(loadImage("Cards/Wolfrider.jpg"), "Cards/Wolfrider.jpg"));
-  
+
   //-----------------------------------Shaman Cards-----------------------------------------
   nicolas.deck.add(new Card(loadImage("Shaman/AlAkir.jpg"), "Shaman/AlAkir.jpg"));
   nicolas.deck.add(new Card(loadImage("Shaman/AncestralKnowledge.jpg"), "Shaman/AncestralKnowledge.jpg"));
@@ -314,9 +349,9 @@ void fill() {
   nicolas.deck.add(new Card(loadImage("Shaman/Stormcrack.jpg"), "Shaman/Stormcrack.jpg"));
   nicolas.deck.add(new Card(loadImage("Shaman/StormforgedAxe.jpg"), "Shaman/StormforgedAxe.jpg"));
   nicolas.deck.add(new Card(loadImage("Shaman/TotemGolem.jpg"), "Shaman/TotemGolem.jpg"));
-  
+
   //-----------------------------------chris's deck-----------------------------------------
-  
+
   chris.deck.add(new Card(loadImage("Cards/AcidicSwampOoze.jpg"), "Cards/AcidicSwampOoze.jpg"));
   chris.deck.add(new Card(loadImage("Cards/BloodfenRaptor.jpg"), "Cards/BloodfenRaptor.jpg"));
   chris.deck.add(new Card(loadImage("Cards/BluegillWarrior.png"), "Cards/BluegillWarrior.png"));
@@ -339,7 +374,7 @@ void fill() {
   chris.deck.add(new Card(loadImage("Cards/VoodooDoctor.jpg"), "Cards/VoodooDoctor.jpg"));
   chris.deck.add(new Card(loadImage("Cards/WarGolem.jpg"), "Cards/WarGolem.jpg"));
   chris.deck.add(new Card(loadImage("Cards/Wolfrider.jpg"), "Cards/Wolfrider.jpg"));
-  
+
   //-----------------------------------Paladin Cards-----------------------------------------
   chris.deck.add(new Card(loadImage("Paladin/AldorPeacekeeper.jpg"), "Paladin/AldorPeacekeeper.jpg"));
   chris.deck.add(new Card(loadImage("Paladin/BlessedChampion.jpg"), "Paladin/BlessedChampion.jpg"));
@@ -364,7 +399,6 @@ void fill() {
   chris.deck.add(new Card(loadImage("Paladin/SunkeeperTarim.jpg"), "Paladin/SunkeeperTarim.jpg"));
   chris.deck.add(new Card(loadImage("Paladin/Tirion.jpg"), "Paladin/Tirion.jpg"));
   chris.deck.add(new Card(loadImage("Paladin/TruesilverChampion.jpg"), "Paladin/TruesilverChampion.jpg"));
-  
 }
 
 //-------------------------- BOTTOM CARDOVER METHODS (7)-----------------

@@ -1,7 +1,7 @@
 class Card {
   PImage picture; //icon
   String path; //directory path
-  Type card; //Monster, Spell, Weapon
+  //Type card; //Monster, Spell, Weapon
   int value; //damage
   int currentHP; //current health
   int maxHP; //max health

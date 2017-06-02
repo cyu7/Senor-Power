@@ -1,14 +1,16 @@
 class Player {
-  int HP; //max 30
-  int MP; //current MP
+  int maxHP; //max 30
+  int currentHP; //max 30
+  int currentMP; //current MP
   int maxMP; //max 10
   ArrayList<Card> currentHand; //max 10
   ArrayList<Card> deck; //max 30
   ArrayList<Card> monsters; //max 7
 
   Player() {
-    HP = 30;
-    MP = 1;
+    maxHP = 30;
+    currentHP = 30;
+    currentMP = 1;
     maxMP = 1;
     currentHand = new ArrayList<Card>();
     deck = new ArrayList<Card>();
@@ -40,23 +42,28 @@ class Player {
 
     //increase HP
     void incHP(int value) {
-      HP += value;
+      currentHP += value;
     }
 
     //decrease HP
     void decHP(int value) {
-      HP -= value;
+      currentHP -= value;
     }
 
     //increase MP
     void incMP() {
-      maxMP++;
-      MP = maxMP;
+      if (maxMP<10)
+      {maxMP++;
+      if (currentMP<10)
+      {currentMP += 1;}}
+      else {
+        if (currentMP<10)
+      {currentMP += 1;}}
     }
 
     //decrease MP
     void decMP(int value) {
-      MP -= value;
+      currentMP -= value;
     }
 
     //add monster
