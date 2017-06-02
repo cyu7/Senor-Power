@@ -11,7 +11,7 @@ Which components constitute core functionality (vs non-essential)?
 1,2, and 5 are essential, while we can cut down on implementing 3,4, and 6 if we run out of time
 
 Which components are prerequisites for others?
-1 and 2 must be done before 3 and 4 because the special characteristics of the Paladin and Shaman classes mostly come in the form of spells. 6 and 7 can be done in any order
+1 and 2 must be done before 3 and 4 because the special characteristics of the Paladin and Shaman classes mostly come in the form of spells. 6 can be done at any point, but is low-priority
 
 Which tasks can be delegated, and which must be collaboratively tackled?
 One person should do 5 and 6, while another person should do 1,2,3, and 4, which are all related to each other
