@@ -178,6 +178,7 @@ void mouseClicked() {
     }
   }
   //--------------------------END OF END TURN ----------------------------
+  
   for (int i=0; i<7; i++) {
     if ( (mouseX>242+70*i) & (mouseX<292+70*i) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(i)!=null) ) {
       attackingCards.set(0, i);
@@ -198,27 +199,31 @@ void mouseClicked() {
   }
   if (spellMode) {
     if (p1turn) {
+      spellTargeting.set(1, attackingCards.get(1));
       if (whichImage<nicolas.size()) {
         if (nicolas.currentHand.get(whichImage).cardType==1) {
           spellTargeting.set(0, whichImage);
-          spellTargeting.set(1, attackingCards.get(1));
+          
         }
       }
     }
     if (p2turn) {
+      spellTargeting.set(0, attackingCards.get(0));
       if (whichImage>=nicolas.size()) {
         if (chris.currentHand.get(whichImage-nicolas.size()).cardType==1) {
           spellTargeting.set(1, whichImage);
-          spellTargeting.set(0, attackingCards.get(0));
+          
         }
       }
     }
   }
+  
 }
 
 void keyPressed() {
   if (key==ENTER) {
     if (spellMode) {
+      System.out.println(spellTargeting);
       int att = spellTargeting.get(0);
       int rec = spellTargeting.get(1);
       if (p1turn) {
@@ -228,12 +233,20 @@ void keyPressed() {
             chris=spellAtt.attackPlayer(chris);
             nicolas.decMP(spellAtt.cost);
             nicolas.currentHand.remove(att);
+            images.remove(att);
+            image1.remove(att);
+            positions.remove(2*att);
+            positions.remove(2*att);
           } 
           else {
             Card spellTar = chris.monsters.get(rec);
             chris.monsters.set(rec, attackMonster(spellAtt, spellTar));
             nicolas.decMP(spellAtt.cost);
             nicolas.currentHand.remove(att);
+            images.remove(att);
+            image1.remove(att);
+            positions.remove(2*att);
+            positions.remove(2*att);
           }
         } 
         else {
@@ -247,12 +260,21 @@ void keyPressed() {
             nicolas=spellAtt.attackPlayer(nicolas);
             chris.decMP(spellAtt.cost);
             chris.currentHand.remove(rec-nicolas.size());
+            images.remove(rec);
+            image1.remove(rec);
+            positions.remove(2*rec);
+            positions.remove(2*rec);
+      
           } 
           else {
             Card spellTar = nicolas.monsters.get(att);
             nicolas.monsters.set(rec, attackMonster(spellAtt, spellTar));
             chris.decMP(spellAtt.cost);
             chris.currentHand.remove(rec-nicolas.size());
+            images.remove(rec);
+            image1.remove(rec);
+            positions.remove(2*rec);
+            positions.remove(2*rec);
           }
         } 
         else {
@@ -327,11 +349,13 @@ void keyPressed() {
   if (key=='s' || key=='S') {
     spellMode=!spellMode;
     System.out.println("Spell mode is " + spellMode);
-    System.out.println(spellTargeting);
+    
   }
   if (key=='t' || key=='T') {
     System.out.println("Nicolas " + nicolas.hpLine());
     System.out.println("Chris " + chris.hpLine());
+    System.out.println(spellTargeting);
+    System.out.println("att " + attackingCards);
   }
 }
 
