@@ -109,7 +109,7 @@ void draw() {
   image(loadImage("Cards/ShamanIcon.png"), 430, 360, 96, 98);
 
   displayMana(nicolas, 400);
-  displayMana(chris, 20);
+  displayMana(chris, 60);
 }
 
 
@@ -696,7 +696,7 @@ void processCards2() {
   int index8 = CardOver8();
   if (index8 != -1) {
     Card card8=new Card(image1.get(index8), images.get(index8));
-    if (card8.cost <chris.currentMP)
+    if (card8.cost <=chris.currentMP)
     {
     chris.addMonster(0, card8);
     index8-=nicolas.size();
@@ -716,7 +716,7 @@ void processCards2() {
   int index9 = CardOver9();
   if (index9 != -1) {
     Card card9=new Card(image1.get(index9), images.get(index9));
-    if (card9.cost <chris.currentMP)
+    if (card9.cost <=chris.currentMP)
     {
     chris.addMonster(1, card9);
     index9-=nicolas.size();
@@ -735,7 +735,7 @@ void processCards2() {
   int index10 = CardOver10();
   if (index10 != -1) {
     Card card10=new Card(image1.get(index10), images.get(index10));
-    if (card10.cost <chris.currentMP)
+    if (card10.cost <=chris.currentMP)
     {
     chris.addMonster(2, card10);
     index10-=nicolas.size();
@@ -754,7 +754,7 @@ void processCards2() {
   int index11 = CardOver11();
   if (index11 != -1) {
     Card card11=new Card(image1.get(index11), images.get(index11));
-    if (card11.cost <chris.currentMP)
+    if (card11.cost <=chris.currentMP)
     {
     chris.addMonster(3, card11);
     index11-=nicolas.size();
@@ -773,7 +773,7 @@ void processCards2() {
   int index12 = CardOver12();
   if (index12 != -1) {
     Card card12=new Card(image1.get(index12), images.get(index12));
-    if (card12.cost <chris.currentMP)
+    if (card12.cost <=chris.currentMP)
     {
     chris.addMonster(4, card12);
     index12-=nicolas.size();
@@ -792,7 +792,7 @@ void processCards2() {
   int index13 = CardOver13();
   if (index13 != -1) {
     Card card13=new Card(image1.get(index13), images.get(index13));
-    if (card13.cost <chris.currentMP)
+    if (card13.cost <=chris.currentMP)
     {
     chris.addMonster(0, card13);
     index13-=nicolas.size();
@@ -811,7 +811,7 @@ void processCards2() {
   int index14 = CardOver14();
   if (index14 != -1) {
     Card card14=new Card(image1.get(index14), images.get(index14));
-    if (card14.cost <chris.currentMP)
+    if (card14.cost <=chris.currentMP)
     {
     chris.addMonster(0, card14);
     index14-=nicolas.size();
