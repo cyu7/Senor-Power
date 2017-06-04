@@ -1,7 +1,7 @@
 class Card {
   PImage picture; //icon
   String path; //directory path
-  //Type card; //Monster, Spell, Weapon
+  Type card; //Monster, Spell, Weapon
   int value; //damage
   int currentHP; //current health
   int maxHP; //max health
@@ -372,7 +372,87 @@ class Card {
       currentHP = 7;
       maxHP = 7;
     }
-    
+    if (paf.equals("Shaman/FrostShot.jpg"))
+    {
+      cost = 1;
+      //Deal 1 dmg and freeze 
+    }
+    if (paf.equals("Shaman/HealingTotem.png"))
+    {
+      cost = 1;
+      value = 0;
+      currentHP = 2;
+      maxHP = 2;
+    }
+    if (paf.equals("Shaman/JinyuWaterSpeaker.jpg"))
+    {
+      cost = 4;
+      value = 3;
+      currentHP = 6;
+      maxHP = 6;
+    }
+    if (paf.equals("Shaman/LavaBurst.jpg"))
+    {
+      cost = 3;
+      //Deal 5 damage and overload 2
+    }
+    if (paf.equals("Shaman/LightningStorm.jpg"))
+    {
+      cost = 3;
+      //Deal 2 or 3 dmg to all enemy monsters and overload 2
+    }
+    if (paf.equals("Shaman/ManaTideTotem.jpg"))
+    {
+      cost = 3;
+      value = 0;
+      currentHP = 3;
+      maxHP = 3;
+    }
+    if (paf.equals("Shaman/RockbiterWeapon.jpg"))
+    {
+      cost = 2;
+      //Give a monster/player +3 attack this turn
+    }
+    if (paf.equals("Shaman/SearingTotem.jpg"))
+    {
+      cost = 1;
+      value = 1;
+      currentHP = 1;
+      maxHP = 1;
+    }
+    if (paf.equals("Shaman/SpiritWolf.png"))
+    {
+      cost = 2;
+      value = 2;
+      currentHP = 3;
+      maxHP = 3;
+    }
+    if (paf.equals("Shaman/StoneclawTotem.png"))
+    {
+      cost = 1;
+      value = 0;
+      currentHP = 2;
+      maxHP = 2;
+    }
+    if (paf.equals("Shaman/Stormcrack.jpg"))
+    {
+      cost = 2;
+      //Deal 4 damage to a minion and overload 1
+    }
+    if (paf.equals("Shaman/StormforgedAxe.jpg"))
+    {
+      cost = 2;
+      value = 2;
+      currentHP = 3;
+      maxHP = 3;
+    }
+    if (paf.equals("Shaman/TotemGolem.jpg"))
+    {
+      cost = 2;
+      value = 3;
+      currentHP = 4;
+      maxHP = 4;
+    }
   }
 
   //overloaded constructor
