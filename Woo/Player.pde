@@ -64,6 +64,9 @@ class Player {
     //decrease MP
     void decMP(int value) {
       currentMP -= value;
+      if (currentMP <0) {
+        currentMP=0;
+    }
     }
 
     //add monster
