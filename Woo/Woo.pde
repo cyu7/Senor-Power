@@ -36,18 +36,16 @@ void setup() {
   fill();
   chris.decMP(1);
   chris.maxMP=0;
-  chris.drawCard();
-  chris.drawCard();
-  chris.drawCard();
-  nicolas.drawCard();
-  nicolas.drawCard();
-  nicolas.drawCard();
+  for (int i=0; i<3; i++) {
+    chris.drawCard();
+    nicolas.drawCard();
+  }
   printCurrentHand1();
   printCurrentHand2();
-  attackingCards.add(null);
-  attackingCards.add(null);
-  spellTargeting.add(null);
-  spellTargeting.add(null);
+  for (int i=0; i<2; i++) {
+    attackingCards.add(null);
+    spellTargeting.add(null);
+  }
 }
 
 void draw() {
@@ -110,12 +108,15 @@ void draw() {
 
   displayMana(nicolas, 400);
   displayMana(chris, 60);
+
+  fillSpellCard();
 }
 
 
 void mousePressed() {
   if (bover) { 
     locked = true;
+    System.out.println(whichImage);
   } else {
     locked = false;
   }
@@ -157,6 +158,9 @@ void mouseClicked() {
     p2turn=!p2turn;
     attackingCards.set(0, null);
     attackingCards.set(1, null);
+    spellTargeting.set(0, null);
+    spellTargeting.set(1, null);
+    spellMode=false;
     for (int i=0; i<7; i++) {
       if (nicolas.monsters.get(i)!=null) {
         nicolas.monsters.get(i).attackedthisTurn=false;
@@ -168,13 +172,10 @@ void mouseClicked() {
     if (turnCounter%2==1) {
       nicolas.incMP();
       turnCounter++;
-    }
-    else {
+    } else {
       chris.incMP();
       turnCounter++;
     }
-    System.out.println("Nicolas MP: " + nicolas.currentMP + "/" + nicolas.maxMP);
-    System.out.println("Chris MP: " + chris.currentMP + "/" + chris.maxMP);
   }
   //--------------------------END OF END TURN ----------------------------
   for (int i=0; i<7; i++) {
@@ -196,71 +197,132 @@ void mouseClicked() {
     }
   }
   if (spellMode) {
-    spellTargeting.set(1, attackingCards.get(1));
+    if (p1turn) {
+      if (whichImage<nicolas.size()) {
+        if (nicolas.currentHand.get(whichImage).cardType==1) {
+          spellTargeting.set(0, whichImage);
+          spellTargeting.set(1, attackingCards.get(1));
+        }
+      }
+    }
+    if (p2turn) {
+      if (whichImage>=nicolas.size()) {
+        if (chris.currentHand.get(whichImage-nicolas.size()).cardType==1) {
+          spellTargeting.set(1, whichImage);
+          spellTargeting.set(0, attackingCards.get(0));
+        }
+      }
+    }
   }
 }
 
 void keyPressed() {
   if (key==ENTER) {
-    System.out.println(attackingCards);
-    int att = attackingCards.get(0);
-    int rec = attackingCards.get(1);
-    if (p1turn) {
-      if (rec==-1) { //monster vs player
-        if (nicolas.monsters.get(att).attackedthisTurn==false) {
-          // chris=nicolas.monsters.get(att).attackPlayer(chris);
-          nicolas.monsters.get(att).attackedthisTurn=true;
-        } else {
+    if (spellMode) {
+      int att = spellTargeting.get(0);
+      int rec = spellTargeting.get(1);
+      if (p1turn) {
+        Card spellAtt = nicolas.currentHand.get(att);
+        if (spellAtt.cost <= nicolas.currentMP) {
+          if (rec==-1) {
+            chris=spellAtt.attackPlayer(chris);
+            nicolas.decMP(spellAtt.cost);
+            nicolas.currentHand.remove(att);
+          } 
+          else {
+            Card spellTar = chris.monsters.get(rec);
+            chris.monsters.set(rec, attackMonster(spellAtt, spellTar));
+            nicolas.decMP(spellAtt.cost);
+            nicolas.currentHand.remove(att);
+          }
+        } 
+        else {
+          System.out.println("Not enough MP for spell");
+        }
+      }
+      if (p2turn) {
+        Card spellAtt = chris.currentHand.get(rec-nicolas.size());
+        if (spellAtt.cost <= chris.currentMP) {
+          if (att==-1) { // -1 index refers to other player
+            nicolas=spellAtt.attackPlayer(nicolas);
+            chris.decMP(spellAtt.cost);
+            chris.currentHand.remove(rec-nicolas.size());
+          } 
+          else {
+            Card spellTar = nicolas.monsters.get(att);
+            nicolas.monsters.set(rec, attackMonster(spellAtt, spellTar));
+            chris.decMP(spellAtt.cost);
+            chris.currentHand.remove(rec-nicolas.size());
+          }
+        } 
+        else {
+          System.out.println("Not enough MP for spell");
+        }
+      }
+    } 
+    else { //monster vs monster/player, no spells or weapons
+      System.out.println(attackingCards);
+      int att = attackingCards.get(0);
+      int rec = attackingCards.get(1);
+      if (p1turn) {
+        if (rec==-1) { //monster vs player
+          if (nicolas.monsters.get(att).attackedthisTurn==false) {
+            chris=nicolas.monsters.get(att).attackPlayer(chris);
+            nicolas.monsters.get(att).attackedthisTurn=true;
+          } 
+          else {
+            attackingCards.set(0, null);
+            System.out.println("Already attacked this turn");
+          }
+        } 
+        else if (nicolas.monsters.get(att).attackedthisTurn==false) { // monster vs monster
+          int recDamage= chris.monsters.get(rec).value;
+          Card placeholder = attackMonster(nicolas.monsters.get(att), chris.monsters.get(rec));
+          chris.monsters.set(rec, placeholder);
+          if (nicolas.monsters.get(att).currentHP<=recDamage) {
+            nicolas.monsters.set(att, null);
+          } 
+          else {
+            nicolas.monsters.get(att).attackedthisTurn=true;
+            nicolas.monsters.get(att).currentHP-=recDamage;
+          }
+          System.out.println("Chris" + chris.monsters.get(rec)); //print results of attack
+          System.out.println("Nicolas" + nicolas.monsters.get(att));
+        } 
+        else {
           attackingCards.set(0, null);
           System.out.println("Already attacked this turn");
         }
       }
-      if (nicolas.monsters.get(att).attackedthisTurn==false) { // monster vs monster
-        int recDamage= chris.monsters.get(rec).value;
-        Card placeholder = attackMonster(nicolas.monsters.get(att), chris.monsters.get(rec));
-        chris.monsters.set(rec, placeholder);
-        if (nicolas.monsters.get(att).currentHP<=recDamage) {
-          nicolas.monsters.set(att, null);
-        } else {
-          nicolas.monsters.get(att).attackedthisTurn=true;
-          nicolas.monsters.get(att).currentHP-=recDamage;
-        }
-        System.out.println("Chris" + chris.monsters.get(rec));
-        System.out.println("Nicolas" + nicolas.monsters.get(att));
-      }
-    } else {
-      attackingCards.set(0, null);
-      System.out.println("Already attacked this turn");
-    }
-    if (p2turn) {
-      if (att==-1) { //monster vs player
-        if (chris.monsters.get(rec).attackedthisTurn==false) {
-          // nicolas=chris.monsters.get(rec).attackPlayer(nicolas);
-          chris.monsters.get(rec).attackedthisTurn=true;
+      if (p2turn) {
+        if (att==-1) { //monster vs player
+          if (chris.monsters.get(rec).attackedthisTurn==false) {
+            nicolas=chris.monsters.get(rec).attackPlayer(nicolas);
+            chris.monsters.get(rec).attackedthisTurn=true;
+          } else {
+            attackingCards.set(1, null);
+            System.out.println("Already attacked this turn");
+          }
+        } else if (chris.monsters.get(rec).attackedthisTurn==false) { //monster vs player
+          int recDamage= nicolas.monsters.get(att).value;
+          Card placeholder = attackMonster(chris.monsters.get(rec), nicolas.monsters.get(att));
+          nicolas.monsters.set(att, placeholder);
+          if (chris.monsters.get(rec).currentHP<=recDamage) {
+            chris.monsters.set(rec, null);
+          } else {
+            chris.monsters.get(rec).attackedthisTurn=true;
+            chris.monsters.get(rec).currentHP-=recDamage;
+          }
         } else {
           attackingCards.set(1, null);
           System.out.println("Already attacked this turn");
         }
       }
-      if (chris.monsters.get(rec).attackedthisTurn==false) {
-        int recDamage= nicolas.monsters.get(att).value;
-        Card placeholder = attackMonster(chris.monsters.get(rec), nicolas.monsters.get(att));
-        nicolas.monsters.set(att, placeholder);
-        if (chris.monsters.get(rec).currentHP<=recDamage) {
-          chris.monsters.set(rec, null);
-        } else {
-          chris.monsters.get(rec).attackedthisTurn=true;
-          chris.monsters.get(rec).currentHP-=recDamage;
-        }
-        System.out.println("Chris" + chris.monsters.get(rec));
-        System.out.println("Nicolas" + nicolas.monsters.get(att));
-      } else {
-        attackingCards.set(1, null);
-        System.out.println("Already attacked this turn");
-      }
     }
-    attackingCards.set(0, null);
-    attackingCards.set(1, null);
+    attackingCards.set(0,null);
+    attackingCards.set(1,null);
+    spellTargeting.set(0,null);
+    spellTargeting.set(1,null);
   }
   if (key=='s' || key=='S') {
     spellMode=!spellMode;
@@ -268,8 +330,8 @@ void keyPressed() {
     System.out.println(spellTargeting);
   }
   if (key=='t' || key=='T') {
-    nicolas.decMP(1);
-    chris.decMP(2);
+    System.out.println("Nicolas " + nicolas.hpLine());
+    System.out.println("Chris " + chris.hpLine());
   }
 }
 
@@ -371,9 +433,9 @@ void fill() {
    nicolas.deck.add(new Card(loadImage("Shaman/Bloodlust.jpg"), "Shaman/Bloodlust.jpg"));
    nicolas.deck.add(new Card(loadImage("Shaman/Doomhammer.jpg"), "Shaman/Doomhammer.jpg"));
    nicolas.deck.add(new Card(loadImage("Shaman/DustDevil.jpg"), "Shaman/DustDevil.jpg"));
-   nicolas.deck.add(new Card(loadImage("Shaman/EarthElemental.jpg"), "Shaman/EarthElemental.jpg"));
-   nicolas.deck.add(new Card(loadImage("Shaman/ElementalDestruction.png"), "Shaman/ElementalDestruction.png"));
-   nicolas.deck.add(new Card(loadImage("Shaman/FeralSpirit.jpg"), "Shaman/FeralSpirit.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shaman/EarthElemental.jpg"), "Shaman/EarthElemental.jpg"));*/
+  nicolas.deck.add(new Card(loadImage("Shaman/ElementalDestruction.png"), "Shaman/ElementalDestruction.png"));
+  /*nicolas.deck.add(new Card(loadImage("Shaman/FeralSpirit.jpg"), "Shaman/FeralSpirit.jpg"));
    nicolas.deck.add(new Card(loadImage("Shaman/FireElemental.jpg"), "Shaman/FireElemental.jpg"));
    nicolas.deck.add(new Card(loadImage("Shaman/FlamewreathedFaceless.jpg"), "Shaman/FlamewreathedFaceless.jpg"));
    nicolas.deck.add(new Card(loadImage("Shaman/FrostShot.jpg"), "Shaman/FrostShot.jpg"));
@@ -418,9 +480,9 @@ void fill() {
   /*chris.deck.add(new Card(loadImage("Paladin/AldorPeacekeeper.jpg"), "Paladin/AldorPeacekeeper.jpg"));
    chris.deck.add(new Card(loadImage("Paladin/BlessedChampion.jpg"), "Paladin/BlessedChampion.jpg"));
    chris.deck.add(new Card(loadImage("Paladin/BlessingOfKings.jpg"), "Paladin/BlessingOfKings.jpg"));
-   chris.deck.add(new Card(loadImage("Paladin/BlessingOfMight.png"), "Paladin/BlessingOfMight.png"));
-   chris.deck.add(new Card(loadImage("Paladin/Consecration.jpg"), "Paladin/Consecration.jpg"));
-   chris.deck.add(new Card(loadImage("Paladin/Dinosize.jpg"), "Paladin/Dinosize.jpg"));
+   chris.deck.add(new Card(loadImage("Paladin/BlessingOfMight.png"), "Paladin/BlessingOfMight.png")); */
+  chris.deck.add(new Card(loadImage("Paladin/Consecration.jpg"), "Paladin/Consecration.jpg"));
+  /*chris.deck.add(new Card(loadImage("Paladin/Dinosize.jpg"), "Paladin/Dinosize.jpg"));
    chris.deck.add(new Card(loadImage("Paladin/DivineStrength.jpg"), "Paladin/DivineStrength.jpg"));
    chris.deck.add(new Card(loadImage("Paladin/EadricThePure.jpg"), "Paladin/EadricThePure.jpg"));
    chris.deck.add(new Card(loadImage("Paladin/Equality.jpg"), "Paladin/Equality.jpg"));
@@ -585,8 +647,7 @@ void processCards1() {
       positions.remove(2*index1);
       positions.remove(2*index1);
       nicolas.decMP(card1.cost);
-    } 
-    else {
+    } else {
       System.out.println("Not enough mana to process card");
     }
   }
@@ -604,10 +665,10 @@ void processCards1() {
       positions.remove(2*index2);
       nicolas.decMP(card2.cost);
     } else {
-           System.out.println("Not enough mana to process card");
+      System.out.println("Not enough mana to process card");
     }
   }
-  
+
   int index3 = CardOver3();
   if (index3 != -1) {
     Card card3=new Card(image1.get(index3), images.get(index3));
@@ -621,9 +682,10 @@ void processCards1() {
       positions.remove(2*index3);
       nicolas.decMP(card3.cost);
     } else {
-           System.out.println("Not enough mana to process card");
+      System.out.println("Not enough mana to process card");
     }
-  }  int index4 = CardOver4();
+  }  
+  int index4 = CardOver4();
   if (index4 != -1) {
     Card card4=new Card(image1.get(index4), images.get(index4));
     if (card4.cost <=nicolas.currentMP)
@@ -638,7 +700,8 @@ void processCards1() {
     } else {
       System.out.println("Not enough mana to process card");
     }
-  }  int index5 = CardOver5();
+  }  
+  int index5 = CardOver5();
   if (index5 != -1) {
     Card card5=new Card(image1.get(index5), images.get(index5));
     if (card5.cost <=nicolas.currentMP)
@@ -651,10 +714,10 @@ void processCards1() {
       positions.remove(2*index5);
       nicolas.decMP(card5.cost);
     } else {
-         System.out.println("Not enough mana to process card");
+      System.out.println("Not enough mana to process card");
     }
   }  
-  
+
   int index6 = CardOver6();
   if (index6 != -1) {
     Card card6=new Card(image1.get(index6), images.get(index6));
@@ -668,10 +731,10 @@ void processCards1() {
       positions.remove(2*index6);
       nicolas.decMP(card6.cost);
     } else {
-        System.out.println("Not enough mana to process card");
+      System.out.println("Not enough mana to process card");
     }
   }  
-  
+
   int index7 = CardOver7();
   if (index7 != -1) {
     Card card7=new Card(image1.get(index1), images.get(index7));
@@ -684,9 +747,8 @@ void processCards1() {
       positions.remove(2*index7);
       positions.remove(2*index7);
       nicolas.decMP(card7.cost);
-    } 
-    else {
-           System.out.println("Not enough mana to process card");
+    } else {
+      System.out.println("Not enough mana to process card");
     }
   }
 }
@@ -698,17 +760,16 @@ void processCards2() {
     Card card8=new Card(image1.get(index8), images.get(index8));
     if (card8.cost <=chris.currentMP)
     {
-    chris.addMonster(0, card8);
-    index8-=nicolas.size();
-    chris.currentHand.remove(index8);
-    index8+=nicolas.size();
-    images.remove(index8);
-    image1.remove(index8);
-    positions.remove(2*index8);
-    positions.remove(2*index8);
-    chris.decMP(card8.cost);
-  }
-  else {
+      chris.addMonster(0, card8);
+      index8-=nicolas.size();
+      chris.currentHand.remove(index8);
+      index8+=nicolas.size();
+      images.remove(index8);
+      image1.remove(index8);
+      positions.remove(2*index8);
+      positions.remove(2*index8);
+      chris.decMP(card8.cost);
+    } else {
       System.out.println("Not enough mana to process card");
     }
   }
@@ -718,17 +779,16 @@ void processCards2() {
     Card card9=new Card(image1.get(index9), images.get(index9));
     if (card9.cost <=chris.currentMP)
     {
-    chris.addMonster(1, card9);
-    index9-=nicolas.size();
-    chris.currentHand.remove(index9);
-    index9+=nicolas.size();
-    images.remove(index9);
-    image1.remove(index9);
-    positions.remove(2*index9);
-    positions.remove(2*index9);
-    chris.decMP(card9.cost);
-  }
-  else {
+      chris.addMonster(1, card9);
+      index9-=nicolas.size();
+      chris.currentHand.remove(index9);
+      index9+=nicolas.size();
+      images.remove(index9);
+      image1.remove(index9);
+      positions.remove(2*index9);
+      positions.remove(2*index9);
+      chris.decMP(card9.cost);
+    } else {
       System.out.println("Not enough mana to process card");
     }
   }
@@ -737,18 +797,17 @@ void processCards2() {
     Card card10=new Card(image1.get(index10), images.get(index10));
     if (card10.cost <=chris.currentMP)
     {
-    chris.addMonster(2, card10);
-    index10-=nicolas.size();
-    chris.currentHand.remove(index10);
-    index10+=nicolas.size();
-    images.remove(index10);
-    image1.remove(index10);
-    positions.remove(2*index10);
-    positions.remove(2*index10);
-    chris.decMP(card10.cost);
-  }
-  else {
-           System.out.println("Not enough mana to process card");
+      chris.addMonster(2, card10);
+      index10-=nicolas.size();
+      chris.currentHand.remove(index10);
+      index10+=nicolas.size();
+      images.remove(index10);
+      image1.remove(index10);
+      positions.remove(2*index10);
+      positions.remove(2*index10);
+      chris.decMP(card10.cost);
+    } else {
+      System.out.println("Not enough mana to process card");
     }
   }
   int index11 = CardOver11();
@@ -756,18 +815,17 @@ void processCards2() {
     Card card11=new Card(image1.get(index11), images.get(index11));
     if (card11.cost <=chris.currentMP)
     {
-    chris.addMonster(3, card11);
-    index11-=nicolas.size();
-    chris.currentHand.remove(index11);
-    index11+=nicolas.size();
-    images.remove(index11);
-    image1.remove(index11);
-    positions.remove(2*index11);
-    positions.remove(2*index11);
-    chris.decMP(card11.cost);
-  }
-  else {
-           System.out.println("Not enough mana to process card");
+      chris.addMonster(3, card11);
+      index11-=nicolas.size();
+      chris.currentHand.remove(index11);
+      index11+=nicolas.size();
+      images.remove(index11);
+      image1.remove(index11);
+      positions.remove(2*index11);
+      positions.remove(2*index11);
+      chris.decMP(card11.cost);
+    } else {
+      System.out.println("Not enough mana to process card");
     }
   }
   int index12 = CardOver12();
@@ -775,18 +833,17 @@ void processCards2() {
     Card card12=new Card(image1.get(index12), images.get(index12));
     if (card12.cost <=chris.currentMP)
     {
-    chris.addMonster(4, card12);
-    index12-=nicolas.size();
-    chris.currentHand.remove(index12);
-    index12+=nicolas.size();
-    images.remove(index12);
-    image1.remove(index12);
-    positions.remove(2*index12);
-    positions.remove(2*index12);
-    chris.decMP(card12.cost);
-  }
-  else {
-           System.out.println("Not enough mana to process card");
+      chris.addMonster(4, card12);
+      index12-=nicolas.size();
+      chris.currentHand.remove(index12);
+      index12+=nicolas.size();
+      images.remove(index12);
+      image1.remove(index12);
+      positions.remove(2*index12);
+      positions.remove(2*index12);
+      chris.decMP(card12.cost);
+    } else {
+      System.out.println("Not enough mana to process card");
     }
   }
   int index13 = CardOver13();
@@ -794,18 +851,17 @@ void processCards2() {
     Card card13=new Card(image1.get(index13), images.get(index13));
     if (card13.cost <=chris.currentMP)
     {
-    chris.addMonster(0, card13);
-    index13-=nicolas.size();
-    chris.currentHand.remove(index13);
-    index13+=nicolas.size();
-    images.remove(index13);
-    image1.remove(index13);
-    positions.remove(2*index13);
-    positions.remove(2*index13);
-    chris.decMP(card13.cost);
-  }
-  else {
-           System.out.println("Not enough mana to process card");
+      chris.addMonster(0, card13);
+      index13-=nicolas.size();
+      chris.currentHand.remove(index13);
+      index13+=nicolas.size();
+      images.remove(index13);
+      image1.remove(index13);
+      positions.remove(2*index13);
+      positions.remove(2*index13);
+      chris.decMP(card13.cost);
+    } else {
+      System.out.println("Not enough mana to process card");
     }
   }
   int index14 = CardOver14();
@@ -813,21 +869,19 @@ void processCards2() {
     Card card14=new Card(image1.get(index14), images.get(index14));
     if (card14.cost <=chris.currentMP)
     {
-    chris.addMonster(0, card14);
-    index14-=nicolas.size();
-    chris.currentHand.remove(index14);
-    index14+=nicolas.size();
-    images.remove(index14);
-    image1.remove(index14);
-    positions.remove(2*index14);
-    positions.remove(2*index14);
-    chris.decMP(card14.cost);
-  }
-  else {
-           System.out.println("Not enough mana to process card");
+      chris.addMonster(0, card14);
+      index14-=nicolas.size();
+      chris.currentHand.remove(index14);
+      index14+=nicolas.size();
+      images.remove(index14);
+      image1.remove(index14);
+      positions.remove(2*index14);
+      positions.remove(2*index14);
+      chris.decMP(card14.cost);
+    } else {
+      System.out.println("Not enough mana to process card");
     }
   }
-  
 }
 //----------------------END OF TOP PLAYER PROCESS----------------------------------
 
@@ -899,7 +953,31 @@ void fillAttackingCard2() {
     }
   }
 }
-//image(loadImage("Cards/PaladinIcon.png"),428,50,100,103);
+
+void fillSpellCard() {
+  if (p1turn) {
+    if (spellTargeting.get(0)!=null) {
+      int borderStart=10+80*(spellTargeting.get(0));
+      fill(255, 255, 0);
+      rect(borderStart-4, 466, 58, 4);
+      rect(borderStart-4, 520, 58, 4);
+      rect(borderStart-4, 470, 4, 50);
+      rect(borderStart+50, 470, 4, 50);
+    }
+  }
+  if (p2turn) {
+    if (spellTargeting.get(1)!=null) {
+      int borderStart=10+80*(spellTargeting.get(1)-nicolas.size());
+      fill(255, 255, 0);
+      rect(borderStart-4, 16, 58, 4);
+      rect(borderStart-4, 70, 58, 4);
+      rect(borderStart-4, 20, 4, 50);
+      rect(borderStart+50, 20, 4, 50);
+    }
+  }
+}
+
+
 //---------------------------------------------------------
 Card attackMonster(Card attacker, Card receiver) {
   receiver.currentHP-=attacker.value;
