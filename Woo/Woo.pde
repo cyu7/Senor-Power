@@ -428,8 +428,9 @@ void keyPressed() {
 }
 if (key=='s' || key=='S') {
   spellMode=!spellMode;
-  System.out.println("Spell mode is " + spellMode);
-}
+  spellTargeting.set(0,null);
+  spellTargeting.set(1,null);
+  System.out.println("Spell mode is " + spellMode);}
 if (key=='t' || key=='T') {
   System.out.println("Nicolas " + nicolas.hpLine());
   System.out.println("Chris " + chris.hpLine());
@@ -758,7 +759,7 @@ void processCards1() {
   int index1 = CardOver1();
   if (index1 != -1) {
     Card card1=new Card(image1.get(index1), images.get(index1));
-    if ((card1.cost <=nicolas.currentMP) & (card1.type==0)) 
+    if ((card1.cost <=nicolas.currentMP) & (card1.type==0) & (index1<nicolas.size()) ) 
     {
       nicolas.addMonster(0, card1);
       nicolas.currentHand.remove(index1);
@@ -768,14 +769,14 @@ void processCards1() {
       positions.remove(2*index1);
       nicolas.decMP(card1.cost);
     } else {
-      System.out.println("Not enough mana to process card: either not enough mana or not a monster");
+      System.out.println("Not enough mana to process card: either not enough mana, not a monster, or wrong slot");
     }
   }
 
   int index2 = CardOver2();
   if (index2 != -1) {
     Card card2=new Card(image1.get(index2), images.get(index2));
-    if ((card2.cost <=nicolas.currentMP) & (card2.type==0))
+    if ((card2.cost <=nicolas.currentMP) & (card2.type==0) & (index2<nicolas.size()))
     {
       nicolas.addMonster(1, card2);
       nicolas.currentHand.remove(index2);
@@ -785,14 +786,14 @@ void processCards1() {
       positions.remove(2*index2);
       nicolas.decMP(card2.cost);
     } else {
-      System.out.println("Not enough mana to process card: either not enough mana or not a monster");
+      System.out.println("Not enough mana to process card: either not enough mana, not a monster, or wrong slot");
     }
   }
 
   int index3 = CardOver3();
   if (index3 != -1) {
     Card card3=new Card(image1.get(index3), images.get(index3));
-    if ((card3.cost <=nicolas.currentMP) & (card3.type==0))
+    if ((card3.cost <=nicolas.currentMP) & (card3.type==0) & (index3<nicolas.size()))
     {
       nicolas.addMonster(2, card3);
       nicolas.currentHand.remove(index3);
@@ -802,13 +803,13 @@ void processCards1() {
       positions.remove(2*index3);
       nicolas.decMP(card3.cost);
     } else {
-      System.out.println("Not enough mana to process card: either not enough mana or not a monster");
+      System.out.println("Not enough mana to process card: either not enough mana, not a monster, or wrong slot");
     }
   }  
   int index4 = CardOver4();
   if (index4 != -1) {
     Card card4=new Card(image1.get(index4), images.get(index4));
-    if ((card4.cost <=nicolas.currentMP) & (card4.type==0))
+    if ((card4.cost <=nicolas.currentMP) & (card4.type==0) & (index4<nicolas.size()))
     {
       nicolas.addMonster(3, card4);
       nicolas.currentHand.remove(index4);
@@ -818,13 +819,13 @@ void processCards1() {
       positions.remove(2*index4);
       nicolas.decMP(card4.cost);
     } else {
-      System.out.println("Not enough mana to process card: either not enough mana or not a monster");
+      System.out.println("Not enough mana to process card: either not enough mana, not a monster, or wrong slot");
     }
   }  
   int index5 = CardOver5();
   if (index5 != -1) {
     Card card5=new Card(image1.get(index5), images.get(index5));
-    if ((card5.cost <=nicolas.currentMP) & (card5.type==0))
+    if ((card5.cost <=nicolas.currentMP) & (card5.type==0) & (index5<nicolas.size()))
     {
       nicolas.addMonster(4, card5);
       nicolas.currentHand.remove(index5);
@@ -834,14 +835,14 @@ void processCards1() {
       positions.remove(2*index5);
       nicolas.decMP(card5.cost);
     } else {
-      System.out.println("Not enough mana to process card: either not enough mana or not a monster");
+      System.out.println("Not enough mana to process card: either not enough mana, not a monster, or wrong slot");
     }
   }  
 
   int index6 = CardOver6();
   if (index6 != -1) {
     Card card6=new Card(image1.get(index6), images.get(index6));
-    if ((card6.cost <=nicolas.currentMP) & (card6.type==0))
+    if ((card6.cost <=nicolas.currentMP) & (card6.type==0) & (index6<nicolas.size()))
     {
       nicolas.addMonster(5, card6);
       nicolas.currentHand.remove(index6);
@@ -851,14 +852,14 @@ void processCards1() {
       positions.remove(2*index6);
       nicolas.decMP(card6.cost);
     } else {
-      System.out.println("Not enough mana to process card: either not enough mana or not a monster");
+      System.out.println("Not enough mana to process card: either not enough mana, not a monster, or wrong slot");
     }
   }  
 
   int index7 = CardOver7();
   if (index7 != -1) {
     Card card7=new Card(image1.get(index7), images.get(index7));
-    if ( (card7.cost <=nicolas.currentMP) & (card7.type==0))
+    if ( (card7.cost <=nicolas.currentMP) & (card7.type==0) & (index7<nicolas.size()))
     {
       nicolas.addMonster(6, card7);
       nicolas.currentHand.remove(index7);
@@ -868,14 +869,14 @@ void processCards1() {
       positions.remove(2*index7);
       nicolas.decMP(card7.cost);
     } else {
-      System.out.println("Could not process card: either not enough mana or not a monster");
+      System.out.println("Not enough mana to process card: either not enough mana, not a monster, or wrong slot");
     }
   }
 
   int indexWep1 = CardOverWep1();
   if (indexWep1 != -1) {
     Card cardWep1=new Card(image1.get(indexWep1), images.get(indexWep1));
-    if ( (cardWep1.cost <=nicolas.currentMP) & (cardWep1.type==2) )
+    if ( (cardWep1.cost <=nicolas.currentMP) & (cardWep1.type==2)  & (indexWep1<nicolas.size()))
     {
       nicolas.weapon=cardWep1;
       nicolas.currentHand.remove(indexWep1);
@@ -885,7 +886,7 @@ void processCards1() {
       positions.remove(2*indexWep1);
       nicolas.decMP(cardWep1.cost);
     } else {
-      System.out.println("Could not process card: either not enough mana or not a weapon");
+      System.out.println("Not enough mana to process card: either not enough mana, not a weapon, or wrong slot");
     }
   }
 }
@@ -895,7 +896,7 @@ void processCards2() {
   int index8 = CardOver8();
   if (index8 != -1) {
     Card card8=new Card(image1.get(index8), images.get(index8));
-    if ((card8.cost <=chris.currentMP) & (card8.type==0))
+    if ((card8.cost <=chris.currentMP) & (card8.type==0) & (index8>=nicolas.size()))
     {
       chris.addMonster(0, card8);
       index8-=nicolas.size();
@@ -907,14 +908,14 @@ void processCards2() {
       positions.remove(2*index8);
       chris.decMP(card8.cost);
     } else {
-      System.out.println("Not enough mana to process card: either not enough mana or not a monster");
+      System.out.println("Not enough mana to process card: either not enough mana, not a monster, or wrong slot");
     }
   }
 
   int index9 = CardOver9();
   if (index9 != -1) {
     Card card9=new Card(image1.get(index9), images.get(index9));
-    if ((card9.cost <=chris.currentMP) & (card9.type==0))
+    if ((card9.cost <=chris.currentMP) & (card9.type==0) & (index9>=nicolas.size()))
     {
       chris.addMonster(1, card9);
       index9-=nicolas.size();
@@ -926,13 +927,13 @@ void processCards2() {
       positions.remove(2*index9);
       chris.decMP(card9.cost);
     } else {
-      System.out.println("Not enough mana to process card: either not enough mana or not a monster");
+      System.out.println("Not enough mana to process card: either not enough mana, not a monster, or wrong slot");
     }
   }
   int index10 = CardOver10();
   if (index10 != -1) {
     Card card10=new Card(image1.get(index10), images.get(index10));
-    if ((card10.cost <=chris.currentMP) & (card10.type==0))
+    if ((card10.cost <=chris.currentMP) & (card10.type==0) & (index10>=nicolas.size()))
     {
       chris.addMonster(2, card10);
       index10-=nicolas.size();
@@ -944,13 +945,13 @@ void processCards2() {
       positions.remove(2*index10);
       chris.decMP(card10.cost);
     } else {
-      System.out.println("Not enough mana to process card: either not enough mana or not a monster");
+      System.out.println("Not enough mana to process card: either not enough mana, not a monster, or wrong slot");
     }
   }
   int index11 = CardOver11();
   if (index11 != -1) {
     Card card11=new Card(image1.get(index11), images.get(index11));
-    if ((card11.cost <=chris.currentMP) & (card11.type==0))
+    if ((card11.cost <=chris.currentMP) & (card11.type==0) & (index11>=nicolas.size()))
     {
       chris.addMonster(3, card11);
       index11-=nicolas.size();
@@ -962,13 +963,13 @@ void processCards2() {
       positions.remove(2*index11);
       chris.decMP(card11.cost);
     } else {
-      System.out.println("Not enough mana to process card: either not enough mana or not a monster");
+      System.out.println("Not enough mana to process card: either not enough mana, not a monster, or wrong slot");
     }
   }
   int index12 = CardOver12();
   if (index12 != -1) {
     Card card12=new Card(image1.get(index12), images.get(index12));
-    if ((card12.cost <=chris.currentMP) & (card12.type==0))
+    if ((card12.cost <=chris.currentMP) & (card12.type==0) & (index12>=nicolas.size()))
     {
       chris.addMonster(4, card12);
       index12-=nicolas.size();
@@ -980,13 +981,13 @@ void processCards2() {
       positions.remove(2*index12);
       chris.decMP(card12.cost);
     } else {
-      System.out.println("Not enough mana to process card: either not enough mana or not a monster");
+      System.out.println("Not enough mana to process card: either not enough mana, not a monster, or wrong slot");
     }
   }
   int index13 = CardOver13();
   if (index13 != -1) {
     Card card13=new Card(image1.get(index13), images.get(index13));
-    if ((card13.cost <=chris.currentMP) & (card13.type==0))
+    if ((card13.cost <=chris.currentMP) & (card13.type==0) & (index13>=nicolas.size()))
     {
       chris.addMonster(0, card13);
       index13-=nicolas.size();
@@ -998,13 +999,13 @@ void processCards2() {
       positions.remove(2*index13);
       chris.decMP(card13.cost);
     } else {
-      System.out.println("Not enough mana to process card: either not enough mana or not a monster");
+      System.out.println("Not enough mana to process card: either not enough mana, not a monster, or wrong slot");
     }
   }
   int index14 = CardOver14();
   if (index14 != -1) {
     Card card14=new Card(image1.get(index14), images.get(index14));
-    if ((card14.cost <=chris.currentMP) & (card14.type==0))
+    if ((card14.cost <=chris.currentMP) & (card14.type==0) & (index14>=nicolas.size()))
     {
       chris.addMonster(0, card14);
       index14-=nicolas.size();
@@ -1016,14 +1017,14 @@ void processCards2() {
       positions.remove(2*index14);
       chris.decMP(card14.cost);
     } else {
-      System.out.println("Not enough mana to process card: either not enough mana or not a monster");
+      System.out.println("Not enough mana to process card: either not enough mana, not a monster, or wrong slot");
     }
   }
 
   int indexWep2 = CardOverWep2();
   if (indexWep2 != -1) {
     Card cardWep2=new Card(image1.get(indexWep2), images.get(indexWep2));
-    if ( (cardWep2.cost <=chris.currentMP) & (cardWep2.type==2) )
+    if ( (cardWep2.cost <=chris.currentMP) & (cardWep2.type==2) & (indexWep2>=nicolas.size()))
     {
       chris.weapon=cardWep2;
       indexWep2-=nicolas.size();
@@ -1035,7 +1036,7 @@ void processCards2() {
       positions.remove(2*indexWep2);
       chris.decMP(cardWep2.cost);
     } else {
-      System.out.println("Not enough mana to process card: either not enough mana or not a weapon");
+      System.out.println("Not enough mana to process card: either not enough mana, not a weapon, or wrong slot");
     }
   }
 }
