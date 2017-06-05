@@ -311,6 +311,7 @@ void keyPressed() {
         //----------------------p1turn--------------
         if (p1turn) {
           if (att==-1 & rec ==-1) { //player vs player w/ weapon
+            if (nicolas.weapon!=null) {
             if (nicolas.weapon.attackedthisTurn==false) {
               nicolas.weapon.attackPlayer(chris);
               nicolas.weapon.attackedthisTurn=true;
@@ -319,7 +320,12 @@ void keyPressed() {
               System.out.println("Already attacked this turn");
             }
           }
+          else {
+            System.out.println("Your hero does not have a weapon");
+            }
+          }
           if (att==-1 & rec !=-1) {// player vs monster
+            if (nicolas.weapon!=null) {
             if (nicolas.weapon.attackedthisTurn==false) {
               int recDamage= chris.monsters.get(rec).value;
               Card placeholder = attackMonster(nicolas.weapon, chris.monsters.get(rec));
@@ -330,6 +336,10 @@ void keyPressed() {
             } else {
               System.out.println("Already attacked this turn");
             }
+          }
+          else {
+            System.out.println("Your hero does not have a weapon");
+          }
           }
           if (att!=-1 & rec ==-1) {//monster vs player
             if (nicolas.monsters.get(att).attackedthisTurn==false) {
@@ -355,13 +365,18 @@ void keyPressed() {
         }
         //-------------------------end of p1turn, start of p2turn-----------------------------
         if (p2turn) {
-          if (att==-1 & rec ==-1) { // player vs player w/ weapon
+          if (att==-1 & rec ==-1) {
+            if (chris.weapon!=null) {// player vs player w/ weapon
             if (chris.weapon.attackedthisTurn==false) {
               chris.weapon.attackPlayer(nicolas);
               chris.weapon.attackedthisTurn=true;
               chris.weapon.decHP(1);
             } else {
               System.out.println("Already attacked this turn");
+            }
+          }
+          else {
+            System.out.println("Your hero does not have a weapon");
             }
           }
           if (att==-1 & rec !=-1) { // monster vs player
@@ -376,11 +391,15 @@ void keyPressed() {
             } 
           }
           if (att!=-1 & rec ==-1) { //player vs monster
-            if (chris.weapon.attackedthisTurn==false) {
+            if (chris.weapon!=null) {
+              if (chris.weapon.attackedthisTurn==false) {
               nicolas=chris.monsters.get(rec).attackPlayer(nicolas);
               chris.monsters.get(rec).attackedthisTurn=true;
             } else {
               System.out.println("Already attacked this turn");
+            }
+          }
+          else {System.out.println("Your hero does not have a weapon");
             }
           }
           if (att!=-1 & rec !=-1) {  //monster vs monster
