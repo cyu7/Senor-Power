@@ -59,10 +59,10 @@ class Player {
       if (maxMP<10)
       {maxMP++;
       if (currentMP<10)
-      {currentMP += 1;}}
+      {currentMP = maxMP;}}
       else {
         if (currentMP<10)
-      {currentMP += 1;}}
+      {currentMP = maxMP;}}
     }
 
     //decrease MP
