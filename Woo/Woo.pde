@@ -209,19 +209,23 @@ void mouseClicked() {
   for (int i=0; i<7; i++) {
     if ( (mouseX>242+70*i) & (mouseX<292+70*i) & (mouseY>270) & (mouseY<320) & (nicolas.monsters.get(i)!=null) ) {
       attackingCards.set(0, i);
+      System.out.println(nicolas.monsters.get(i));
     }
   }
   if ( (mouseX>430) & (mouseX<526) & (mouseY>360) & (mouseY<458) ) {
     attackingCards.set(0, -1);
+    System.out.println(nicolas);
   }
 
   //-------------------------------SETTING TARGET
   for (int i=0; i<7; i++) {
     if ( (mouseX>242+70*i) & (mouseX<292+70*i) & (mouseY>185) & (mouseY<235) & (chris.monsters.get(i)!=null) ) {
       attackingCards.set(1, i);
+      System.out.println(chris.monsters.get(i));
     }
     if ( (mouseX>428)& (mouseX<528)& (mouseY>50) &(mouseY<153)) {
       attackingCards.set(1, -1);
+      System.out.println(chris);
     }
   }
   if (spellMode) {
