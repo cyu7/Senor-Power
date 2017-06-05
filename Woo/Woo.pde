@@ -302,77 +302,89 @@ void keyPressed() {
       } else {
         System.out.println("Target or Spell not loaded properly");
       }
-    } else { //monster vs monster/player, no spells or weapons
+    } 
+    else { //monster vs monster/player, no spells or weapons
       if (attackingCards.get(0)!=null & attackingCards.get(1)!=null) {
         int att = attackingCards.get(0);
         int rec = attackingCards.get(1);
+        //----------------------p1turn--------------
         if (p1turn) {
-          if (att==-1 & rec ==-1) {} // player vs player w/ weapon
-          if (att==-1 & rec !=-1) {} // player vs monster
-          if (att!=-1 & rec ==-1) {} //monster vs player
-          if (att!=-1 & rec ==-1) {} //monster vs monster
-          /*if (rec==-1) { //monster vs player
+          if (att==-1 & rec ==-1) { //player vs player w/ weapon
+            if (nicolas.weapon.attackedthisTurn==false) {
+              nicolas.weapon.attackPlayer(chris);
+              nicolas.weapon.attackedthisTurn=true;
+              nicolas.weapon.decHP(1);}
+              else {
+                System.out.println("Already attacked this turn");
+              }
+          }
+          if (att==-1 & rec !=-1) {// player vs monster
+            if (nicolas.weapon.attackedthisTurn==false) {
+              int recDamage= chris.monsters.get(rec).value;
+              chris.currentHand.set(rec, attackMonster(nicolas.weapon, chris.currentHand.get(rec)));
+              nicolas.weapon.attackedthisTurn=true;
+              nicolas.weapon.decHP(1);
+              nicolas.decHP(recDamage);
+            } 
+            else {
+            System.out.println("Already attacked this turn");
+            }
+          }
+          if (att!=-1 & rec ==-1) {//monster vs player
             if (nicolas.monsters.get(att).attackedthisTurn==false) {
               chris=nicolas.monsters.get(att).attackPlayer(chris);
               nicolas.monsters.get(att).attackedthisTurn=true;
             } else {
-              attackingCards.set(0, null);
               System.out.println("Already attacked this turn");
             }
-          } else if (nicolas.monsters.get(att).attackedthisTurn==false) { // monster vs monster
+          } 
+          if (att!=-1 & rec ==-1) {//monster vs monster
+            if (nicolas.monsters.get(att).attackedthisTurn==false) { // monster vs monster
             int recDamage= chris.monsters.get(rec).value;
             Card placeholder = attackMonster(nicolas.monsters.get(att), chris.monsters.get(rec));
             chris.monsters.set(rec, placeholder);
             if (nicolas.monsters.get(att).currentHP<=recDamage) {
               nicolas.monsters.set(att, null);
-            } else {
+            } 
+            else {
               nicolas.monsters.get(att).attackedthisTurn=true;
               nicolas.monsters.get(att).currentHP-=recDamage;
             }
-            System.out.println("Chris" + chris.monsters.get(rec)); //print results of attack
-            System.out.println("Nicolas" + nicolas.monsters.get(att));
-          } else {
-            attackingCards.set(0, null);
-            System.out.println("Already attacked this turn");
-          }*/
-        }
-        if (p2turn) {
-            if (att==-1 & rec ==-1) {} // player vs player w/ weapon
-            if (att==-1 & rec !=-1) {} // player vs monster
-            if (att!=-1 & rec ==-1) {} //monster vs player
-            if (att!=-1 & rec ==-1) {} //monster vs monster
-            /*
-            if (att==-1) { //monster vs player
-            if (chris.monsters.get(rec).attackedthisTurn==false) {
-              nicolas=chris.monsters.get(rec).attackPlayer(nicolas);
-              chris.monsters.get(rec).attackedthisTurn=true;
-            } else {
-              attackingCards.set(1, null);
-              System.out.println("Already attacked this turn");
             }
-          } else if (chris.monsters.get(rec).attackedthisTurn==false) { //monster vs player
-            int recDamage= nicolas.monsters.get(att).value;
-            Card placeholder = attackMonster(chris.monsters.get(rec), nicolas.monsters.get(att));
-            nicolas.monsters.set(att, placeholder);
-            if (chris.monsters.get(rec).currentHP<=recDamage) {
-              chris.monsters.set(rec, null);
-            } else {
-              chris.monsters.get(rec).attackedthisTurn=true;
-              chris.monsters.get(rec).currentHP-=recDamage;
-            }*/
-          } else {
-            attackingCards.set(1, null);
-            System.out.println("Already attacked this turn");
           }
         }
-      }
-      else {
-        System.out.println("Target or Monster not loaded properly");
-      }
-      attackingCards.set(0, null);
-      attackingCards.set(1, null);
-      spellTargeting.set(0, null);
-      spellTargeting.set(1, null);
+        //-------------------------end of p1turn, start of p2turn-----------------------------
+        if (p2turn) {
+            if (att==-1 & rec ==-1) {} // player vs player w/ weapon
+            if (att==-1 & rec !=-1) {
+              if (chris.weapon.attackedthisTurn==false) {
+                int recDamage= nicolas.monsters.get(att).value;
+                nicolas.currentHand.set(att, attackMonster(chris.weapon, nicolas.currentHand.get(att)));
+                chris.weapon.attackedthisTurn=true;
+                chris.weapon.decHP(1);
+                chris.decHP(recDamage);
+              } 
+              else {
+                System.out.println("Already attacked this turn");} // player vs monster
+            }
+            if (att!=-1 & rec ==-1) {
+              if (chris.monsters.get(rec).attackedthisTurn==false) {
+              nicolas=chris.monsters.get(rec).attackPlayer(nicolas);
+              chris.monsters.get(rec).attackedthisTurn=true;
+               } else {
+              System.out.println("Already attacked this turn");}
+            }//monster vs player
+            if (att!=-1 & rec !=-1) {} //monster vs monster
+          }
+        }
+        else {
+          System.out.println("Target or Monster not loaded properly");}
+    }
+        attackingCards.set(0, null);
+        attackingCards.set(1, null);
+        spellTargeting.set(0, null);
+        spellTargeting.set(1, null);
+        }
       if (key=='s' || key=='S') {
         spellMode=!spellMode;
         System.out.println("Spell mode is " + spellMode);
