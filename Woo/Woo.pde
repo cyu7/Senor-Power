@@ -225,7 +225,7 @@ void mouseClicked() {
     if (p1turn) {
       spellTargeting.set(1, attackingCards.get(1));
       if (whichImage<nicolas.size()) {
-        if (nicolas.currentHand.get(whichImage).cardType==1) {
+        if (nicolas.currentHand.get(whichImage).type==1) {
           spellTargeting.set(0, whichImage);
         }
       }
@@ -233,7 +233,7 @@ void mouseClicked() {
     if (p2turn) {
       spellTargeting.set(0, attackingCards.get(0));
       if (whichImage>=nicolas.size()) {
-        if (chris.currentHand.get(whichImage-nicolas.size()).cardType==1) {
+        if (chris.currentHand.get(whichImage-nicolas.size()).type==1) {
           spellTargeting.set(1, whichImage);
         }
       }
@@ -372,8 +372,6 @@ void keyPressed() {
       if (key=='t' || key=='T') {
         System.out.println("Nicolas " + nicolas.hpLine());
         System.out.println("Chris " + chris.hpLine());
-        System.out.println(CardOverWep1());
-        System.out.println(CardOverWep2());
       }
     }
 
@@ -450,7 +448,7 @@ void keyPressed() {
       nicolas.deck.add(new Card(loadImage("Cards/BloodfenRaptor.jpg"), "Cards/BloodfenRaptor.jpg"));
       nicolas.deck.add(new Card(loadImage("Cards/BluegillWarrior.png"), "Cards/BluegillWarrior.png"));
       nicolas.deck.add(new Card(loadImage("Cards/BootyBayBodyGuard.jpg"), "Cards/BootyBayBodyGuard.jpg"));
-       nicolas.deck.add(new Card(loadImage("Cards/BoulderfistOgre.jpg"), "Cards/BoulderfistOgre.jpg"));
+      /*nicolas.deck.add(new Card(loadImage("Cards/BoulderfistOgre.jpg"), "Cards/BoulderfistOgre.jpg"));
        nicolas.deck.add(new Card(loadImage("Cards/ChillwindYeti.png"), "Cards/ChillwindYeti.png"));
        nicolas.deck.add(new Card(loadImage("Cards/ElvenArcher.jpg"), "Cards/ElvenArcher.jpg"));
        nicolas.deck.add(new Card(loadImage("Cards/FrostwolfGrunt.jpg"), "Cards/FrostwolfGrunt.jpg"));
@@ -467,7 +465,7 @@ void keyPressed() {
        nicolas.deck.add(new Card(loadImage("Cards/StormwindKnight.jpg"), "Cards/StormwindKnight.jpg"));
        nicolas.deck.add(new Card(loadImage("Cards/VoodooDoctor.jpg"), "Cards/VoodooDoctor.jpg"));
        nicolas.deck.add(new Card(loadImage("Cards/WarGolem.jpg"), "Cards/WarGolem.jpg"));
-       nicolas.deck.add(new Card(loadImage("Cards/Wolfrider.jpg"), "Cards/Wolfrider.jpg"));
+       nicolas.deck.add(new Card(loadImage("Cards/Wolfrider.jpg"), "Cards/Wolfrider.jpg"));*/
 
       //-----------------------------------Shaman Cards-----------------------------------------
       /*nicolas.deck.add(new Card(loadImage("Shaman/AlAkir.jpg"), "Shaman/AlAkir.jpg"));
@@ -796,7 +794,7 @@ void keyPressed() {
 
       int index7 = CardOver7();
       if (index7 != -1) {
-        Card card7=new Card(image1.get(index1), images.get(index7));
+        Card card7=new Card(image1.get(index7), images.get(index7));
         if (card7.cost <=nicolas.currentMP)
         {
           nicolas.addMonster(6, card7);
@@ -810,6 +808,24 @@ void keyPressed() {
           System.out.println("Not enough mana to process card");
         }
       }
+      
+      int indexWep1 = CardOverWep1();
+      if (indexWep1 != -1) {
+        Card cardWep1=new Card(image1.get(indexWep1), images.get(indexWep1));
+        if ( (cardWep1.cost <=nicolas.currentMP) & (cardWep1.type==2) )
+        {
+          nicolas.weapon=cardWep1;
+          nicolas.currentHand.remove(indexWep1);
+          images.remove(indexWep1);
+          image1.remove(indexWep1);
+          positions.remove(2*indexWep1);
+          positions.remove(2*indexWep1);
+          nicolas.decMP(cardWep1.cost);
+        } else {
+          System.out.println("Not enough mana to add weapon");
+        }
+      }
+        
     }
     //----------------------END OF BOTTOM PLAYER PROCESS----------------------------------
     //----------------------TOP PLAYER PROCESS----------------------------------
@@ -941,6 +957,25 @@ void keyPressed() {
           System.out.println("Not enough mana to process card");
         }
       }
+      
+      int indexWep2 = CardOverWep2();
+      if (indexWep2 != -1) {
+        Card cardWep2=new Card(image1.get(indexWep2), images.get(indexWep2));
+        if ( (cardWep2.cost <=chris.currentMP) & (cardWep2.type==2) )
+        {
+          chris.weapon=cardWep2;
+          indexWep2-=nicolas.size();
+          chris.currentHand.remove(indexWep2);
+          indexWep2+=nicolas.size();
+          images.remove(indexWep2);
+          image1.remove(indexWep2);
+          positions.remove(2*indexWep2);
+          positions.remove(2*indexWep2);
+          chris.decMP(cardWep2.cost);
+        } else {
+          System.out.println("Not enough mana to add weapon");
+        }
+      }
     }
     //----------------------END OF TOP PLAYER PROCESS----------------------------------
 
@@ -953,6 +988,11 @@ void keyPressed() {
           nicolas.monsters.get(i).shown=true;
         }
       }
+      if (nicolas.weapon!=null) {
+        PImage b = loadImage(nicolas.weapon.path);
+      image(b, 360, 395, 50, 50);
+      nicolas.weapon.shown=true;
+      }
     }
 
     void displayMonsters2() {
@@ -963,6 +1003,11 @@ void keyPressed() {
           image(b, 242 + 70*i, 185, 50, 50);
           chris.monsters.get(i).shown=true;
         }
+      }
+      if (chris.weapon!=null) {
+        PImage b = loadImage(chris.weapon.path);
+      image(b, 360, 95, 50, 50);
+      chris.weapon.shown=true;
       }
     }
     //--------------------END OF DISPLAY MONSTER METHODS-----  
