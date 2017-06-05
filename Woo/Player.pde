@@ -48,6 +48,9 @@ class Player {
     //decrease HP
     void decHP(int value) {
       currentHP -= value;
+      if (currentHP<0) {
+        currentHP=0;
+      }
     }
 
     //increase MP
@@ -67,6 +70,10 @@ class Player {
       if (currentMP <0) {
         currentMP=0;
     }
+    }
+    
+    String hpLine() {
+      return "HP: " + currentHP + "/" + maxHP;
     }
 
     //add monster
