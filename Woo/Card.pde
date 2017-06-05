@@ -560,6 +560,10 @@ class Card {
   }
   }
   
+  Player attackPlayer(Player a) {
+    a.decHP(value);
+    return a;
+  }
 
   String toString() { 
     String result = path.substring(6,path.length()-4);
