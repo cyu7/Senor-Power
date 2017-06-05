@@ -95,6 +95,17 @@ void draw() {
     rect(i, 266, 1, 58);
     rect(i+59, 266, 1, 58);
   }
+  for (int i=0; i<2; i++) {
+  rect(355, 90+300*i, 60, 1);
+  rect(355, 149+300*i, 60, 1);
+  rect(355, 91+300*i, 1, 58);
+  rect(414, 91+300*i, 1, 58);
+  rect(540, 90+300*i, 60, 1);
+  rect(540, 149+300*i, 60, 1);
+  rect(540, 91+300*i, 1, 58);
+  rect(599, 91+300*i, 1, 58);
+  }
+
   displayMonsters1();
   displayMonsters2();
   printCurrentHand1();
