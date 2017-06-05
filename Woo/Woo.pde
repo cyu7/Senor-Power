@@ -6,6 +6,7 @@ import java.util.ArrayList;
  user trying to load a non-weapon on the weapons slot
  different toString for different types of cards
  make other player's cards undraggable on your turn
+ yellow border still there after spell mode off
 */
 
 ArrayList<String> images = new ArrayList<String>(); //keeps track of images
@@ -306,7 +307,11 @@ void keyPressed() {
         int att = attackingCards.get(0);
         int rec = attackingCards.get(1);
         if (p1turn) {
-          if (rec==-1) { //monster vs player
+          if (att=-1 & rec =-1) {} // player vs player w/ weapon
+          if (att=-1 & rec !=-1) {} // player vs monster
+          if (att!=-1 & rec =-1) {} //monster vs player
+          if (att!=-1 & rec =-1) {} //monster vs monster
+          /*if (rec==-1) { //monster vs player
             if (nicolas.monsters.get(att).attackedthisTurn==false) {
               chris=nicolas.monsters.get(att).attackPlayer(chris);
               nicolas.monsters.get(att).attackedthisTurn=true;
@@ -329,10 +334,15 @@ void keyPressed() {
           } else {
             attackingCards.set(0, null);
             System.out.println("Already attacked this turn");
-          }
+          }*/
         }
         if (p2turn) {
-          if (att==-1) { //monster vs player
+            if (att=-1 & rec =-1) {} // player vs player w/ weapon
+            if (att=-1 & rec !=-1) {} // player vs monster
+            if (att!=-1 & rec =-1) {} //monster vs player
+            if (att!=-1 & rec =-1) {} //monster vs monster
+            /*
+            if (att==-1) { //monster vs player
             if (chris.monsters.get(rec).attackedthisTurn==false) {
               nicolas=chris.monsters.get(rec).attackPlayer(nicolas);
               chris.monsters.get(rec).attackedthisTurn=true;
@@ -349,7 +359,7 @@ void keyPressed() {
             } else {
               chris.monsters.get(rec).attackedthisTurn=true;
               chris.monsters.get(rec).currentHP-=recDamage;
-            }
+            }*/
           } else {
             attackingCards.set(1, null);
             System.out.println("Already attacked this turn");
