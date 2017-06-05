@@ -372,8 +372,8 @@ void keyPressed() {
       if (key=='t' || key=='T') {
         System.out.println("Nicolas " + nicolas.hpLine());
         System.out.println("Chris " + chris.hpLine());
-        System.out.println(spellTargeting);
-        System.out.println("att " + attackingCards);
+        System.out.println(CardOverWep1());
+        System.out.println(CardOverWep2());
       }
     }
 
@@ -607,6 +607,15 @@ void keyPressed() {
       }
       return -1;
     }
+    
+    int CardOverWep1() {
+      for (int j=0; j < images.size()*2; j+=2) {
+        if ((positions.get(j) > 331) && (positions.get(j)< 389) && (positions.get(j+1)> 366) && (positions.get(j+1)<424)) {
+          return j/2;
+        }
+      }
+      return -1;
+    }    
 
     //-------------------------- END OF BOTTOM CARDOVER METHODS (7)-----------------
     //-------------------------- TOP CARDOVER METHODS (7)-----------------
@@ -673,7 +682,15 @@ void keyPressed() {
       }
       return -1;
     }
-
+    
+    int CardOverWep2() {
+      for (int j=0; j < images.size()*2; j+=2) {
+        if ((positions.get(j) > 331) && (positions.get(j)< 389) && (positions.get(j+1)> 66) && (positions.get(j+1)<124)) {
+          return j/2;
+        }
+      }
+      return -1;
+    }
     //-------------------------- END OF TOP CARDOVER METHODS (7)-----------------
     //----------------------BOTTOM PLAYER PROCESS----------------------------------
     void processCards1() {
