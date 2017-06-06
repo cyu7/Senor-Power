@@ -1,12 +1,5 @@
 import java.util.ArrayList;
 
-/*Bugs:
- user putting cards on the wrong side of the board
- different toString for different types of cards
- make other player's cards undraggable on your turn
- yellow border still there after spell mode off
- */
-
 ArrayList<String> images = new ArrayList<String>(); //keeps track of images
 ArrayList<Integer> positions = new ArrayList<Integer>(); // keeps track of image positions [xcor,ycor]
 ArrayList<Integer> attackingCards = new ArrayList<Integer>();
@@ -23,6 +16,7 @@ Player nicolas = new Player();
 Player chris = new Player();
 boolean spellMode = false;
 int turnCounter=0;
+boolean printEndOnce = true;
 
 void setup() {
   size(960, 540);
@@ -147,9 +141,18 @@ void draw() {
   }
   fillAttackingCard1();
   fillAttackingCard2();
-  image(loadImage("Cards/PaladinIcon.png"), 428, 50, 100, 103);
-  image(loadImage("Cards/ShamanIcon.png"), 430, 360, 96, 98);
-
+  if (chris.currentHP>0) {
+  image(loadImage("Cards/PaladinIcon.png"), 428, 50, 100, 103);}
+  if (nicolas.currentHP>0) {
+  image(loadImage("Cards/ShamanIcon.png"), 430, 360, 96, 98);}
+  if (nicolas.currentHP<=0 & printEndOnce) {
+    System.out.println("Player 2 wins!");
+    printEndOnce=false;
+  }
+  if (chris.currentHP<=0 & printEndOnce) {
+    System.out.println("Player 1 wins!");
+    printEndOnce=false;
+  }
   displayMana(nicolas, 400);
   displayMana(chris, 60);
 
@@ -341,7 +344,8 @@ void keyPressed() {
       } else {
         System.out.println("Target or Spell not loaded properly");
       }
-    } else { //monster vs monster/player, no spells or weapons
+    } else 
+    { //monster vs monster/player, no spells or weapons
       if (attackingCards.get(0)!=null & attackingCards.get(1)!=null) {
         int att = attackingCards.get(0);
         int rec = attackingCards.get(1);
@@ -376,7 +380,7 @@ void keyPressed() {
               System.out.println("Your hero does not have a weapon");
             }
           }
-          if (att!=-1 & rec ==-1) {//monster vs player
+          if (att!=-1 & rec ==-1) {// nicolas's monster vs player
             if (nicolas.monsters.get(att).attackedthisTurn==false) {
               chris=nicolas.monsters.get(att).attackPlayer(chris);
               nicolas.monsters.get(att).attackedthisTurn=true;
@@ -413,22 +417,24 @@ void keyPressed() {
               System.out.println("Your hero does not have a weapon");
             }
           }
-          if (att==-1 & rec !=-1) { // monster vs player
-            if (chris.weapon.attackedthisTurn==false) {
-              int recDamage= nicolas.monsters.get(att).value;
-              nicolas.monsters.set(att, attackMonster(chris.weapon, nicolas.monsters.get(att)));
-              chris.weapon.attackedthisTurn=true;
-              chris.weapon.decHP(1);
-              chris.decHP(recDamage);
+          if (att==-1 & rec !=-1) { // chris's monster vs nicolas's player
+            if (chris.monsters.get(rec).attackedthisTurn==false) {
+              nicolas=chris.monsters.get(rec).attackPlayer(nicolas);
+              chris.monsters.get(rec).attackedthisTurn=true;
             } else {
               System.out.println("Already attacked this turn");
             }
-          }
+          } 
           if (att!=-1 & rec ==-1) { //player vs monster
             if (chris.weapon!=null) {
               if (chris.weapon.attackedthisTurn==false) {
-                nicolas=chris.monsters.get(rec).attackPlayer(nicolas);
-                chris.monsters.get(rec).attackedthisTurn=true;
+                int recDamage=nicolas.monsters.get(att).value;
+                Card placeholder = attackMonster(chris.weapon, nicolas.monsters.get(att));
+                nicolas.monsters.set(att, placeholder);
+                chris.weapon.attackedthisTurn=true;
+                chris.weapon.decHP(1);
+                chris.decHP(recDamage);
+                
               } else {
                 System.out.println("Already attacked this turn");
               }
@@ -449,8 +455,9 @@ void keyPressed() {
               }
             }
           }
-        }
-      } else {
+      }
+      }
+      else {
         System.out.println("Target or Monster not loaded properly");
       }
     }
@@ -464,12 +471,6 @@ void keyPressed() {
     spellTargeting.set(0, null);
     spellTargeting.set(1, null);
     System.out.println("Spell mode is " + spellMode);
-  }
-  if (key=='t' || key=='T') {
-    System.out.println("Nicolas " + nicolas.hpLine());
-    System.out.println("Chris " + chris.hpLine());
-    System.out.println(attackingCards);
-    System.out.println(chris.monsters.get(0));
   }
 }
 
