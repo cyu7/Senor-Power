@@ -35,6 +35,15 @@ LESSONS LEARNED
    \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \ 
     \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/ 
 ==============================================================
+2017-06-06
+-------------------------------------------------------------
+Nicolas:: finished spells, started weapons
+Chris:: changed toString method of Card to display name of card
+2017-06-05
+-------------------------------------------------------------
+Nicolas:: finished weapons, started to fix bugs
+Chris:: added attacking flowchart, made processCards take weapons only
+
 2017-06-04
 -------------------------------------------------------------
 Nicolas:: finished spells, started weapons
