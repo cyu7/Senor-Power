@@ -190,7 +190,7 @@ class Card {
       maxHP = 1;
     }
     //-----------------------------------Paladin Cards-----------------------------------------
-    if (paf.equals("Paladin/AldorPeacekeeper.jpg"))
+    if (paf.equals("Paldn/AldorPeacekeeper.jpg"))
     {
       type = 0;
       cost = 3;
@@ -198,7 +198,7 @@ class Card {
       currentHP = 3;
       maxHP = 3;
     }
-    if (paf.equals("Paladin/Ashbringer.png"))
+    if (paf.equals("Paldn/Ashbringer.png"))
     {
       type = 2;
       cost = 5;
@@ -206,55 +206,56 @@ class Card {
       currentHP = 3;
       maxHP = 3;
     }
-    if (paf.equals("Paladin/BlessedChampion.jpg"))
+    if (paf.equals("Paldn/BlessedChampion.jpg"))
     {
       type = 1;
       cost = 5;
       //Doubles attack and hp of a monster
     }
-    if (paf.equals("Paladin/BlessingOfKings.jpg"))
+    if (paf.equals("Paldn/BlessingOfKings.jpg"))
     {
       type = 1;
       cost = 4;
       //+4 attack and hp
     }
-    if (paf.equals("Paladin/BlessingOfMight.png"))
+    if (paf.equals("Paldn/BlessingOfMight.png"))
     {
       type = 1;
       cost = 1;
       //+3 attack
     }
-    if (paf.equals("Paladin/Consecration.jpg"))
+    if (paf.equals("Paldn/Consecration.jpg"))
     {
       type = 1;
       cost = 4;
+      value = 2;
       //Deal 2 damage to all enemy monsters
     }
-    if (paf.equals("Paladin/Dinosize.jpg"))
+    if (paf.equals("Paldn/Dinosize.jpg"))
     {
       type = 1;
       cost = 8;
       //Change attack and hp to 10
     }
-    if (paf.equals("Paladin/DivineStrength.jpg"))
+    if (paf.equals("Paldn/DivineStrength.jpg"))
     {
       type = 1;
       cost = 1;
       //+1 attack, +2 hp
     }
-    if (paf.equals("Paladin/Equality.jpg"))
+    if (paf.equals("Paldn/Equality.jpg"))
     {
       type = 1;
       cost = 2;
       //Change hp of all monsters to 1
     }
-    if (paf.equals("Paladin/ForbiddenHealing.jpg"))
+    if (paf.equals("Paldn/ForbiddenHealing.jpg"))
     {
       type = 1;
       cost = 0;
       //Spend all of your current mana and heal 2x that amount
     }
-    if (paf.equals("Paladin/GuardianOfKings.jpg"))
+    if (paf.equals("Paldn/GuardianOfKings.jpg"))
     {
       type = 0;
       cost = 7;
@@ -262,26 +263,26 @@ class Card {
       currentHP = 6;
       maxHP = 6;
     }
-    if (paf.equals("Paladin/HammerOfWrath.jpg"))
+    if (paf.equals("Paldn/HammerOfWrath.jpg"))
     {
       type = 1;
       cost = 4;
       value = 3;
       //Deal 3 damage to monster/player and draw a card
     }
-    if (paf.equals("Paladin/HolyLight.png"))
+    if (paf.equals("Paldn/HolyLight.png"))
     {
       type = 1;
       cost = 2;
       //Heal 6 hp to a monster/player
     }
-    if (paf.equals("Paladin/Humility.png"))
+    if (paf.equals("Paldn/Humility.png"))
     {
       type = 1;
       cost = 1;
       //Change a monster's attack to 1
     }
-    if (paf.equals("Paladin/KeeperOfWuldaman.png"))
+    if (paf.equals("Paldn/KeeperOfWuldaman.png"))
     {
       type = 0;
       cost = 4;
@@ -289,13 +290,13 @@ class Card {
       currentHP = 4;
       maxHP = 4;
     }
-    if (paf.equals("Paladin/LayOnHands.jpg"))
+    if (paf.equals("Paldn/LayOnHands.jpg"))
     {
       type = 1;
       cost = 8;
       //Heal 8 hp to a monster/player and draw 3 cards
     }
-    if (paf.equals("Paladin/LightsJustice.jpg"))
+    if (paf.equals("Paldn/LightsJustice.jpg"))
     {
       type = 2;
       cost = 1;
@@ -303,13 +304,13 @@ class Card {
       currentHP = 4;
       maxHP = 4;
     }
-    if (paf.equals("Paladin/LostInTheJungle.jpg"))
+    if (paf.equals("Paldn/LostInTheJungle.jpg"))
     {
       type = 1;
       cost = 1;
       //Summon 2 SilverHandRecruit
     }
-    if (paf.equals("Paladin/SilverHandRecruit.png"))
+    if (paf.equals("Paldn/SilverHandRecruit.png"))
     {
       type = 0;
       cost = 1;
@@ -317,13 +318,13 @@ class Card {
       currentHP = 1;
       maxHP = 1;
     }
-    if (paf.equals("Paladin/StandAgainstDarkness.jpg"))
+    if (paf.equals("Paldn/StandAgainstDarkness.jpg"))
     {
       type = 1;
       cost = 5;
       //Summon 5 SilverHandRecruit
     }
-    if (paf.equals("Paladin/SunkeeperTarim.jpg"))
+    if (paf.equals("Paldn/SunkeeperTarim.jpg"))
     {
       type = 0;
       cost = 6;
@@ -331,7 +332,7 @@ class Card {
       currentHP = 7;
       maxHP = 7;
     }
-    if (paf.equals("Paladin/Tirion.jpg"))
+    if (paf.equals("Paldn/Tirion.jpg"))
     {
       type = 0;
       cost = 8;
@@ -339,7 +340,7 @@ class Card {
       currentHP = 6;
       maxHP = 6;
     }
-    if (paf.equals("Paladin/TruesilverChampion.jpg"))
+    if (paf.equals("Paldn/TruesilverChampion.jpg"))
     {
       type = 2;
       cost = 4;
@@ -348,7 +349,7 @@ class Card {
       maxHP = 2;
     }
     //-----------------------------------Shaman Cards-----------------------------------------
-    if (paf.equals("Shaman/AirTotem.jpg"))
+    if (paf.equals("Shamn/AirTotem.jpg"))
     {
       type = 0;
       cost = 1;
@@ -356,7 +357,7 @@ class Card {
       currentHP = 2;
       maxHP = 2;
     }
-    if (paf.equals("Shaman/AlAkir.jpg"))
+    if (paf.equals("Shamn/AlAkir.jpg"))
     {
       type = 0;
       cost = 8;
@@ -364,19 +365,19 @@ class Card {
       currentHP = 5;
       maxHP = 5;
     }
-    if (paf.equals("Shaman/AncestralKnowledge.jpg"))
+    if (paf.equals("Shamn/AncestralKnowledge.jpg"))
     {
       type = 1;
       cost = 2;
       //Draw 2 cards, overload 2 mana
     }
-    if (paf.equals("Shaman/Bloodlust.jpg"))
+    if (paf.equals("Shamn/Bloodlust.jpg"))
     {
       type = 1;
       cost = 5;
       //All your monsters have +3 attack this turn only
     }
-    if (paf.equals("Shaman/Doomhammer.jpg"))
+    if (paf.equals("Shamn/Doomhammer.jpg"))
     {
       type = 2;
       cost = 5;
@@ -384,7 +385,7 @@ class Card {
       currentHP = 8;
       maxHP = 8;
     }
-    if (paf.equals("Shaman/DustDevil.jpg"))
+    if (paf.equals("Shamn/DustDevil.jpg"))
     {
       type = 0;
       cost = 1;
@@ -392,7 +393,7 @@ class Card {
       currentHP = 1;
       maxHP = 1;
     }
-    if (paf.equals("Shaman/EarthElemental.jpg"))
+    if (paf.equals("Shamn/EarthElemental.jpg"))
     {
       type = 0;
       cost = 5;
@@ -400,19 +401,20 @@ class Card {
       currentHP = 8;
       maxHP = 8;
     }
-    if (paf.equals("Shaman/ElementalDestruction.png"))
+    if (paf.equals("Shamn/ElementalDestruction.png"))
     {
       type = 1;
       cost = 3;
+      value = 4;
       //Deal 4 or 5 damage to all monsters, overload 5 mana
     }
-    if (paf.equals("Shaman/FeralSpirit.jpg"))
+    if (paf.equals("Shamn/FeralSpirit.jpg"))
     {
       type = 1;
       cost = 2;
       //Summon 2 SpiritWolf, overload 2 mana
     }
-    if (paf.equals("Shaman/FireElemental.jpg"))
+    if (paf.equals("Shamn/FireElemental.jpg"))
     {
       type = 0;
       cost = 6;
@@ -420,7 +422,7 @@ class Card {
       currentHP = 5;
       maxHP = 5;
     }
-    if (paf.equals("Shaman/FlamewreathedFaceless.jpg"))
+    if (paf.equals("Shamn/FlamewreathedFaceless.jpg"))
     {
       type = 0;
       cost = 4;
@@ -428,13 +430,22 @@ class Card {
       currentHP = 7;
       maxHP = 7;
     }
-    if (paf.equals("Shaman/FrostShot.jpg"))
+    if (paf.equals("Shamn/FrostShot.jpg"))
     {
       type = 1;
       cost = 1;
+      value = 1;
       //Deal 1 dmg and freeze 
     }
-    if (paf.equals("Shaman/HealingTotem.png"))
+    if (paf.equals("Shamn/Hallazeal.jpg"))
+    {
+      type = 0;
+      cost = 5;
+      value = 4;
+      currentHP = 6;
+      maxHP = 6;
+    }
+    if (paf.equals("Shamn/HealingTotem.png"))
     {
       type = 0;
       cost = 1;
@@ -442,7 +453,7 @@ class Card {
       currentHP = 2;
       maxHP = 2;
     }
-    if (paf.equals("Shaman/JinyuWaterSpeaker.jpg"))
+    if (paf.equals("Shamn/JinyuWaterSpeaker.jpg"))
     {
       type = 0;
       cost = 4;
@@ -450,19 +461,21 @@ class Card {
       currentHP = 6;
       maxHP = 6;
     }
-    if (paf.equals("Shaman/LavaBurst.jpg"))
+    if (paf.equals("Shamn/LavaBurst.jpg"))
     {
       type = 1;
       cost = 3;
+      value = 5;
       //Deal 5 damage and overload 2
     }
-    if (paf.equals("Shaman/LightningStorm.jpg"))
+    if (paf.equals("Shamn/LightningStorm.jpg"))
     {
       type = 1;
       cost = 3;
+      value = 2;
       //Deal 2 or 3 dmg to all enemy monsters and overload 2
     }
-    if (paf.equals("Shaman/ManaTideTotem.jpg"))
+    if (paf.equals("Shamn/ManaTideTotem.jpg"))
     {
       type = 0;
       cost = 3;
@@ -470,13 +483,13 @@ class Card {
       currentHP = 3;
       maxHP = 3;
     }
-    if (paf.equals("Shaman/RockbiterWeapon.jpg"))
+    if (paf.equals("Shamn/RockbiterWeapon.jpg"))
     {
       type = 1;
       cost = 2;
       //Give a monster/player +3 attack this turn
     }
-    if (paf.equals("Shaman/SearingTotem.jpg"))
+    if (paf.equals("Shamn/SearingTotem.jpg"))
     {
       type = 0;
       cost = 1;
@@ -484,7 +497,7 @@ class Card {
       currentHP = 1;
       maxHP = 1;
     }
-    if (paf.equals("Shaman/SpiritWolf.png"))
+    if (paf.equals("Shamn/SpiritWolf.png"))
     {
       type = 0;
       cost = 2;
@@ -492,7 +505,7 @@ class Card {
       currentHP = 3;
       maxHP = 3;
     }
-    if (paf.equals("Shaman/StoneclawTotem.png"))
+    if (paf.equals("Shamn/StoneclawTotem.png"))
     {
       type = 0;
       cost = 1;
@@ -500,13 +513,14 @@ class Card {
       currentHP = 2;
       maxHP = 2;
     }
-    if (paf.equals("Shaman/Stormcrack.jpg"))
+    if (paf.equals("Shamn/Stormcrack.jpg"))
     {
       type = 1;
       cost = 2;
+      value = 4;
       //Deal 4 damage to a minion and overload 1
     }
-    if (paf.equals("Shaman/StormforgedAxe.jpg"))
+    if (paf.equals("Shamn/StormforgedAxe.jpg"))
     {
       type = 2;
       cost = 2;
@@ -514,7 +528,7 @@ class Card {
       currentHP = 3;
       maxHP = 3;
     }
-    if (paf.equals("Shaman/TotemGolem.jpg"))
+    if (paf.equals("Shamn/TotemGolem.jpg"))
     {
       type = 0;
       cost = 2;
@@ -567,9 +581,20 @@ class Card {
 
   String toString() { 
     String result = path.substring(6,path.length()-4);
+    if(type ==0){
+      result += "\nMonster";
+    }
+    if(type==1){
+      result += "\nSpell";
+    }
+    if(type==2){
+      result += "\nWeapon";
+    }
+    
     result += "\nHP: " + currentHP + "/" + maxHP;
     result += "\nCost: " + cost;
     result += "\nDamage: " + value;
+    result += "\n-----------------------";
     return result;
   }
 }
