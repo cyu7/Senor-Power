@@ -56,7 +56,7 @@ void draw() {
     if (mouseX > positions.get(i*2) && mouseX < positions.get(i*2)+50 && 
       mouseY > positions.get(i*2+1) && mouseY < positions.get(i*2+1)+50) 
     {
-      // println ("mouseover image; "+i); 
+      println ("mouseover image; "+i); 
       whichImage=i; 
 
 
@@ -80,7 +80,7 @@ void draw() {
     if (mouseX > positions.get(i*2) && mouseX < positions.get(i*2)+50 && 
       mouseY > positions.get(i*2+1) && mouseY < positions.get(i*2+1)+50) 
     {
-      // println ("mouseover image; "+i); 
+      println ("mouseover image; "+i); 
       whichImage=i; 
 
 
@@ -341,6 +341,7 @@ void keyPressed() {
             System.out.println("Not enough MP for spell");
           }
         }
+        spellMode=false;
       } else {
         System.out.println("Target or Spell not loaded properly");
       }

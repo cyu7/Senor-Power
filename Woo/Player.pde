@@ -97,6 +97,7 @@ class Player {
       }
       else {
         result += "\nNo Weapon";}
+     result += "\n-----------------------";
      return result;   
     }
 }

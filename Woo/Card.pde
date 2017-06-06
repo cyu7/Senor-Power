@@ -583,15 +583,16 @@ class Card {
     String result = path.substring(6,path.length()-4);
     if(type ==0){
       result += "\nMonster";
+      result += "\nHP: " + currentHP + "/" + maxHP;
     }
     if(type==1){
       result += "\nSpell";
     }
     if(type==2){
       result += "\nWeapon";
+      result += "\nHP: " + currentHP + "/" + maxHP;
     }
     
-    result += "\nHP: " + currentHP + "/" + maxHP;
     result += "\nCost: " + cost;
     result += "\nDamage: " + value;
     result += "\n-----------------------";
