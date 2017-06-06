@@ -57,7 +57,8 @@ void setup() {
 
 void draw() {
   background(bg);  
-  for (int i=0; i < images.size(); i++) {
+  if (p1turn) {
+    for (int i=0; i < nicolas.size(); i++) {
     if (mouseX > positions.get(i*2) && mouseX < positions.get(i*2)+50 && 
       mouseY > positions.get(i*2+1) && mouseY < positions.get(i*2+1)+50) 
     {
@@ -79,6 +80,31 @@ void draw() {
       bover = false;
     }
   }
+}
+  if (p2turn) {
+    for (int i=nicolas.size(); i < images.size(); i++) {
+    if (mouseX > positions.get(i*2) && mouseX < positions.get(i*2)+50 && 
+      mouseY > positions.get(i*2+1) && mouseY < positions.get(i*2+1)+50) 
+    {
+      // println ("mouseover image; "+i); 
+      whichImage=i; 
+
+
+      bover = true;  
+      if (!locked) 
+      { 
+        stroke(255); 
+        fill(153);
+      }
+      break;
+    } else
+    {
+      stroke(153);
+      fill(153);
+      bover = false;
+    }
+  }
+}
   for (int j=0; j < images.size(); j++) {
     image (image1.get(j), positions.get(j*2), positions.get(j*2+1), 50, 50) ;
   }
@@ -147,8 +173,7 @@ void mousePressed() {
 }
 
 void mouseDragged() {
-  if (p1turn) {
-    if (locked & whichImage<nicolas.size()) {
+    if (locked) {
       newx = mouseX - 25; 
       newy = mouseY - 25;
       fill(50, 205, 50);
@@ -160,22 +185,7 @@ void mouseDragged() {
     positions.set(whichImage*2, newx);
     positions.set(whichImage*2+1, newy);
   }
-  if (p2turn) {
-    if (locked & whichImage>=nicolas.size()) {
-      newx = mouseX - 25; 
-      newy = mouseY - 25;
-      fill(50, 205, 50);
-      rect(newx-2, newy-2, 54, 2); // top border
-      rect(newx-2, newy, 2, 50); // left border
-      rect(newx-2, newy+50, 54, 2); // bottom border
-      rect(newx+50, newy, 2, 50); // right border
-    }
-    positions.set(whichImage*2, newx);
-    positions.set(whichImage*2+1, newy);
-  }
-}
-
-
+  
 
 void mouseReleased() {
   locked = false;
@@ -1149,22 +1159,26 @@ void fillAttackingCard2() {
 void fillSpellCard() {
   if (p1turn) {
     if (spellTargeting.get(0)!=null) {
-      int borderStart=10+80*(spellTargeting.get(0));
+      int index = spellTargeting.get(0);
+      int borderStartx=positions.get(2*index);
+      int borderStarty=positions.get(2*index+1);
       fill(255, 255, 0);
-      rect(borderStart-4, 466, 58, 4);
-      rect(borderStart-4, 520, 58, 4);
-      rect(borderStart-4, 470, 4, 50);
-      rect(borderStart+50, 470, 4, 50);
+      rect(borderStartx-4, borderStarty-4, 58, 4);
+      rect(borderStartx-4, borderStarty+50, 58, 4);
+      rect(borderStartx-4, borderStarty, 4, 50);
+      rect(borderStartx+50, borderStarty, 4, 50);
     }
   }
   if (p2turn) {
     if (spellTargeting.get(1)!=null) {
-      int borderStart=10+80*(spellTargeting.get(1)-nicolas.size());
+      int index = spellTargeting.get(1);
+      int borderStartx=positions.get(2*index);
+      int borderStarty=positions.get(2*index+1);
       fill(255, 255, 0);
-      rect(borderStart-4, 16, 58, 4);
-      rect(borderStart-4, 70, 58, 4);
-      rect(borderStart-4, 20, 4, 50);
-      rect(borderStart+50, 20, 4, 50);
+      rect(borderStartx-4, borderStarty-4, 58, 4);
+      rect(borderStartx-4, borderStarty+50, 58, 4);
+      rect(borderStartx-4, borderStarty, 4, 50);
+      rect(borderStartx+50, borderStarty, 4, 50);
     }
   }
 }
