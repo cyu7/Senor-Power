@@ -76,6 +76,10 @@ class Player {
     String hpLine() {
       return "HP: " + currentHP + "/" + maxHP;
     }
+    
+    String mpLine() {
+      return "MP: " + currentMP + "/" + maxMP;
+    }
 
     //add monster
     void addMonster(int n, Card monster) {
@@ -83,16 +87,16 @@ class Player {
       monsters.get(n).shown=false;
     } 
 
-    //void clearDead {
-    //for int 
-
-    //attacking a monster
-    /*void attackMonster(int attackerIndex, int receiverIndex, int damage){
-     
-     }*/
-
-    //attacking a player
-    /*void attackDir(int damage){
-     
-     }*/
-  }
+    String toString() {
+      String result="";
+      result += "\n"+ hpLine();
+      result += "\n"+ mpLine();
+      if (weapon!=null) {
+        result+= "\n\nWeapon Damage: " + weapon.value;
+        result+= "\nWeapon Durability: " + weapon.currentHP;
+      }
+      else {
+        result += "\nNo Weapon";}
+     return result;   
+    }
+}

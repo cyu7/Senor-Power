@@ -135,9 +135,11 @@ void mousePressed() {
   if (bover) { 
     locked = true;
     if (whichImage>=nicolas.size()) {
-      System.out.println(chris.currentHand.get(whichImage-nicolas.size()));
+      if (p2turn)
+      {System.out.println(chris.currentHand.get(whichImage-nicolas.size()));}
     } else {
-      System.out.println(nicolas.currentHand.get(whichImage));
+      if (p1turn) {
+      System.out.println(nicolas.currentHand.get(whichImage));}
     }
   } else {
     locked = false;
@@ -145,18 +147,35 @@ void mousePressed() {
 }
 
 void mouseDragged() {
-  if (locked) {
-    newx = mouseX - 25; 
-    newy = mouseY - 25;
-    fill(50, 205, 50);
-    rect(newx-2, newy-2, 54, 2); // top border
-    rect(newx-2, newy, 2, 50); // left border
-    rect(newx-2, newy+50, 54, 2); // bottom border
-    rect(newx+50, newy, 2, 50); // right border
+  if (p1turn) {
+    if (locked & whichImage<nicolas.size()) {
+      newx = mouseX - 25; 
+      newy = mouseY - 25;
+      fill(50, 205, 50);
+      rect(newx-2, newy-2, 54, 2); // top border
+      rect(newx-2, newy, 2, 50); // left border
+      rect(newx-2, newy+50, 54, 2); // bottom border
+      rect(newx+50, newy, 2, 50); // right border
+    }
+    positions.set(whichImage*2, newx);
+    positions.set(whichImage*2+1, newy);
   }
-  positions.set(whichImage*2, newx);
-  positions.set(whichImage*2+1, newy);
+  if (p2turn) {
+    if (locked & whichImage>=nicolas.size()) {
+      newx = mouseX - 25; 
+      newy = mouseY - 25;
+      fill(50, 205, 50);
+      rect(newx-2, newy-2, 54, 2); // top border
+      rect(newx-2, newy, 2, 50); // left border
+      rect(newx-2, newy+50, 54, 2); // bottom border
+      rect(newx+50, newy, 2, 50); // right border
+    }
+    positions.set(whichImage*2, newx);
+    positions.set(whichImage*2+1, newy);
+  }
 }
+
+
 
 void mouseReleased() {
   locked = false;
@@ -168,14 +187,7 @@ void mouseClicked() {
   {
     processCards1();
     processCards2();
-    if (chris.deck.size()>0) {
-      chris.drawCard();
-    }
-    if (nicolas.deck.size()>0) {
-      nicolas.drawCard();
-    } 
-    printCurrentHanda();
-    printCurrentHandb();
+
     p1turn=!p1turn;
     p2turn=!p2turn;
     attackingCards.set(0, null);
@@ -192,17 +204,28 @@ void mouseClicked() {
       }
     }
     if (nicolas.weapon!=null) {
-      nicolas.weapon.attackedthisTurn=false;}
+      nicolas.weapon.attackedthisTurn=false;
+    }
     if (chris.weapon!=null) {
-      chris.weapon.attackedthisTurn=false;}
-        
+      chris.weapon.attackedthisTurn=false;
+    }
+
     if (turnCounter%2==1) {
+      if (nicolas.deck.size()>0) {
+      nicolas.drawCard();
+    } 
       nicolas.incMP();
       turnCounter++;
-    } else {
+    } 
+    else {
+      if (chris.deck.size()>0) {
+      chris.drawCard();
+    }
       chris.incMP();
       turnCounter++;
     }
+    printCurrentHanda();
+    printCurrentHandb();
   }
   //--------------------------END OF END TURN ----------------------------
 
@@ -316,34 +339,32 @@ void keyPressed() {
         if (p1turn) {
           if (att==-1 & rec ==-1) { //player vs player w/ weapon
             if (nicolas.weapon!=null) {
-            if (nicolas.weapon.attackedthisTurn==false) {
-              nicolas.weapon.attackPlayer(chris);
-              nicolas.weapon.attackedthisTurn=true;
-              nicolas.weapon.decHP(1);
+              if (nicolas.weapon.attackedthisTurn==false) {
+                nicolas.weapon.attackPlayer(chris);
+                nicolas.weapon.attackedthisTurn=true;
+                nicolas.weapon.decHP(1);
+              } else {
+                System.out.println("Already attacked this turn");
+              }
             } else {
-              System.out.println("Already attacked this turn");
-            }
-          }
-          else {
-            System.out.println("Your hero does not have a weapon");
+              System.out.println("Your hero does not have a weapon");
             }
           }
           if (att==-1 & rec !=-1) {// player vs monster
             if (nicolas.weapon!=null) {
-            if (nicolas.weapon.attackedthisTurn==false) {
-              int recDamage= chris.monsters.get(rec).value;
-              Card placeholder = attackMonster(nicolas.weapon, chris.monsters.get(rec));
-              chris.monsters.set(rec, placeholder);
-              nicolas.weapon.attackedthisTurn=true;
-              nicolas.weapon.decHP(1);
-              nicolas.decHP(recDamage);
+              if (nicolas.weapon.attackedthisTurn==false) {
+                int recDamage= chris.monsters.get(rec).value;
+                Card placeholder = attackMonster(nicolas.weapon, chris.monsters.get(rec));
+                chris.monsters.set(rec, placeholder);
+                nicolas.weapon.attackedthisTurn=true;
+                nicolas.weapon.decHP(1);
+                nicolas.decHP(recDamage);
+              } else {
+                System.out.println("Already attacked this turn");
+              }
             } else {
-              System.out.println("Already attacked this turn");
+              System.out.println("Your hero does not have a weapon");
             }
-          }
-          else {
-            System.out.println("Your hero does not have a weapon");
-          }
           }
           if (att!=-1 & rec ==-1) {//monster vs player
             if (nicolas.monsters.get(att).attackedthisTurn==false) {
@@ -371,16 +392,15 @@ void keyPressed() {
         if (p2turn) {
           if (att==-1 & rec ==-1) {
             if (chris.weapon!=null) {// player vs player w/ weapon
-            if (chris.weapon.attackedthisTurn==false) {
-              chris.weapon.attackPlayer(nicolas);
-              chris.weapon.attackedthisTurn=true;
-              chris.weapon.decHP(1);
+              if (chris.weapon.attackedthisTurn==false) {
+                chris.weapon.attackPlayer(nicolas);
+                chris.weapon.attackedthisTurn=true;
+                chris.weapon.decHP(1);
+              } else {
+                System.out.println("Already attacked this turn");
+              }
             } else {
-              System.out.println("Already attacked this turn");
-            }
-          }
-          else {
-            System.out.println("Your hero does not have a weapon");
+              System.out.println("Your hero does not have a weapon");
             }
           }
           if (att==-1 & rec !=-1) { // monster vs player
@@ -392,18 +412,18 @@ void keyPressed() {
               chris.decHP(recDamage);
             } else {
               System.out.println("Already attacked this turn");
-            } 
+            }
           }
           if (att!=-1 & rec ==-1) { //player vs monster
             if (chris.weapon!=null) {
               if (chris.weapon.attackedthisTurn==false) {
-              nicolas=chris.monsters.get(rec).attackPlayer(nicolas);
-              chris.monsters.get(rec).attackedthisTurn=true;
+                nicolas=chris.monsters.get(rec).attackPlayer(nicolas);
+                chris.monsters.get(rec).attackedthisTurn=true;
+              } else {
+                System.out.println("Already attacked this turn");
+              }
             } else {
-              System.out.println("Already attacked this turn");
-            }
-          }
-          else {System.out.println("Your hero does not have a weapon");
+              System.out.println("Your hero does not have a weapon");
             }
           }
           if (att!=-1 & rec !=-1) {  //monster vs monster
@@ -420,27 +440,27 @@ void keyPressed() {
             }
           }
         }
+      } else {
+        System.out.println("Target or Monster not loaded properly");
       }
-      else {
-      System.out.println("Target or Monster not loaded properly");
     }
+    attackingCards.set(0, null);
+    attackingCards.set(1, null);
+    spellTargeting.set(0, null);
+    spellTargeting.set(1, null);
   }
-  attackingCards.set(0, null);
-  attackingCards.set(1, null);
-  spellTargeting.set(0, null);
-  spellTargeting.set(1, null);
-}
-if (key=='s' || key=='S') {
-  spellMode=!spellMode;
-  spellTargeting.set(0,null);
-  spellTargeting.set(1,null);
-  System.out.println("Spell mode is " + spellMode);}
-if (key=='t' || key=='T') {
-  System.out.println("Nicolas " + nicolas.hpLine());
-  System.out.println("Chris " + chris.hpLine());
-  System.out.println(attackingCards);
-  System.out.println(chris.monsters.get(0));
-}
+  if (key=='s' || key=='S') {
+    spellMode=!spellMode;
+    spellTargeting.set(0, null);
+    spellTargeting.set(1, null);
+    System.out.println("Spell mode is " + spellMode);
+  }
+  if (key=='t' || key=='T') {
+    System.out.println("Nicolas " + nicolas.hpLine());
+    System.out.println("Chris " + chris.hpLine());
+    System.out.println(attackingCards);
+    System.out.println(chris.monsters.get(0));
+  }
 }
 
 void printCurrentHand1() {
