@@ -250,15 +250,12 @@ void mouseClicked() {
     }
 
     if (turnCounter%2==1) {
-      if (nicolas.deck.size()>0) {
-        nicolas.drawCard();
-      } 
+      nicolas.drawCard();
       nicolas.incMP();
       turnCounter++;
-    } else {
-      if (chris.deck.size()>0) {
-        chris.drawCard();
-      }
+    } 
+    else {
+      chris.drawCard();
       chris.incMP();
       turnCounter++;
     }
@@ -1210,7 +1207,7 @@ Card attackMonster(Card attacker, Card receiver) {
 }
 
 
-//-------------------------------------------------------
+//-------------------------HERO POWERS------------------------------
 
 void pallyPower() {
   int firstNull=-1;
