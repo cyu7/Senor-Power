@@ -9,7 +9,7 @@ boolean bover = false;
 boolean locked = false;
 ArrayList<PImage> image1 = new ArrayList<PImage>(); 
 int newx, newy;
-int whichImage;
+int whichImage=0;
 boolean p1turn=true; //nicolas
 boolean p2turn=false;  //chris
 Player nicolas = new Player();
@@ -36,12 +36,12 @@ void setup() {
   }
   fill();
   if (random(2)<1) {
-    System.out.println("Player 1 goes first");
+    System.out.println("Player 1 goes first\n");
       chris.decMP(1);
       chris.maxMP=0;
   }
   else {
-    System.out.println("Player 2 goes first");
+    System.out.println("Player 2 goes first\n");
       nicolas.decMP(1);
       nicolas.maxMP=0;
       p1turn=false;
@@ -165,11 +165,11 @@ void draw() {
     image(loadImage("Cards/ShamanIcon.png"), 430, 360, 96, 98);
   }
   if (nicolas.currentHP<=0 & printEndOnce) {
-    System.out.println("Player 2 wins!");
+    System.out.println("\nPlayer 2 wins!");
     printEndOnce=false;
   }
   if (chris.currentHP<=0 & printEndOnce) {
-    System.out.println("Player 1 wins!");
+    System.out.println("\nPlayer 1 wins!");
     printEndOnce=false;
   }
   displayMana(nicolas, 400);
@@ -207,16 +207,16 @@ void mouseDragged() {
     rect(newx-2, newy+50, 54, 2); // bottom border
     rect(newx+50, newy, 2, 50); // right border
   }
+  if (whichImage<images.size()) {
   positions.set(whichImage*2, newx);
   positions.set(whichImage*2+1, newy);
+  }
 }
 
 
 void mouseReleased() {
   locked = false;
 }
-
-
 
 void mouseClicked() {
   //---------------------------END TURN--------------------------------
