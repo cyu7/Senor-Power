@@ -563,7 +563,7 @@ void fill() {
    nicolas.deck.add(new Card(loadImage("Shamn/DustDevil.jpg"), "Shamn/DustDevil.jpg"));
    nicolas.deck.add(new Card(loadImage("Shamn/EarthElemental.jpg"), "Shamn/EarthElemental.jpg"));*/
    nicolas.deck.add(new Card(loadImage("Shamn/ElementalDestruction.png"), "Shamn/ElementalDestruction.png"));
-   nicolas.deck.add(new Card(loadImage("Shamn/FireguardDestroyer.jpg"), "Shamn/FireguardDestroyer.jpg"));
+   /*nicolas.deck.add(new Card(loadImage("Shamn/FireguardDestroyer.jpg"), "Shamn/FireguardDestroyer.jpg"));
    nicolas.deck.add(new Card(loadImage("Shamn/FireElemental.jpg"), "Shamn/FireElemental.jpg"));
    nicolas.deck.add(new Card(loadImage("Shamn/FlamewreathedFaceless.jpg"), "Shamn/FlamewreathedFaceless.jpg"));
    nicolas.deck.add(new Card(loadImage("Shamn/FrostShot.jpg"), "Shamn/FrostShot.jpg"));
