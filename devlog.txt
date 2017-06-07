@@ -13,14 +13,21 @@ OBSTACLES OVERCOME
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+There is one bug that occurs occasionally in the game. This isn't really something to reflect on since I don't really know what causes is or how to replicate it. It comes from the whichImage variable being too big for the images array, which I can't explain since there is only one line of code that modifies that variable.
 
+We also only have spells that attack one monster and nothing else. Other spells in the game, which can attack multiple monsters, heal, or add mana, were not implemented because there wasn't an easy way to group them. This meant that implementing them would require a lot of conditional statements.
+
+We noticed that if we click on any spot on the board repeatedly, then the most recently moved card will "jump" all the away to the left corner. We can't explain this either and think it's a problem on Processing's side that results from the user clicking too many times in a short amount of time.
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+We can use one & sign instead of two for conjunctions
+We can declare instance variables in the middle of a method instead of all at the beginning
 
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
