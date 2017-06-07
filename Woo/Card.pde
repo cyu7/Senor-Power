@@ -242,7 +242,7 @@ class Card {
       currentHP = 2;
       maxHP = 2;
     }
-    if (paf.equals("Paldn/KeeperOfWuldaman.png"))
+    if (paf.equals("Paldn/KeeperOfUldaman.png"))
     {
       type = 0;
       cost = 4;
@@ -407,7 +407,7 @@ class Card {
       currentHP = 2;
       maxHP = 2;
     }
-    if (paf.equals("Shamn/JinyuWaterSpeaker.jpg"))
+    if (paf.equals("Shamn/JinyuWaterspeaker.jpg"))
     {
       type = 0;
       cost = 4;
