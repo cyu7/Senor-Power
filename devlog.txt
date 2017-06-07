@@ -21,6 +21,8 @@ We noticed that if we click on any spot on the board repeatedly, then the most r
 left corner. We can't explain this either and think it's a problem on Processing's side that results from the user clicking too 
 many times in a short amount of time.
 
+When we tried to load the AirTotem.jpg image, we got an error that said that the call was trying to perform an unsupported color conversion request. We don't know hat this means, so we took out implementing the totem to save time.
+
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 We can use one & sign instead of two for conjunctions
