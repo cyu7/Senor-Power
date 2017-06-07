@@ -547,48 +547,34 @@ void fill() {
   nicolas.deck.add(new Card(loadImage("Cards/AcidicSwampOoze.jpg"), "Cards/AcidicSwampOoze.jpg"));
   nicolas.deck.add(new Card(loadImage("Cards/BloodfenRaptor.jpg"), "Cards/BloodfenRaptor.jpg"));
   nicolas.deck.add(new Card(loadImage("Cards/BluegillWarrior.png"), "Cards/BluegillWarrior.png"));
-  nicolas.deck.add(new Card(loadImage("Cards/BootyBayBodyGuard.jpg"), "Cards/BootyBayBodyGuard.jpg"));
-  /*nicolas.deck.add(new Card(loadImage("Cards/BoulderfistOgre.jpg"), "Cards/BoulderfistOgre.jpg"));
-   nicolas.deck.add(new Card(loadImage("Cards/ChillwindYeti.png"), "Cards/ChillwindYeti.png"));
-   nicolas.deck.add(new Card(loadImage("Cards/ElvenArcher.jpg"), "Cards/ElvenArcher.jpg"));
+  /*nicolas.deck.add(new Card(loadImage("Cards/ElvenArcher.jpg"), "Cards/ElvenArcher.jpg"));
    nicolas.deck.add(new Card(loadImage("Cards/FrostwolfGrunt.jpg"), "Cards/FrostwolfGrunt.jpg"));
    nicolas.deck.add(new Card(loadImage("Cards/GnomishInventor.jpg"), "Cards/GnomishInventor.jpg"));
    nicolas.deck.add(new Card(loadImage("Cards/GoldshireFootman.png"), "Cards/GoldshireFootman.png"));
-   nicolas.deck.add(new Card(loadImage("Cards/Nightblade.jpg"), "Cards/Nightblade.jpg"));
-   nicolas.deck.add(new Card(loadImage("Cards/NoviceEngineer.jpg"), "Cards/NoviceEngineer.jpg"));
-   nicolas.deck.add(new Card(loadImage("Cards/OasisSnapjaw.jpg"), "Cards/OasisSnapjaw.jpg"));
    nicolas.deck.add(new Card(loadImage("Cards/RecklessRocketeer.jpg"), "Cards/RecklessRocketeer.jpg"));
-   nicolas.deck.add(new Card(loadImage("Cards/RiverCrocolisk.png"), "Cards/RiverCrocolisk.png"));
-   nicolas.deck.add(new Card(loadImage("Cards/SenjinShieldmaster.jpg"), "Cards/SenjinShieldmaster.jpg"));
-   nicolas.deck.add(new Card(loadImage("Cards/StonetuskBoar.jpg"), "Cards/StonetuskBoar.jpg"));
    nicolas.deck.add(new Card(loadImage("Cards/StormpikeCommando.jpg"), "Cards/StormpikeCommando.jpg"));
    nicolas.deck.add(new Card(loadImage("Cards/StormwindKnight.jpg"), "Cards/StormwindKnight.jpg"));
-   nicolas.deck.add(new Card(loadImage("Cards/VoodooDoctor.jpg"), "Cards/VoodooDoctor.jpg"));
    nicolas.deck.add(new Card(loadImage("Cards/WarGolem.jpg"), "Cards/WarGolem.jpg"));
    nicolas.deck.add(new Card(loadImage("Cards/Wolfrider.jpg"), "Cards/Wolfrider.jpg"));*/
 
   //-----------------------------------Shaman Cards-----------------------------------------
   /*nicolas.deck.add(new Card(loadImage("Shamn/AlAkir.jpg"), "Shamn/AlAkir.jpg"));
-   nicolas.deck.add(new Card(loadImage("Shamn/AncestralKnowledge.jpg"), "Shamn/AncestralKnowledge.jpg"));
-   nicolas.deck.add(new Card(loadImage("Shamn/Bloodlust.jpg"), "Shamn/Bloodlust.jpg"));
    nicolas.deck.add(new Card(loadImage("Shamn/Doomhammer.jpg"), "Shamn/Doomhammer.jpg"));
    nicolas.deck.add(new Card(loadImage("Shamn/DustDevil.jpg"), "Shamn/DustDevil.jpg"));
    nicolas.deck.add(new Card(loadImage("Shamn/EarthElemental.jpg"), "Shamn/EarthElemental.jpg"));*/
-  nicolas.deck.add(new Card(loadImage("Shamn/ElementalDestruction.png"), "Shamn/ElementalDestruction.png"));
-  /*nicolas.deck.add(new Card(loadImage("Shamn/FeralSpirit.jpg"), "Shamn/FeralSpirit.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shamn/ElementalDestruction.png"), "Shamn/ElementalDestruction.png"));
+   nicolas.deck.add(new Card(loadImage("Shamn/FireguardDestroyer.jpg"), "Shamn/FireguardDestroyer.jpg"));
    nicolas.deck.add(new Card(loadImage("Shamn/FireElemental.jpg"), "Shamn/FireElemental.jpg"));
    nicolas.deck.add(new Card(loadImage("Shamn/FlamewreathedFaceless.jpg"), "Shamn/FlamewreathedFaceless.jpg"));
    nicolas.deck.add(new Card(loadImage("Shamn/FrostShot.jpg"), "Shamn/FrostShot.jpg"));
    nicolas.deck.add(new Card(loadImage("Shamn/Hallazeal.jpg"), "Shamn/Hallazeal.jpg"));
-   nicolas.deck.add(new Card(loadImage("Shamn/Hex.jpg"), "Shamn/Hex.jpg"));
    nicolas.deck.add(new Card(loadImage("Shamn/JinyuWaterspeaker.jpg"), "Shamn/JinyuWaterspeaker.jpg"));
+   nicolas.deck.add(new Card(loadImage("Shamn/Kalimos.jpg"), "Shamn/Kalimos.jpg"));
    nicolas.deck.add(new Card(loadImage("Shamn/LavaBurst.jpg"), "Shamn/LavaBurst.jpg"));
    nicolas.deck.add(new Card(loadImage("Shamn/LightningBolt.jpg"), "Shamn/LightningBolt.jpg"));
-   nicolas.deck.add(new Card(loadImage("Shamn/LightningStorm.jpg"), "Shamn/LightningStorm.jpg"));
-   nicolas.deck.add(new Card(loadImage("Shamn/ManaTideTotem.jpg"), "Shamn/ManaTideTotem.jpg"));
-   nicolas.deck.add(new Card(loadImage("Shamn/RockbiterWeapon.jpg"), "Shamn/RockbiterWeapon.jpg"));
    nicolas.deck.add(new Card(loadImage("Shamn/Stormcrack.jpg"), "Shamn/Stormcrack.jpg"));*/
   nicolas.deck.add(new Card(loadImage("Shamn/StormforgedAxe.jpg"), "Shamn/StormforgedAxe.jpg"));
+  nicolas.deck.add(new Card(loadImage("Shamn/ThingFromBelow.jpg"), "Shamn/ThingFromBelow.jpg"));
   //nicolas.deck.add(new Card(loadImage("Shamn/TotemGolem.jpg"), "Shamn/TotemGolem.jpg"));
 
   //-----------------------------------chris's deck-----------------------------------------
@@ -614,13 +600,18 @@ void fill() {
    chris.deck.add(new Card(loadImage("Paldn/Ashbringer.png"), "Paldn/Ashbringer.png"));
    chris.deck.add(new Card(loadImage("Paldn/Consecration.jpg"), "Paldn/Consecration.jpg"));
   /*
+   chris.deck.add(new Card(loadImage("Paldn/DragonConsort.jpg"), "Paldn/DragonConsort.jpg"));
    chris.deck.add(new Card(loadImage("Paldn/GuardianOfKings.jpg"), "Paldn/GuardianOfKings.jpg"));
    chris.deck.add(new Card(loadImage("Paldn/HammerOfWrath.jpg"), "Paldn/HammerOfWrath.jpg"));
+   chris.deck.add(new Card(loadImage("Paldn/Hydrologist.jpg"), "Paldn/Hydrologist.jpg"));
    chris.deck.add(new Card(loadImage("Paldn/KeeperOfUldaman.png"), "Paldn/KeeperOfUldaman.png"));
    chris.deck.add(new Card(loadImage("Paldn/LightsJustice.jpg"), "Paldn/LightsJustice.jpg"));
+   chris.deck.add(new Card(loadImage("Paldn/Ragnaros.jpg"), "Paldn/Ragnaros.jpg"));
+   chris.deck.add(new Card(loadImage("Paldn/ShieldedMinibot.jpg"), "Paldn/ShieldedMinibot.jpg"));
    chris.deck.add(new Card(loadImage("Paldn/SunkeeperTarim.jpg"), "Paldn/SunkeeperTarim.jpg"));
    chris.deck.add(new Card(loadImage("Paldn/Tirion.jpg"), "Paldn/Tirion.jpg"));
-   chris.deck.add(new Card(loadImage("Paldn/TruesilverChampion.jpg"), "Paldn/TruesilverChampion.jpg*/
+   chris.deck.add(new Card(loadImage("Paldn/TruesilverChampion.jpg"), "Paldn/TruesilverChampion.jpg
+   chris.deck.add(new Card(loadImage("Paldn/Wickerflame.jpg"), "Paldn/Wickerflame.jpg"));*/
 }
 
 //-------------------------- BOTTOM CARDOVER METHODS (7)-----------------
