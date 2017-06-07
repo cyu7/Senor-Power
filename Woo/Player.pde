@@ -3,6 +3,7 @@ class Player {
   int currentHP; //max 30
   int currentMP; //current MP
   int maxMP; //max 10
+  int deckDamage; //damage taken if there are no more cards to draw
   ArrayList<Card> currentHand; //max 10
   ArrayList<Card> deck; //max 30
   ArrayList<Card> monsters; //max 7
@@ -14,6 +15,7 @@ class Player {
     currentHP = 30;
     currentMP = 1;
     maxMP = 1;
+    deckDamage = 1;
     currentHand = new ArrayList<Card>();
     deck = new ArrayList<Card>();
     monsters = new ArrayList<Card>();
@@ -37,7 +39,9 @@ class Player {
         currentHand.add(deck.remove((int) random(deck.size())));
       } 
       if (deck.size()==0) {
-        System.out.println("No more cards");
+        System.out.println("You took damage because there are no cards left in your deck!");
+        decHP(deckDamage);
+        deckDamage++;
       }
     }
   }
