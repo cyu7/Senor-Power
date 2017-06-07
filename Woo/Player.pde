@@ -31,6 +31,7 @@ class Player {
     if (deck.size()>0) {
       if (currentHand.size()>=10) {
         deck.remove((int) random(deck.size()));
+        System.out.println("Current hand too full");
       }
       if (currentHand.size()<10) {
         currentHand.add(deck.remove((int) random(deck.size())));

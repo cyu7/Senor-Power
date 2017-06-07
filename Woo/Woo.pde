@@ -284,7 +284,7 @@ void mouseClicked() {
   }
   if ( (mouseX>430) & (mouseX<526) & (mouseY>360) & (mouseY<458) ) {
     attackingCards.set(0, -1);
-    System.out.println(nicolas);
+    System.out.println("Shaman\n" + nicolas);
   }
 
   //-------------------------------SETTING TARGET---------------------------
@@ -293,11 +293,11 @@ void mouseClicked() {
       attackingCards.set(1, i);
       System.out.println(chris.monsters.get(i));
     }
+  }
     if ( (mouseX>428)& (mouseX<528)& (mouseY>50) &(mouseY<153)) {
       attackingCards.set(1, -1);
-      System.out.println(chris);
+      System.out.println("Paladin\n" + chris);
     }
-  }
   if (spellMode) {
     if (p1turn) {
       spellTargeting.set(1, attackingCards.get(1));
@@ -322,7 +322,6 @@ void keyPressed() {
   if (key==ENTER) {
     if (spellMode) {
       if (spellTargeting.get(0)!=null & spellTargeting.get(1)!=null) {
-        System.out.println(spellTargeting);
         int att = spellTargeting.get(0);
         int rec = spellTargeting.get(1);
         if (p1turn) {
