@@ -45,7 +45,7 @@ LESSONS LEARNED
 2017-06-06
 -------------------------------------------------------------
 Nicolas:: finished spells, started weapons
-Chris:: changed toString method of Card to display name of card
+Chris:: changed toString method of Card to display name of card, edited decks, removed cards (for lag), bug fixes
 2017-06-05
 -------------------------------------------------------------
 Nicolas:: finished weapons, started to fix bugs
