@@ -33,13 +33,13 @@ class Player {
     if (deck.size()>0) {
       if (currentHand.size()>=10) {
         deck.remove((int) random(deck.size()));
-        System.out.println("Current hand too full");
+        System.out.println("Your current hand is full!");
       }
       if (currentHand.size()<10) {
         currentHand.add(deck.remove((int) random(deck.size())));
       } 
       if (deck.size()==0) {
-        System.out.println("You took damage because there are no cards left in your deck!");
+        System.out.println("You took " + deckDamage + " damage because there are no cards left in your deck!");
         decHP(deckDamage);
         deckDamage++;
       }
