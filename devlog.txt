@@ -9,29 +9,51 @@ Hearthstone
 ------------------------------------------
 OBSTACLES OVERCOME 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+We were able to make buttons that worked. The buttons we have are the endTurn button and the two weapon equip buttons
+We also implemented error handling much better than the last final project. Now the user can mess up inputs and have the program still 
+run, which was a big problem in the past project
+We also got dragging to work, which was one of the first steps of the game. Even though the cards don't snap on, the processCards() 
+methods are close enough.
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-There is one bug that occurs occasionally in the game. This isn't really something to reflect on since I don't really know what causes is or how to replicate it. It comes from the whichImage variable being too big for the images array, which I can't explain since there is only one line of code that modifies that variable.
+There is one bug that occurs occasionally in the game. This isn't really something to reflect on since I don't really know what causes
+it or how to replicate it. It comes from the whichImage variable being too big for the images array, which I can't explain since 
+there is only one line of code that modifies that variable.
 
-We also only have spells that attack one monster and nothing else. Other spells in the game, which can attack multiple monsters, heal, or add mana, were not implemented because there wasn't an easy way to group them. This meant that implementing them would require a lot of conditional statements.
-
-We noticed that if we click on any spot on the board repeatedly, then the most recently moved card will "jump" all the away to the left corner. We can't explain this either and think it's a problem on Processing's side that results from the user clicking too many times in a short amount of time.
+We noticed that if we click on any spot on the board repeatedly, then the most recently moved card will "jump" all the away to the 
+left corner. We can't explain this either and think it's a problem on Processing's side that results from the user clicking too 
+many times in a short amount of time.
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 We can use one & sign instead of two for conjunctions
-We can declare instance variables in the middle of a method instead of all at the beginning
 
+We can declare instance variables in the middle of a method instead of all at the beginning. This was useful for the processCards() 
+methods because declaring the new cardOver variables would take the most recent version of images, which was more efficient for code.
+While it would have been possible to still implement processCards() by declaring all of the variables at the start, it would be much 
+more clunky and would have a lot of bugs.
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+We decided only have spells that attack one monster and nothing else. Other spells in the game, which can attack multiple monsters, 
+heal, or add mana, were not implemented because there wasn't an easy way to group them. This meant that implementing them would 
+require a lot of conditional statements. This also meant that we would not need queues to track order of attacks, since all of them
+would be the same type anyways
 
+We also decided to use our own mana display system instead of using the "racks" on the background image. This is because implementing 
+mana that way would involve editing a static image, which is much harder to do than making a new display entirely.
+
+We planned to use inheritance for the different types of cards, but we realized that using an enum or an int would be easier since we 
+simplified the cards down enough so that they could be implemented well enough using one general Card class.
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. Inline comments help a lot for long methods with lots of conditional statements. They also help navigate code when the file has a lot 
+of lines.
 
+2. The path of a file is a string that cannot be accessed from a PImage. This was important because for the Card class, we made sure to
+have an instance variable that stored the original path in case we needed it.
 
 ||||||||||||||||||||||||||||||||||||||||||
  ______   ______   __   __   __       ______   _______     
@@ -44,7 +66,7 @@ LESSONS LEARNED
 ==============================================================
 2017-06-06
 -------------------------------------------------------------
-Nicolas:: finished spells, started weapons
+Nicolas:: added Hero Power, button for weapon equipping, bug fixes
 Chris:: changed toString method of Card to display name of card, edited decks, removed cards (for lag), bug fixes
 2017-06-05
 -------------------------------------------------------------
