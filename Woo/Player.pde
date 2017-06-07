@@ -7,6 +7,7 @@ class Player {
   ArrayList<Card> deck; //max 30
   ArrayList<Card> monsters; //max 7
   Card weapon;
+  boolean usedHeroPower;
 
   Player() {
     maxHP = 30;
