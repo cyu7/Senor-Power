@@ -206,54 +206,19 @@ class Card {
       currentHP = 3;
       maxHP = 3;
     }
-    if (paf.equals("Paldn/BlessedChampion.jpg"))
-    {
-      type = 1;
-      cost = 5;
-      //Doubles attack and hp of a monster
-    }
-    if (paf.equals("Paldn/BlessingOfKings.jpg"))
-    {
-      type = 1;
-      cost = 4;
-      //+4 attack and hp
-    }
-    if (paf.equals("Paldn/BlessingOfMight.png"))
-    {
-      type = 1;
-      cost = 1;
-      //+3 attack
-    }
     if (paf.equals("Paldn/Consecration.jpg"))
     {
       type = 1;
       cost = 4;
       value = 2;
-      //Deal 2 damage to all enemy monsters
     }
-    if (paf.equals("Paldn/Dinosize.jpg"))
+    if (paf.equals("Paldn/DragonConsort.jpg"))
     {
-      type = 1;
-      cost = 8;
-      //Change attack and hp to 10
-    }
-    if (paf.equals("Paldn/DivineStrength.jpg"))
-    {
-      type = 1;
-      cost = 1;
-      //+1 attack, +2 hp
-    }
-    if (paf.equals("Paldn/Equality.jpg"))
-    {
-      type = 1;
-      cost = 2;
-      //Change hp of all monsters to 1
-    }
-    if (paf.equals("Paldn/ForbiddenHealing.jpg"))
-    {
-      type = 1;
-      cost = 0;
-      //Spend all of your current mana and heal 2x that amount
+      type = 0;
+      cost = 5;
+      value = 5;
+      currentHP = 5;
+      maxHP = 5;
     }
     if (paf.equals("Paldn/GuardianOfKings.jpg"))
     {
@@ -268,19 +233,14 @@ class Card {
       type = 1;
       cost = 4;
       value = 3;
-      //Deal 3 damage to monster/player and draw a card
     }
-    if (paf.equals("Paldn/HolyLight.png"))
+    if (paf.equals("Paldn/Hydrologist.jpg"))
     {
-      type = 1;
+      type = 0;
       cost = 2;
-      //Heal 6 hp to a monster/player
-    }
-    if (paf.equals("Paldn/Humility.png"))
-    {
-      type = 1;
-      cost = 1;
-      //Change a monster's attack to 1
+      value = 2;
+      currentHP = 2;
+      maxHP = 2;
     }
     if (paf.equals("Paldn/KeeperOfWuldaman.png"))
     {
@@ -290,12 +250,6 @@ class Card {
       currentHP = 4;
       maxHP = 4;
     }
-    if (paf.equals("Paldn/LayOnHands.jpg"))
-    {
-      type = 1;
-      cost = 8;
-      //Heal 8 hp to a monster/player and draw 3 cards
-    }
     if (paf.equals("Paldn/LightsJustice.jpg"))
     {
       type = 2;
@@ -304,11 +258,21 @@ class Card {
       currentHP = 4;
       maxHP = 4;
     }
-    if (paf.equals("Paldn/LostInTheJungle.jpg"))
+    if (paf.equals("Paldn/Ragnaros.jpg"))
     {
-      type = 1;
-      cost = 1;
-      //Summon 2 SilverHandRecruit
+      type = 0;
+      cost = 8;
+      value = 8;
+      currentHP = 8;
+      maxHP = 8;
+    }
+    if (paf.equals("Paldn/ShieldedMinibot.jpg"))
+    {
+      type = 0;
+      cost = 2;
+      value = 2;
+      currentHP = 2;
+      maxHP = 2;
     }
     if (paf.equals("Paldn/SilverHandRecruit.png"))
     {
@@ -317,12 +281,6 @@ class Card {
       value = 1;
       currentHP = 1;
       maxHP = 1;
-    }
-    if (paf.equals("Paldn/StandAgainstDarkness.jpg"))
-    {
-      type = 1;
-      cost = 5;
-      //Summon 5 SilverHandRecruit
     }
     if (paf.equals("Paldn/SunkeeperTarim.jpg"))
     {
@@ -348,6 +306,14 @@ class Card {
       currentHP = 2;
       maxHP = 2;
     }
+     if (paf.equals("Paldn/Wickerflame.jpg"))
+    {
+      type = 0;
+      cost = 3;
+      value = 2;
+      currentHP = 2;
+      maxHP = 2;
+    }
     //-----------------------------------Shaman Cards-----------------------------------------
     if (paf.equals("Shamn/AirTotem.jpg"))
     {
@@ -364,18 +330,6 @@ class Card {
       value = 3;
       currentHP = 5;
       maxHP = 5;
-    }
-    if (paf.equals("Shamn/AncestralKnowledge.jpg"))
-    {
-      type = 1;
-      cost = 2;
-      //Draw 2 cards, overload 2 mana
-    }
-    if (paf.equals("Shamn/Bloodlust.jpg"))
-    {
-      type = 1;
-      cost = 5;
-      //All your monsters have +3 attack this turn only
     }
     if (paf.equals("Shamn/Doomhammer.jpg"))
     {
@@ -396,7 +350,7 @@ class Card {
     if (paf.equals("Shamn/EarthElemental.jpg"))
     {
       type = 0;
-      cost = 5;
+      cost = 6;
       value = 7;
       currentHP = 8;
       maxHP = 8;
@@ -405,14 +359,7 @@ class Card {
     {
       type = 1;
       cost = 3;
-      value = 4;
-      //Deal 4 or 5 damage to all monsters, overload 5 mana
-    }
-    if (paf.equals("Shamn/FeralSpirit.jpg"))
-    {
-      type = 1;
-      cost = 2;
-      //Summon 2 SpiritWolf, overload 2 mana
+      value = 5;
     }
     if (paf.equals("Shamn/FireElemental.jpg"))
     {
@@ -422,10 +369,18 @@ class Card {
       currentHP = 5;
       maxHP = 5;
     }
-    if (paf.equals("Shamn/FlamewreathedFaceless.jpg"))
+    if (paf.equals("Shamn/FireguardDestroyer.jpg"))
     {
       type = 0;
       cost = 4;
+      value = 3;
+      currentHP = 6;
+      maxHP = 6;
+    }
+    if (paf.equals("Shamn/FlamewreathedFaceless.jpg"))
+    {
+      type = 0;
+      cost = 5;
       value = 7;
       currentHP = 7;
       maxHP = 7;
@@ -435,7 +390,6 @@ class Card {
       type = 1;
       cost = 1;
       value = 1;
-      //Deal 1 dmg and freeze 
     }
     if (paf.equals("Shamn/Hallazeal.jpg"))
     {
@@ -461,33 +415,25 @@ class Card {
       currentHP = 6;
       maxHP = 6;
     }
+    if (paf.equals("Shamn/Kalimos.jpg"))
+    {
+      type = 0;
+      cost = 8;
+      value = 7;
+      currentHP = 7;
+      maxHP = 7;
+    }
     if (paf.equals("Shamn/LavaBurst.jpg"))
     {
       type = 1;
       cost = 3;
       value = 5;
-      //Deal 5 damage and overload 2
     }
-    if (paf.equals("Shamn/LightningStorm.jpg"))
+    if (paf.equals("Shamn/LightningBolt.jpg"))
     {
       type = 1;
-      cost = 3;
-      value = 2;
-      //Deal 2 or 3 dmg to all enemy monsters and overload 2
-    }
-    if (paf.equals("Shamn/ManaTideTotem.jpg"))
-    {
-      type = 0;
-      cost = 3;
-      value = 0;
-      currentHP = 3;
-      maxHP = 3;
-    }
-    if (paf.equals("Shamn/RockbiterWeapon.jpg"))
-    {
-      type = 1;
-      cost = 2;
-      //Give a monster/player +3 attack this turn
+      cost = 1;
+      value = 3;
     }
     if (paf.equals("Shamn/SearingTotem.jpg"))
     {
@@ -496,14 +442,6 @@ class Card {
       value = 1;
       currentHP = 1;
       maxHP = 1;
-    }
-    if (paf.equals("Shamn/SpiritWolf.png"))
-    {
-      type = 0;
-      cost = 2;
-      value = 2;
-      currentHP = 3;
-      maxHP = 3;
     }
     if (paf.equals("Shamn/StoneclawTotem.png"))
     {
@@ -518,7 +456,6 @@ class Card {
       type = 1;
       cost = 2;
       value = 4;
-      //Deal 4 damage to a minion and overload 1
     }
     if (paf.equals("Shamn/StormforgedAxe.jpg"))
     {
@@ -527,6 +464,14 @@ class Card {
       value = 2;
       currentHP = 3;
       maxHP = 3;
+    }
+    if (paf.equals("Shamn/ThingFromBelow.jpg"))
+    {
+      type = 0;
+      cost = 5;
+      value = 5;
+      currentHP = 5;
+      maxHP = 5;
     }
     if (paf.equals("Shamn/TotemGolem.jpg"))
     {
