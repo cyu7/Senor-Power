@@ -17,10 +17,6 @@ methods are close enough.
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-There is one bug that occurs occasionally in the game. This isn't really something to reflect on since I don't really know what causes
-it or how to replicate it. It comes from the whichImage variable being too big for the images array, which I can't explain since 
-there is only one line of code that modifies that variable.
-
 We noticed that if we click on any spot on the board repeatedly, then the most recently moved card will "jump" all the away to the 
 left corner. We can't explain this either and think it's a problem on Processing's side that results from the user clicking too 
 many times in a short amount of time.
