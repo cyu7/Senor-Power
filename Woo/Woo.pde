@@ -431,6 +431,9 @@ void keyPressed() {
                 nicolas.monsters.get(att).currentHP-=recDamage;
               }
             }
+            else {
+              System.out.println("Already attacked this turn");
+            }
           }
         }
         //-------------------------end of p1turn, start of p2turn-----------------------------
@@ -483,6 +486,9 @@ void keyPressed() {
                 chris.monsters.get(rec).attackedthisTurn=true;
                 chris.monsters.get(rec).currentHP-=recDamage;
               }
+            }
+            else {
+              System.out.println("Already attacked this turn");
             }
           }
         }
